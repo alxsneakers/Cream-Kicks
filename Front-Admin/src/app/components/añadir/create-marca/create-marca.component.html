@@ -1,0 +1,55 @@
+<!-- Barra superior -->
+<app-navbar></app-navbar>
+<!-- Barra navegacion lateral -->
+<app-sidenav></app-sidenav>
+
+
+
+<!-- Crea el producto -->
+<div class="form-container">
+    <form (ngSubmit)="createMarca()" [formGroup]="formCreateMarca">
+
+        <!-- Codigo de cupon -->
+        <mat-form-field appearance="outline">
+            <mat-label>Nombre</mat-label>
+            <input matInput formControlName="nombre">
+            <mat-error *ngIf="formCreateMarca
+                .get('nombre')?.touched">
+                Nombre obligatario
+            </mat-error>
+        </mat-form-field>
+    
+        <!-- Boton que hace la petición -->
+        <button mat-button type="submit" [disabled]="isLoading$  && formCreateMarca.invalid" [class.spinner]="isLoading$ | async" >Crear marca</button>
+    </form>
+
+    <app-login-error *ngIf="isError$ | async" [error]="isError$ | async"></app-login-error>
+
+   
+
+  
+
+    
+
+    <app-index-marca></app-index-marca>
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+

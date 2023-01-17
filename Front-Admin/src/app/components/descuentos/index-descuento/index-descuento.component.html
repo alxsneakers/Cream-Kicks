@@ -1,0 +1,82 @@
+<!-- Barra superior -->
+<app-navbar></app-navbar>
+<!-- Barra navegacion lateral -->
+<app-sidenav></app-sidenav>
+
+<!-- loader mientras cargar los datos de la api -->
+<div class="container-loader" *ngIf="loading$ | async">
+    <span class="loader"></span>
+</div>
+
+
+<div class="table-container" tabindex="0" *ngIf="!(loading$ | async)">
+
+    <!-- Buscador -->
+    <div class="barraSuperior">
+        <ion-icon name="search-outline" class="iconSearch"></ion-icon>
+        <input class="input" matInput (keyup)="applyFilter($event)" placeholder="Filtrar Descuentos" #input>
+    </div>
+
+
+    <!-- Tabla -->
+    <table mat-table [dataSource]="data">
+    
+        <!-- Img Descuento -->
+        <ng-container matColumnDef="banner">
+            <th mat-header-cell *matHeaderCellDef>Banner</th>
+            <td mat-cell *matCellDef="let element">
+                <img style="max-width: 59px; max-height: 59px;" [src]="url + element.banner">
+            </td>
+        </ng-container>
+
+        <!-- Titulo Column -->
+        <ng-container matColumnDef="titulo">
+            <th mat-header-cell *matHeaderCellDef>Titulo</th>
+            <td mat-cell *matCellDef="let element">{{element.titulo}}<br><strong>{{element.sku}}</strong></td>
+        </ng-container>
+    
+        <!-- Descuento Column -->
+        <ng-container matColumnDef="descuento">
+            <th mat-header-cell *matHeaderCellDef>Descuento</th>
+            <td mat-cell *matCellDef="let element">{{element.descuento}}%</td>
+        </ng-container>
+
+         <!-- Estado Column -->
+         <ng-container matColumnDef="estado">
+            <th mat-header-cell *matHeaderCellDef>Estado</th>
+            <td mat-cell *matCellDef="let element of estados; let i = index;">{{estados[i + 1]}}</td>
+        </ng-container>
+
+        <!-- Duracion Column -->
+        <ng-container matColumnDef="duracion">
+            <th mat-header-cell *matHeaderCellDef>Duracion</th>
+            <td mat-cell *matCellDef="let element">{{element.fecha_inicio + ' - ' + element.fecha_fin}}</td>
+        </ng-container>
+
+        <!-- Function Column -->
+        <ng-container matColumnDef="funciones" class="funciones">
+            <th mat-header-cell *matHeaderCellDef>Funciones</th>
+            <td mat-cell *matCellDef="let element" >
+                <ion-icon name="create-outline" [routerLink]="['/descuentos', element._id]" routerLinkActive="router-link-active"></ion-icon>
+                <!--<ion-icon name="trash-outline" (click)="openDialog(element.nombre, element._id)"></ion-icon>-->
+            </td>
+        </ng-container>
+    
+        <tr mat-header-row *matHeaderRowDef="columnsDisplay"></tr>
+        <tr mat-row *matRowDef="let row; columns: columnsDisplay;">
+    
+        
+        <!-- Cuando no hay ningun resultado, agrega una fifla con ese mensaje -->
+        <tr *matNoDataRow>
+            <td class="mat-cell" colspan="4">No se ha encontrado ningún descuento "{{input.value}}"</td>
+        </tr>
+        
+    </table>
+
+
+    <!-- Paginator -->
+    <mat-paginator [pageSize]="9" aria-label="Select page of user" class="paginator"></mat-paginator>  
+</div>
+
+
+    

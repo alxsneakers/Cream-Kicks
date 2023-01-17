@@ -1,0 +1,117 @@
+
+*{
+    font-size: 14px;
+}
+
+mat-card-title{
+    font-size: 20px;
+    font-weight: 600;
+
+}
+
+.containerImgProfile{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
+}
+
+.containerImgProfile > input {
+    display: none;
+}
+
+
+// cambia el estilo del los botones desactivados.
+button:disabled {
+    border-color: #C6C6C6;
+    background: #FFFFFF;
+    pointer-events: none;
+}
+  
+
+.containerImgProfile img {
+    height: 80px;
+    width: 80px;
+    border-top-left-radius: 50% 50%; 
+    border-top-right-radius: 50% 50%; 
+    border-bottom-right-radius: 50% 50%; 
+    border-bottom-left-radius: 50% 50%; 
+    border: 1px solid #C6C6C6;
+    cursor: pointer;
+}
+
+
+
+// centra las cartas
+.container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+mat-card{
+    margin-top: 25px;
+    min-width: 874px;
+    border: 1px solid #C6C6C6;
+    border-radius: 5px;
+    background-color: #FFFFFF; 
+}
+
+// alinea los botones a la derecha
+mat-card-actions{
+    display: flex;
+    justify-content: right;
+    padding-right: 24px;
+}
+
+mat-card-subtitle{
+    padding-top: 12px;
+}
+
+.button{
+    background: #000000;
+    color: #FFFFFF;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    border: 1px solid #000000;
+    border-radius: 7px;
+    outline: none;
+}
+
+.button:hover{
+    color: #000000;
+    background: #FFFFFF;
+}
+
+
+
+// cambia el tamaño de los iconos (funciones)
+ion-icon{
+    font-size: 20px;
+}
+
+
+// spinner peticion
+@keyframes spinner {
+    to {transform: rotate(360deg);}
+  }
+   
+  .spinner:before {
+    content: '';
+    box-sizing: border-box;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 20px;
+    height: 20px;
+    margin-top: -10px;
+    margin-left: -10px;
+    border-radius: 50%;
+    border: 2px solid #ffffff;
+    border-top-color: #000000;
+    animation: spinner .8s linear infinite;
+  }
+    
+
+

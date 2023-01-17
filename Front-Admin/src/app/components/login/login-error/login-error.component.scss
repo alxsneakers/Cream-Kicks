@@ -1,0 +1,38 @@
+
+*{
+    font-size: 16px;
+}
+
+// Contiene el mensaje de error, ademas centra el mensaje error
+.container{
+    width: 376px;
+    height: 35px;
+    border-radius: 5px;
+    display: grid;
+    place-items: center;
+    background-color: #F7D5D6;
+    border: 1px solid #C90F10;
+}
+
+// Mensaje de error del formulario login
+.message{
+    color: #B30707;
+    font-size: 14px;
+    text-align: center;
+    align-items: center;
+}
+
+
+// Responsive pantallas inferiores a 480px
+@media screen and (max-width: 480px) {
+    *{
+        font-size: 14px;
+    }
+    
+    .container{
+        width: 318px;
+        height: 31px;
+    }
+
+}
+

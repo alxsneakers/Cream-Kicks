@@ -1,0 +1,119 @@
+
+*{
+    font-size: 14px;
+}
+
+// centra la zona drag and drop
+.container{
+    padding-left: 252px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding-top: 20px;
+}
+
+.container-table{
+    padding-left: 252px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+// alinea el boton a la derecha.
+.accion{
+    display: flex;
+    flex-direction: row;
+    align-items: right;
+    justify-content: right;
+}
+
+table{
+    width: 100vh;
+    max-height: 200px;
+    margin-top: 50px;
+}
+
+
+
+// tamaño de la imagen.
+.image-portada{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    
+   
+
+}
+
+
+.btn-subir{
+    width: 90px;
+    height: 39px;
+    font-weight: 500;
+    border: 2px solid #C6C6C6;
+    border-radius: 5px;
+}
+
+
+.dropzone{
+    max-width: calc(100vh - 252px);
+    width: 647px;
+}
+
+
+
+.text-wrapper{
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+}
+
+.mat-paginator{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+// cambia el tamaño de los iconos (funciones)
+ion-icon{
+    font-size: 20px;
+}
+
+
+
+// centra el loader
+.container-loader{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: calc(100% - 75px);
+}
+
+.loader {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background-color: #fff;
+    box-shadow: 32px 0 #fff, -32px 0 #fff;
+    position: relative;
+    animation: flash 0.5s ease-out infinite alternate;
+  }
+  
+  @keyframes flash {
+    0% {
+      background-color: #FFF2;
+      box-shadow: 32px 0 #FFF2, -32px 0 black;
+    }
+    50% {
+      background-color: black;
+      box-shadow: 32px 0 #FFF2, -32px 0 #FFF2;
+    }
+    100% {
+      background-color: #FFF2;
+      box-shadow: 32px 0 black, -32px 0 #FFF2;
+    }
+  }

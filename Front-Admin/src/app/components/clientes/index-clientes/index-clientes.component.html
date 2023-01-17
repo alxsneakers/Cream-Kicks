@@ -1,0 +1,63 @@
+
+<!-- Barra superior -->
+<app-navbar></app-navbar>
+<!-- Barra navegacion lateral -->
+<app-sidenav></app-sidenav>
+
+
+<!-- spinner -->
+<div class="container-loader" *ngIf="isLoading$ | async">
+    <span class="loader"></span>
+</div>
+
+
+
+<div class="table-container" tabindex="0" *ngIf="!(isLoading$ | async)">
+
+    <!-- Buscador -->
+    <div class="barraSuperior">
+        <ion-icon name="search-outline" class="iconSearch"></ion-icon>
+        <input class="input" matInput (keyup)="applyFilter($event)" placeholder="Filtrar Clientes" #input>
+    </div>
+
+    <!-- Tabla -->
+    <table mat-table [dataSource]="data">
+
+       
+        <!-- Nombre Column -->
+        <ng-container matColumnDef="nombre completo">
+            <th mat-header-cell *matHeaderCellDef>Nombre completo</th>
+            <td mat-cell *matCellDef="let element">{{element.nombre + ' ' + element.apellidos}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="email">
+            <th mat-header-cell *matHeaderCellDef>Email</th>
+            <td mat-cell *matCellDef="let element">{{element.email}}</td>
+        </ng-container>
+
+        <!-- Function Column -->
+        <ng-container matColumnDef="funciones" class="funciones">
+            <th mat-header-cell *matHeaderCellDef>Funciones</th>
+            <td mat-cell *matCellDef="let element" >
+                <ion-icon name="trash-outline" (click)="openDialog(element.nombre, element._id)"></ion-icon>
+                <ion-icon name="albums-outline" [routerLink]="['compras/', element._id]"></ion-icon>
+            </td>
+        </ng-container>
+    
+        
+        <tr mat-header-row *matHeaderRowDef="columnsDisplay"></tr>
+        <tr mat-row *matRowDef="let row; columns: columnsDisplay;">
+    
+        
+        <!-- Cuando no hay ningun resultado, agrega una fifla con ese mensaje --->
+        <tr *matNoDataRow>
+            <td class="mat-cell" colspan="4">No se ha encontrado ningun cliente "{{input.value}}"</td>
+        </tr>
+        
+    </table>
+
+    <!-- Paginator -->
+    <mat-paginator [pageSize]="10" aria-label="Select page of user" class="paginator"></mat-paginator>  
+</div>
+
+

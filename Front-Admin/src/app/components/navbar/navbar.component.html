@@ -1,0 +1,30 @@
+<mat-toolbar>
+    <a href="/"><img src="../../assets/logo_116x33.svg" alt="logo de la marca"></a>
+    <div class="menu-container">
+
+       
+        
+        <!-- si el usuario no tiene img de perfil -->
+        <button mat-button [matMenuTriggerFor]="menu" *ngIf="userInfo.imgPerfil == null">{{userInfo.nombre}}</button>
+        
+        
+        <!-- si tiene img -->
+        <button mat-button [matMenuTriggerFor]="menu" *ngIf="userInfo.imgPerfil">
+            <img [src]="imgSelect" >
+            {{userInfo.nombre}}
+        </button>
+
+
+
+        <mat-menu #menu="matMenu">
+            <button mat-menu-item [routerLink]="['/cuenta']">
+                <ion-icon name="settings-outline"></ion-icon>
+                Configuración
+            </button>
+            <button mat-menu-item>
+                <ion-icon name="log-out-outline"></ion-icon>
+                Cerrar sesión
+            </button>
+        </mat-menu>
+    </div>
+</mat-toolbar>

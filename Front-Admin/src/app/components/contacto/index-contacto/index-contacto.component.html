@@ -1,0 +1,84 @@
+<!-- Barra superior -->
+<app-navbar></app-navbar>
+<!-- Barra navegacion lateral -->
+<app-sidenav></app-sidenav>
+
+
+<div class="container">
+
+
+  <!-- Buscador -->
+  <div class="buscador">
+    <ion-icon name="search-outline" class="iconSearch"></ion-icon>
+    <input mat-input class="input" name="mensajesFiltrados" [(ngModel)]="mensajesFiltrados" placeholder="Buscar por email">
+  </div>
+
+
+    <!-- mensaje card -->
+    <mat-card style="background-color: #FFFFFF;" class="example-card" *ngFor="let item of (contactos$ | async) | filterMensajes: mensajesFiltrados" >
+      <div class="card-boy">
+        <mat-card-header>
+          <mat-card-title>{{item.nombre}}</mat-card-title>
+          <mat-card-subtitle>{{item.creado | date }}</mat-card-subtitle>
+          <mat-card-subtitle>{{item.estado}}</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+          <p>{{item.asunto}}</p>
+          <p>{{item.mensaje}}</p>
+          <a href="mailto:{{item.email}}">{{item.email}}</a>
+        </mat-card-content>
+
+      </div>
+
+
+      <mat-card-actions style="background: #FAFAFA;">
+        <button mat-button class="button" (click)="openDialog(item.nombre, item._id)">Contestado</button>
+      </mat-card-actions>
+
+
+      
+      
+  </mat-card>
+</div>       
+
+
+<!--<mat-accordion class="example-headers-align">
+          <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                Responder mensaje
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+        
+            <mat-form-field appearance="fill">
+              <mat-label>Asunto</mat-label>
+              <input matInput>
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+              <mat-label>Cuerpo del mensaje</mat-label>
+              <textarea matInput></textarea>
+            </mat-form-field>-->
+
+
+        
+
+
+
+      
+
+     
+
+      
+      
+
+
+
+
+
+  
+
+   
+
+
+
+  

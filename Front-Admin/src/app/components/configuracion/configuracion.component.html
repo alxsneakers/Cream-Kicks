@@ -1,0 +1,140 @@
+<!-- Barra superior -->
+<app-navbar></app-navbar>
+<!-- Barra navegacion lateral -->
+<app-sidenav></app-sidenav>
+
+<h1 style="font-size: 32px; text-align: center; font-weight: 500;">Ajustes de la cuenta</h1>
+
+<div class="container">
+    <!-- nombre card -->
+    <mat-card class="example-card" >
+        <div class="card-boy"> <!-- centra el columna-->
+          <mat-card-header>
+            <mat-card-title>Tu nombre</mat-card-title>
+            <mat-card-subtitle>Este es tu nombre de usuario en CreamKicksAdmin.</mat-card-subtitle>
+        </mat-card-header>
+
+        <!-- error al cambiar el nombre -->
+        <section>
+            <app-login-error *ngIf="isError$ | async" [error]="isError$ | async"></app-login-error>
+        </section>
+        </div>
+
+        <form (ngSubmit)="actualizar_nombre_admin()" [formGroup]="formUpdateNombre">
+            <mat-form-field appearance="outline">
+                <input type="text" class="input" matInput maxlength="48" formControlName="nombre">
+                <mat-error *ngIf="formUpdateNombre
+                .get('nombre')?.touched">
+                obligatario
+            </mat-error>
+            </mat-form-field>
+            
+
+            <mat-card-actions style="background: #FAFAFA;">
+                <button mat-button class="button" [disabled]="formUpdateNombre.invalid && isLoading$ | async" [class.spinner]="isLoading$ | async">Guardar</button>
+              </mat-card-actions>
+        </form>
+    </mat-card>
+
+
+    <!-- avatar card -->
+    <mat-card class="example-card" >
+          <mat-card-header>
+            <mat-card-title>Imagen Perfil</mat-card-title>
+            <mat-card-subtitle>Pulsa en la imagen para cambiarla.</mat-card-subtitle>
+
+            <form (ngSubmit)="actualizar_imgPerfil_admin()" [formGroup]="formUploadImagenPerfil">
+            
+            
+            <div class="containerImgProfile">
+                <label for="file-input">
+                    <img class="imgPerfil" [src]="imgSelect">
+                </label>
+                <input type="file" id="file-input" (change)="fileChangeEvent($event)" formControlName="imagenPerfil">
+            </div>
+
+
+            <p>La imagen de perfil es opcional.</p>
+            <mat-card-actions style="background: #FAFAFA;">
+                <button mat-button class="button" [disabled]="formUploadImagenPerfil.invalid">
+                    <ion-icon name="cloud-upload-outline"></ion-icon>
+                    Subir
+                </button>
+              </mat-card-actions>
+            </form>
+
+        </mat-card-header>
+
+       
+            
+
+
+
+             <!-- Imagen de producto -->
+             <!--<div>
+                <mat-card class="image-card">
+                    <mat-card-header>
+                        <mat-card-subtitle>Selecciona una imagen</mat-card-subtitle>
+                    </mat-card-header>
+                    <img mat-card-image [src]="imgSelect">
+                    <mat-card-actions>
+                        <input type="file" (change)="fileChangeEvent($event)" formControlName="portada">
+                    </mat-card-actions>
+                </mat-card>
+            </div>-->
+
+
+            
+          
+
+
+
+
+   
+
+     
+    </mat-card>
+
+
+    <!-- email -->
+     <mat-card class="example-card" >
+        <div class="card-boy"> <!-- centra el columna-->
+          <mat-card-header>
+            <mat-card-title>Tu Email</mat-card-title>
+            <mat-card-subtitle>Este es tu email en CreamKicksAdmin.</mat-card-subtitle>
+        </mat-card-header>
+        </div>
+
+        
+            <mat-form-field appearance="outline">
+                <input type="email" class="input" matInput readonly [value]="userInfo2.email">
+            </mat-form-field>
+            
+
+            <mat-card-actions style="background: #FAFAFA;">
+                <button mat-button class="button" disabled>Guardar</button>
+              </mat-card-actions>
+    </mat-card>
+
+
+    <!-- borrar cuenta -->
+    <mat-card class="example-card" style="border-color: #FF0000;">
+        <div class="card-boy"> <!-- centra el columna-->
+          <mat-card-header>
+            <mat-card-title>Borrar Cuenta</mat-card-title>
+            <mat-card-subtitle>Elimine de forma permanente su Cuenta y todo su contenido de CreamKicksAdmin.<br>
+            Esta acción <strong>no es reversible</strong>, así continue con precaución. 
+            </mat-card-subtitle>
+        </mat-card-header>
+        </div>
+
+            <mat-card-actions style="background: #FAFAFA;">
+                <button mat-button class="button" style="font-weight: 700;background: #FF0000; border-color: #FF0000;" (click)="openDialog()">Borrar cuenta</button>
+              </mat-card-actions>
+    </mat-card>
+
+
+
+
+
+</div>

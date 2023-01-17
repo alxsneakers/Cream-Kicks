@@ -1,0 +1,54 @@
+<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+<nav class="col-1">
+    <div class="sidenav" [ngClass]="collapsed ? 'sidenav-collapsed' : '' ">
+        <div class="logoContainer">
+            <a (click)="toggleCollapsed()"><i *ngIf="!collapsed" class='logo bx bx-menu'></i></a>
+            <div class="userName" @fadeInout *ngIf="collapsed">UsuarioPrueba</div>
+            <button class="btn-close" *ngIf="collapsed" (click)="closeSidenav()">
+                <i class='bx bx-x'></i>
+            </button>
+    </div>
+    
+    
+
+    <ul class="sidenav-nav">
+        <span style="margin-top: 24px;"></span>
+        <li class="sidenav-nav-item" *ngFor="let data of navData">
+            <a class="sidenav-nav-link" (click)="handleClick(data)"  *ngIf="data.items && data.items.length > 0">
+                <ion-icon [name]="data.icon" class="sidenav-link-icon"></ion-icon>
+                <span class="sidenav-link-text" *ngIf="collapsed">{{data.label}}</span>
+                <i *ngIf="data.items && collapsed"  class="menu-collapsed-icon"
+                    [ngClass]="!data.expanded ? 'bx bx-chevron-right' : 'bx bx-chevron-down'"
+                ></i>
+            </a>
+
+            <a class="sidenav-nav-link" *ngIf="!data.items || (data.items && data.items.length === 0)"  [routerLink]="[data.routerLink]" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                <ion-icon [name]="data.icon" class="sidenav-link-icon"></ion-icon>
+                <span class="sidenav-link-text" *ngIf="collapsed">{{data.label}}</span>
+            </a>
+            <div *ngIf="collapsed && data.items && data.items.length > 0">
+                <app-sublevel-menu
+                    [data]="data"
+                    [collapsed]="collapsed"
+                    [multiple]="multiple"
+                    [expanded]="data.expanded"
+                ></app-sublevel-menu>
+            </div>
+        </li>
+
+        <!-- boton cerrar sesion  -->
+    
+        <div class="logout">
+            <li class="sidenav-nav-item">
+                <a class="sidenav-nav-link" (click)="logout()">
+                    <ion-icon name="log-out-outline" class="sidenav-link-icon"></ion-icon>
+                    <span class="sidenav-link-text" @fadeInout *ngIf="collapsed">Logout</span>
+                </a>
+            </li>
+        </div>
+    </ul>
+    </div>
+</nav>
+
+

@@ -1,0 +1,95 @@
+<!-- Barra superior -->
+<app-navbar></app-navbar>
+<!-- Barra navegacion lateral -->
+<app-sidenav></app-sidenav>
+
+
+
+
+<div class="form-container">
+
+    <!-- Boton para generar -->
+    <button mat-button (click)="generarCodigo()">Generar codigo</button>
+
+    <form (ngSubmit)="createCupon()" [formGroup]="formCreateCupon">
+
+        <div class="firstGroup">
+            <!-- Codigo de cupon -->
+            <mat-form-field appearance="outline">
+                <mat-label>Código de cupón</mat-label>
+                <input matInput formControlName="codigo">
+                <mat-error *ngIf="formCreateCupon
+                    .get('codigo')?.touched && formCreateCupon
+                    .get('codigo')?.errors?.['required']">
+                    Código obligatario
+                </mat-error>
+            </mat-form-field>
+         
+            <!-- Tipo -->
+            <mat-form-field appearance="outline">
+                <mat-label>Tipo</mat-label>
+                <mat-select formControlName="tipo">
+                    <mat-option value="porcentaje">Porcentaje</mat-option>
+                    <mat-option value="valorFijo">Valor fijo</mat-option>
+                </mat-select>
+                <mat-error *ngIf="formCreateCupon
+                    .get('tipo')?.touched && formCreateCupon
+                    .get('tipo')?.errors?.['required']">
+                    Tipo obligatorio
+                    </mat-error>
+            </mat-form-field>
+
+            
+
+
+            
+        </div>
+
+        <!-- Valor -->
+        <mat-form-field appearance="outline">
+            <mat-label>Valor</mat-label>
+            <input matInput formControlName="valor" type="number" min="1" max="100">
+            <mat-error *ngIf="formCreateCupon
+                .get('valor')?.touched && formCreateCupon
+                .get('valor')?.errors?.['required']">
+                Valor obligatorio
+            </mat-error>
+            <mat-error *ngIf="formCreateCupon
+                .get('valor')?.touched && formCreateCupon
+                .get('valor')?.errors?.['min']">
+                Recuerda el valor minimo es 1
+            </mat-error>
+            <mat-error *ngIf="formCreateCupon
+                .get('valor')?.touched && formCreateCupon
+                .get('valor')?.errors?.['max']">
+                Recuerda el valor maximo es 100
+            </mat-error>
+        </mat-form-field>
+
+
+        <!-- Limite -->
+        <mat-form-field appearance="outline">
+            <mat-label>Limite</mat-label>
+            <input matInput formControlName="limite" type="number" min="1">
+            <mat-error *ngIf="formCreateCupon
+                .get('limite')?.touched && formCreateCupon
+                .get('limite')?.errors?.['required']">
+                Limite obligatorio
+            </mat-error>
+            <mat-error *ngIf="formCreateCupon
+                .get('limite')?.touched && formCreateCupon
+                .get('limite')?.errors?.['min']">
+                Recuerda el valor minimo es 1
+            </mat-error>
+        </mat-form-field>
+   
+        <!-- Boton que hace la petición -->
+        <button mat-button type="submit" [disabled]="formCreateCupon
+            .invalid">Crear cupon</button>
+    </form>
+</div>
+
+
+  
+  
+

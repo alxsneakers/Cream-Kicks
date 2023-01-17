@@ -1,0 +1,156 @@
+<!-- Barra superior -->
+<app-navbar></app-navbar>
+<!-- Barra navegacion lateral -->
+<app-sidenav></app-sidenav>
+
+
+<div class="form-container">   
+      <mat-stepper linear #stepper>
+
+
+        <!-- 1 -->
+        <mat-step [stepControl]="form1" [editable]="true">
+
+          <form [formGroup]="form1">
+            <ng-template matStepLabel>Registro producto</ng-template>
+
+            <!-- Nombre -->
+            <mat-form-field appearance="outline">
+                <mat-label>Nombre</mat-label>
+                <input matInput formControlName="nombre">
+                <mat-error *ngIf="form1
+                    .get('nombre')?.touched && form1
+                    .get('nombre')?.errors?.['required']">
+                    Nombre obligatario
+                    </mat-error>
+            </mat-form-field>
+
+            <!-- Marcas --->
+            <mat-form-field appearance="outline">
+                <mat-label>Marca</mat-label>
+                <mat-select formControlName="marca">
+                    <mat-option *ngFor="let marca of listaMarcas" [value]="marca">{{marca}}</mat-option>
+                </mat-select>
+                <mat-error *ngIf="form1
+                .get('marca')?.touched && form1
+                .get('marca')?.errors?.['required']">
+                Marca obligatorio
+                </mat-error>
+            </mat-form-field>
+
+           
+            <!-- Sku -->
+            <mat-form-field appearance="outline">
+            <mat-label>sku</mat-label>
+            <input matInput formControlName="sku">
+            <mat-error *ngIf="form1
+                .get('sku')?.touched && form1
+                .get('sku')?.errors?.['required']">
+                SKU obligatorio
+            </mat-error>
+            </mat-form-field>
+
+
+            <!-- Imagen de producto -->
+            <div>
+                <mat-card class="image-card">
+                    <mat-card-header>
+                        <mat-card-subtitle>Selecciona una imagen</mat-card-subtitle>
+                    </mat-card-header>
+                    <img mat-card-image [src]="imgSelect">
+                    <mat-card-actions>
+                        <input type="file" (change)="fileChangeEvent($event)" formControlName="portada">
+                    </mat-card-actions>
+                </mat-card>
+            </div>
+
+             <!-- Precio compra --> 
+            <mat-form-field appearance="outline" floatLabel="always">
+                <mat-label>Precio Compra</mat-label>
+                <input matInput type="number" placeholder="0" formControlName="precioCompra" min="1">
+                <mat-error *ngIf="form1
+                        .get('precioCompra')?.touched && form1
+                        .get('precioCompra')?.errors?.['required']">
+                        Precio Compra obligatorio
+                </mat-error>
+                <mat-error *ngIf="form1
+                        .get('precioCompra')?.touched && form1
+                        .get('precioCompra')?.errors?.['min']">
+                        Recuerda el valor minimo es 1€
+                </mat-error>
+            </mat-form-field>
+            
+        
+
+            <!-- Precio venta -->
+            <mat-form-field appearance="outline" floatLabel="always">
+                <mat-label>Precio Venta</mat-label>
+                <input matInput type="number" placeholder="0" formControlName="precioVenta" min="1">
+                <mat-error *ngIf="form1
+                        .get('precioVenta')?.touched && form1
+                        .get('precioVenta')?.errors?.['required']">
+                        Precio Venta obligatorio
+                </mat-error>
+                <mat-error *ngIf="form1
+                        .get('precioVenta')?.touched && form1
+                        .get('precioVenta')?.errors?.['min']">
+                        Recuerda el valor minimo es 1€
+                </mat-error>
+            </mat-form-field>
+
+
+            <!-- Publicar en tienda -->
+            <mat-checkbox type="" formControlName="publicado">Publicar en Tienda</mat-checkbox>
+
+            <div>
+              <button mat-button matStepperNext>Siguiente</button>
+            </div>
+          </form>
+        </mat-step>
+
+
+        <!-- 2 -->
+        <mat-step [stepControl]="form1" [editable]="false">
+            <ng-container >
+                <form [formGroup]="form1" (ngSubmit)="onSubmit()">
+                    <ng-template matStepLabel >Stock por tallas</ng-template>
+
+                    
+                    
+                    <button type="button" mat-raised-button color="accent" (click)="addProducto()">add</button>
+                    
+                    <div *ngFor="let u of tallaStockArray.controls; index as i">
+
+                        <span>Talla {{ i + 1 }}</span> &nbsp; &nbsp;
+                        <app-product-form [inputFormGroup]="$any(u)"></app-product-form> &nbsp; &nbsp;
+                        <button mat-raised-button color="accent" (click)="removeUser(i)">borrar</button>
+                
+                    </div>
+        
+                   
+                    <div>
+                      <button mat-button matStepperPrevious>Volver</button>
+                      <button mat-button matStepperNext [disabled]="form1.invalid">Siguiente</button>
+                    </div>
+                </form>
+            </ng-container>
+          
+        </mat-step>
+
+        <!-- 3 -->
+        <mat-step>
+          <ng-template matStepLabel>Finalizar</ng-template>
+          <p>You are now done.</p>
+          <div>
+            <button mat-button (click)="createProduct()">Crear</button>
+          </div>
+        </mat-step>
+      </mat-stepper>
+      
+    
+</div>
+
+
+  
+  
+
