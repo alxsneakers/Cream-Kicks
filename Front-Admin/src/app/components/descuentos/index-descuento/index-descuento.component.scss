@@ -1,0 +1,141 @@
+
+// tamaño de letra de todo el componente
+*{
+    font-size: 14px;
+}
+
+mat-tab-group{
+    width: calc(100vh - 75px);
+}
+
+mat-toolbar{
+    background: white;
+    border: 1px solid #C6C6C6;
+    margin-left: 251px;
+}
+
+mat-toolbar a{
+    color: black;
+    text-decoration: none;
+    text-indent: 50px;
+}
+
+// centra la tabla
+.table-container{
+    padding-left: 252px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-exportar{
+    width: 128px;
+    height: 39px;
+    margin-left: 10px;
+    font-weight: 500;
+    border: 2px solid #C6C6C6;
+    border-radius: 5px;
+    color: #1E1E1E;
+    background: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+// tamaño de la tabla
+table{
+    width: calc(100vh - 75px);
+}
+
+// centra el paginator
+.mat-paginator{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+// centra la barra superior
+.barraSuperior{
+    display: flex;
+    margin-bottom: 24px;
+    margin-top: 24px;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+
+.iconSearch{
+    color: #C6C6C6;
+    position: absolute;
+    left: 14px;
+}
+
+// estilos del buscador
+input{
+    height: 39px;
+    width: 600px;
+    border: 2px solid #C6C6C6;
+    border-radius: 5px;
+    font-size: 16px;
+    outline: transparent;
+    padding-left: 45px; // espacio entre el icono del buscador y el placeholder
+    background: white;
+}
+
+// cambia el color del placeholder de los inputs.
+::placeholder{ 
+    color: #949AA2;
+}
+
+// color del la fila al pasar por ella.
+.mat-row:hover .mat-cell{
+    background-color: #EEF0F2;
+}
+
+// centra el titulo (Productos)
+.title{
+    text-align: center;
+}
+
+
+// cambia el tamaño de los iconos (funciones)
+ion-icon{
+    font-size: 20px;
+    margin-right: 10px;
+}
+
+
+// centra el loader
+.container-loader{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: calc(100% - 75px);
+}
+
+.loader {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background-color: #fff;
+    box-shadow: 32px 0 #fff, -32px 0 #fff;
+    position: relative;
+    animation: flash 0.5s ease-out infinite alternate;
+  }
+  
+  @keyframes flash {
+    0% {
+      background-color: #FFF2;
+      box-shadow: 32px 0 #FFF2, -32px 0 black;
+    }
+    50% {
+      background-color: black;
+      box-shadow: 32px 0 #FFF2, -32px 0 #FFF2;
+    }
+    100% {
+      background-color: #FFF2;
+      box-shadow: 32px 0 black, -32px 0 #FFF2;
+    }
+  }

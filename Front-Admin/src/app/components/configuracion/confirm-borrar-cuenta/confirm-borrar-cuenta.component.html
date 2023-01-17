@@ -1,0 +1,20 @@
+<h2 mat-dialog-title class="titulo">Borrar Cuenta</h2>
+<p>Esta acción borrará tu cuenta en CreamKicksAdmin, con todos sus datos en esta aplicación. Con lo que conlleva que no volverá a poder acceder a CreamKicksAdmin con este usuario ({{data.nombreCuenta}}).</p>
+
+<div class="container-message">
+    <span class="message">Atención, esta acción es irreversible.</span>
+</div>
+
+
+<mat-dialog-content [formGroup]="form">
+    <p>Introduce tu nombre de usuario <strong>{{data.nombreCuenta}}</strong> para continuar:</p>
+    <input type="text" formControlName="nombreCuenta">
+    <br>
+    <p>Para verificar, introduce <strong>confirmar</strong> debajo:</p>
+    <input type="text" formControlName="confirmInput">
+    <p type="text" formControlName="valueInput"></p>
+</mat-dialog-content>
+<div mat-dialog-actions class="container-acciones">
+    <button mat-button (click)="onClickNo()">Cancelar</button>
+    <button mat-button [disabled]="form.invalid" [mat-dialog-close]="true" class="btn-eliminar">Borrar cuenta</button>
+</div>

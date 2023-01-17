@@ -1,0 +1,39 @@
+
+
+.form-container{
+    height: calc(100vh - 75px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+
+button{
+    color: black;
+    background: white;
+    border: 1px solid black;
+}
+
+.firstGroup{
+    display: flex;
+    flex-direction: row;
+}
+
+.secondGroup{
+    display: flex;
+    flex-direction: row;
+}
+
+// tamaño de la imagen.
+.image-card{
+    max-width: 250px;
+}
+
+// espacio entre inputs
+mat-form-field{
+    margin-right: 12px;
+    margin-bottom: 12px;
+    text-decoration: none;
+}
+

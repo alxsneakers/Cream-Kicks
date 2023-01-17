@@ -1,0 +1,10 @@
+<mat-form-field>
+    <mat-label>Talla</mat-label>
+    <input type="number" matInput [formControl]="$any(inputFormGroup.controls['talla'])" >
+</mat-form-field>
+
+
+<mat-form-field>
+    <mat-label>Stock</mat-label>
+    <input type="number" matInput [formControl]="$any(inputFormGroup.controls['stock'])" min="1" max="100">
+</mat-form-field>

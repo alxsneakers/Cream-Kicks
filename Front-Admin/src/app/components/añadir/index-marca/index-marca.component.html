@@ -1,0 +1,72 @@
+
+<!-- spinner -->
+<div class="container-loader" *ngIf="loading$ | async">
+    <span class="loader"></span>
+</div>
+
+<div class="table-container" tabindex="0" *ngIf="!(loading$ | async)">
+
+    <!-- Buscador -->
+    <div class="barraSuperior">
+            <ion-icon name="search-outline" class="iconSearch"></ion-icon>
+            <input class="input" matInput (keyup)="applyFilter($event)" placeholder="Filtrar Marcas" #input>
+            <!-- boton elimnar masivamente -->
+            <button class="btn-eliminar" *ngIf="this.selection.selected.length != 0" (click)="openDialogMany()">
+                <ion-icon name="trash-outline"></ion-icon>
+                Seleccionados
+            </button>
+    </div>
+
+    <!-- Tabla -->
+    <table mat-table [dataSource]="data">
+
+        <!-- Checkbox Column -->
+        <ng-container matColumnDef="select">
+            <th mat-header-cell *matHeaderCellDef>
+            <mat-checkbox (change)="$event ? toggleAllRows() : null"
+                            [checked]="selection.hasValue() && isAllSelected()"
+                            [indeterminate]="selection.hasValue() && !isAllSelected()"
+                            [aria-label]="checkboxLabel()">
+            </mat-checkbox>
+            </th>
+            <td mat-cell *matCellDef="let row">
+            <mat-checkbox (click)="$event.stopPropagation()"
+                            (change)="$event ? selection.toggle(row) : null"
+                            [checked]="selection.isSelected(row)"
+                            [aria-label]="checkboxLabel(row)">
+            </mat-checkbox>
+            </td>
+        </ng-container>
+
+   
+        <!-- Nombre Column -->
+        <ng-container matColumnDef="nombre">
+            <th mat-header-cell *matHeaderCellDef>Marca</th>
+            <td mat-cell *matCellDef="let element">{{element.nombre}} <br><strong>{{element.sku}}</strong></td>
+        </ng-container>
+
+        <!-- Function Column -->
+        <ng-container matColumnDef="funciones" class="funciones">
+            <th mat-header-cell *matHeaderCellDef>Funciones</th>
+            <td mat-cell *matCellDef="let element" >
+                <ion-icon name="trash-outline" (click)="openDialog(element.nombre, element._id)"></ion-icon>
+            </td>
+        </ng-container>
+    
+        
+        <tr mat-header-row *matHeaderRowDef="columnsDisplay"></tr>
+        <tr mat-row *matRowDef="let row; columns: columnsDisplay;" (click)="selection.toggle(row)">
+    
+        
+        <!-- Cuando no hay ningun resultado, agrega una fifla con ese mensaje -->
+        <tr *matNoDataRow>
+            <td class="mat-cell" colspan="4">No se ha encontrado ninguna marca "{{input.value}}"</td>
+        </tr>
+        
+    </table>
+
+    <!-- Paginator -->
+    <mat-paginator [pageSize]="10" aria-label="Select page of user" class="paginator"></mat-paginator>  
+</div>
+
+

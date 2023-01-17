@@ -1,0 +1,177 @@
+<!-- Barra superior -->
+<app-navbar></app-navbar>
+<!-- Barra navegacion lateral -->
+<app-sidenav></app-sidenav>
+
+
+
+
+
+
+<div class="form-container">
+    <form (ngSubmit)="createProduct()" [formGroup]="formCreateProduct">
+
+        <div class="firstGroup">
+            <!-- Modelo -->
+            <mat-form-field appearance="outline">
+                <mat-label>Modelo</mat-label>
+                <input matInput formControlName="nombre">
+                <mat-error *ngIf="formCreateProduct
+                    .get('nombre')?.touched && formCreateProduct
+                    .get('nombre')?.errors?.['required']">
+                    Modelo obligatario
+                    </mat-error>
+            </mat-form-field>
+        
+            <!-- Tallas -->
+            <mat-form-field appearance="outline">
+                <mat-label>Marca</mat-label>
+                <mat-select formControlName="marca">
+                    <mat-option *ngFor="let marca of listaMarcas" [value]="marca">{{marca}}</mat-option>
+                </mat-select>
+                <mat-error *ngIf="formCreateProduct
+                .get('marca')?.touched && formCreateProduct
+                .get('marca')?.errors?.['required']">
+                Marca obligatorio
+                </mat-error>
+            </mat-form-field>
+        
+            <!-- Sku -->
+            <mat-form-field appearance="outline">
+                <mat-label>sku</mat-label>
+                <input matInput formControlName="sku">
+                <mat-error *ngIf="formCreateProduct
+                    .get('sku')?.touched && formCreateProduct
+                    .get('sku')?.errors?.['required']">
+                    SKU obligatorio
+                </mat-error>
+            </mat-form-field>
+        </div>
+
+        <div class="secondGroup">
+
+
+            <!-- Tallas -->
+           <mat-form-field appearance="outline">
+            <mat-label>Tallas</mat-label>
+            <mat-select formControlName="tallas" multiple>
+                <mat-option *ngFor="let talla of listaTallas" [value]="talla">{{talla}}</mat-option>
+            </mat-select>
+            <mat-error *ngIf="formCreateProduct
+            .get('tallas')?.touched && formCreateProduct
+            .get('tallas')?.errors?.['required']">
+            Tallas obligatorio
+            </mat-error>
+           </mat-form-field>
+            
+
+            <!-- stock -->
+            <mat-form-field appearance="outline">
+                <mat-label>Stock</mat-label>
+                <input matInput formControlName="stock" type="number" min="1" max="100" [ngModel]="1">
+                <mat-error *ngIf="formCreateProduct
+                        .get('stock')?.touched && formCreateProduct
+                        .get('stock')?.errors?.['required']">
+                        Stock obligatorio
+                </mat-error>
+                <mat-error *ngIf="formCreateProduct
+                        .get('stock')?.touched && formCreateProduct
+                        .get('stock')?.errors?.['min']">
+                        Recuerda el valor minimo es 1
+                </mat-error>
+                <mat-error *ngIf="formCreateProduct
+                        .get('stock')?.touched && formCreateProduct
+                        .get('stock')?.errors?.['max']">
+                        Recuerda el valor maximo es 100
+                </mat-error>
+            </mat-form-field>
+
+             <!-- Imagen de producto -->
+            <div>
+                <mat-card class="image-card">
+                    <mat-card-header>
+                        <mat-card-subtitle>Selecciona una imagen</mat-card-subtitle>
+                    </mat-card-header>
+                    <img mat-card-image [src]="imgSelect">
+                    <mat-card-actions>
+                        <input type="file" (change)="fileChangeEvent($event)" formControlName="portada">
+                    </mat-card-actions>
+                </mat-card>
+
+            </div>
+            
+        </div>
+        
+
+        <!-- Precio compra --> 
+        <div>
+            <mat-form-field appearance="outline" floatLabel="always">
+                <mat-label>Precio Compra</mat-label>
+                <input matInput type="number" placeholder="0" formControlName="precioCompra" min="1">
+                <mat-error *ngIf="formCreateProduct
+                        .get('precioCompra')?.touched && formCreateProduct
+                        .get('precioCompra')?.errors?.['required']">
+                        Precio Compra obligatorio
+                </mat-error>
+                <mat-error *ngIf="formCreateProduct
+                        .get('precioCompra')?.touched && formCreateProduct
+                        .get('precioCompra')?.errors?.['min']">
+                        Recuerda el valor minimo es 1€
+                </mat-error>
+            </mat-form-field>
+        </div>
+            
+        
+
+        <!-- Precio venta -->
+        <div>
+            <mat-form-field appearance="outline" floatLabel="always">
+                <mat-label>Precio Venta</mat-label>
+                <input matInput type="number" placeholder="0" formControlName="precioVenta" min="1">
+                <mat-error *ngIf="formCreateProduct
+                        .get('precioVenta')?.touched && formCreateProduct
+                        .get('precioVenta')?.errors?.['required']">
+                        Precio Venta obligatorio
+                </mat-error>
+                <mat-error *ngIf="formCreateProduct
+                        .get('precioVenta')?.touched && formCreateProduct
+                        .get('precioVenta')?.errors?.['min']">
+                        Recuerda el valor minimo es 1€
+                </mat-error>
+            </mat-form-field>
+        </div>
+
+
+        <!-- Publicar en tienda -->
+        <div>
+            <mat-checkbox formControlName="publicado" [checked]="false">Publicar en Tienda</mat-checkbox>
+        </div>
+
+
+       
+
+
+       
+        
+        
+       
+
+        
+       
+        <!-- Boton que hace la petición -->
+        <button mat-button type="submit" [disabled]="formCreateProduct
+            .invalid">Crear producto</button>
+        
+
+    </form>
+
+   
+    
+
+
+</div>
+
+
+  
+  
+

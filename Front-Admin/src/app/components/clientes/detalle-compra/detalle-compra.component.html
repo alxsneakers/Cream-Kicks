@@ -1,0 +1,53 @@
+<!-- Barra superior -->
+<app-navbar></app-navbar>
+<!-- Barra navegacion lateral -->
+<app-sidenav></app-sidenav>
+
+
+<h1 style="font-size: 32px; text-align: center; font-weight: 500;">Compra </h1>
+
+<!-- spinner -->
+<div class="container-loader" *ngIf="isLoading$ | async">
+    <span class="loader"></span>
+</div>
+
+
+<div class="container" *ngIf="!(isLoading$ | async)">
+    
+    <!-- -->
+    <mat-card class="example-card" style="margin-bottom: 30px;">
+        <p>Order No: {{dCompra.data._id.toUpperCase()}}</p>
+        <p>Envio: {{dCompra.data.envio.tipo}}</p>
+        <p>Fecha: {{dCompra.data.creado | date}}</p>
+        <p>Direccion: {{dCompra.data.direccion.calle + ', ' + dCompra.data.direccion.provincia + ', ' + dCompra.data.direccion.ciudad}}</p>
+        <div class="otherContainer">
+            <p>Venta: {{dCompra.data.nventa}}</p>
+            <p>Transacción: {{dCompra.data.transaccion}}</p>
+            <p>Estado: {{dCompra.data.estado}}</p>
+            <p>Subtotal: {{dCompra.data.subtotal}}€</p>
+        </div>
+    </mat-card>
+
+
+    <!-- detalles productos -->
+    <mat-card class="example-card" *ngFor="let item of dCompra.detalles" style="background: #EEF0F2;">
+        <img [src]="url + 'obtenerPortada/' + item.producto.portada">
+        <p>{{item.producto.nombre}}</p>
+        <p>Marca: {{item.producto.marca}}</p>
+        <p>Talla: {{item.producto.talla}}</p>
+        <p>Precio: {{item.producto.precioVenta}}</p>
+        <p>Cantidad: 1</p>
+        <p>Direccion: {{dCompra.data.direccion.calle + ', ' + dCompra.data.direccion.provincia + ', ' + dCompra.data.direccion.ciudad}}</p>
+        <div class="otherContainer">
+            <p>Venta: {{dCompra.data.nventa}}</p>
+            <p>Transacción: {{dCompra.data.transaccion}}</p>
+            <p>Estado: {{dCompra.data.estado}}</p>
+            <p>Subtotal: {{dCompra.data.subtotal}}€</p>
+        </div>
+    </mat-card>
+
+
+
+
+</div>
+

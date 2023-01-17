@@ -1,0 +1,125 @@
+*{
+    font-size: 16px;
+    margin: 0px;
+    padding: 0px;
+    box-sizing: 0px;
+}
+
+
+// Centrar Contenedor
+.container{
+    height: 100vh;
+    display: flex;    
+    align-items: center;
+    justify-content: center;
+}
+
+
+// Centrar Input formulario
+.form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+//Centrar Div Logo 
+.logo{
+    display: flex;    
+    align-items: center;
+    justify-content: center;
+
+}
+
+// Tamaño img logo
+img{
+    width: 198px;
+}
+
+// Linea separadora
+.separator{
+    border: 2px solid black;
+    width: 376px;
+    margin-top: 35px;
+}
+
+// Texto Dashboard
+.dashboard{
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 5px;
+}
+
+
+// Formulario
+form input{
+    width: 350px;
+    height: 51.2px; 
+    background: #EEF0F2;
+    border: 1px solid #C6C6C6;
+    border-radius: 5px;
+    outline: transparent;
+    padding-right: 12px;
+    padding-left: 12px;
+}
+
+::placeholder{
+    color: #949AA2;
+    margin-right: 12px;
+    margin-left: 12px;
+}
+
+.button{
+    width: 376px; 
+    height: 55px;
+    border-radius: 5px;
+    background-color: black;
+    color: white;
+}
+
+
+// Responsive pantallas inferiores a 480px
+@media screen and (max-width: 480px) {
+    * {
+        font-size: 14px;
+    }
+
+    .container{
+        min-width: 160px;
+    }
+
+    .container form input{
+        width: 294px;
+        height: 44px;
+    }
+
+    .button{ // Más 4px para que se iguale a los inputs
+        width: 320px;
+        height: 48px;
+    }
+
+    .separator{
+        width: 294px;
+    }
+}
+
+// spinner peticion del login
+@keyframes spinner {
+    to {transform: rotate(360deg);}
+  }
+   
+  .spinner:before {
+    content: '';
+    box-sizing: border-box;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 20px;
+    height: 20px;
+    margin-top: -10px;
+    margin-left: -10px;
+    border-radius: 50%;
+    border: 2px solid #ffffff;
+    border-top-color: #000000;
+    animation: spinner .8s linear infinite;
+  }
+    
