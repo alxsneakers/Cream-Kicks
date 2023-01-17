@@ -1,0 +1,62 @@
+[
+    {
+        "id": "01",
+        "nombre": "Andalucia"
+    },
+    {
+        "id": "02",
+        "nombre": "Aragon"
+    },
+    {
+        "id": "03",
+        "nombre": "Cantabria"
+    },
+    {
+        "id": "04",
+        "nombre": "Castilla - La Mancha"
+    },
+    {
+        "id": "05",
+        "nombre": "Castilla y León"
+    },
+    {
+        "id": "06",
+        "nombre": "Cataluña"
+    },
+    {
+        "id": "07",
+        "nombre": "Comunitat Valenciana"
+    },
+    {
+        "id": "08",
+        "nombre": "Asturias"
+    },
+    {
+        "id": "09",
+        "nombre": "Extremadura"
+    },
+    {
+        "id": "10",
+        "nombre": "Galicia"
+    },
+    {
+        "id": "11",
+        "nombre": "Madrid"
+    },
+    {
+        "id": "12",
+        "nombre": "Murcia"
+    },
+    {
+        "id": "13",
+        "nombre": "Navarra"
+    },
+    {
+        "id": "14",
+        "nombre": "País Vasco"
+    },
+    {
+        "id": "15",
+        "nombre": "La Rioja"
+    }
+]

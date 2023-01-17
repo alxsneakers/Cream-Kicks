@@ -1,0 +1,215 @@
+
+
+
+<app-nav></app-nav>
+
+
+<main class="cs-page-wrapper">
+    <!-- Breadcrumb -->
+    <nav class="bg-secondary mb-3" aria-label="breadcrumb">
+        <div class="container">
+            <ol class="breadcrumb breadcrumb-alt mb-0">
+                <li class="breadcrumb-item">
+                    <a [routerLink]="['/']"><i class="cxi-home"></i></a>
+                </li>
+
+                <li class="breadcrumb-item active" aria-current="page">Mi perfil</li>
+            </ol>
+        </div>
+    </nav>
+
+    <!-- Page container -->
+    <section class="container pt-3 pt-lg-4 pb-5 pb-lg-6">
+        <div class="row pb-2 pb-lg-0">
+
+            <!-- Account menu (sticky sidebar) -->
+            <aside class="col-xl-3 col-lg-4 pb-3 mb-4 mb-lg-0">
+                <app-siderbar></app-siderbar>
+            </aside>
+
+            <!-- Content -->
+          <div class="col-lg-8 ml-auto" *ngIf="pedido != null">
+            <div class="d-flex align-items-center justify-content-between mb-4 pb-sm-2">
+              <h1 class="h2 mb-0">My orders</h1>
+              
+            </div>
+
+            <div class="row">
+              <div class="col-12 mb-4">
+                <div class="card card-body py-3 box-shadow ">
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <table class="table mb-0">
+                        <tbody>
+                          <tr>
+                            <th class="border-0 py-2 pl-0">Nº Pedido:</th>
+                            <td class="border-0 py-2 px-0 text-muted">{{idVenta.toUpperCase()}}</td>
+                          </tr>
+                          <tr>
+                            <th class="border-0 py-2 pl-0">Envio:</th>
+                            <td class="border-0 py-2 px-0 text-muted">{{pedido.envio.tipo}}</td>
+                          </tr>
+                          <tr>
+                            <th class="border-0 py-2 pl-0">Fecha:</th>
+                            <td class="border-0 py-2 px-0 text-muted">{{pedido.creado | date}}</td>
+                          </tr>
+                         
+                        </tbody>
+                      </table>
+                    </div>
+                    <div class="col-lg-6">
+                      <table class="table mb-0">
+                        <tbody>
+                        
+                          <tr>
+                            <th class="border-0 py-2 pl-0">Numero venta:</th>
+                            <td class="border-0 py-2 px-0 text-muted">{{pedido.nventa}}</td>
+                          </tr>
+                          <tr>
+                            <th class="border-0 py-2 pl-0">Transaccion:</th>
+                            <td class="border-0 py-2 px-0 text-muted">{{pedido.transaccion}}</td>
+                          </tr>
+                          <tr>
+                            <th class="border-0 py-2 pl-0">Estado:</th>
+                            <td class="border-0 py-2 px-0 text-muted">{{pedido.estado}}</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                  
+                </div>
+              </div>
+
+
+              <div class="col-12" *ngIf="pedido.direccion">
+                <div class="card mb-5">
+                    <div class="card-body">
+                        <div class="row" >
+                            <div class="col-md-3 col-sm-4 nb-sn-0 mb-3">
+                                <h3 class="nb-2 font-size-lg">{{pedido.direccion.destinatario}}</h3>
+                                <span class="d-block nb-3 font-size-sn text-muted">{{pedido.direccion.codigoPostal}}</span>
+                                <a class="badge badge-primary" *ngIf="pedido.direccion.principal">Dirección principal</a>
+                            </div>
+                            <div class="col">
+                                <p class="mb-3">{{pedido.direccion.calle}}</p>
+                                <p class="mb-3"> {{pedido.direccion.provincia + ', ' + pedido.direccion.ciudad}}</p>                                    
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+              </div>
+            </div>
+            
+            <div class="card border-bottom">
+              <div id="order-1" class="collapse show" data-parent="#orders">
+                <div class="bg-secondary rounded mb-4">
+                  <div class="table-responsive">
+                    <table class="table mb-0" style="background: #EEF0F2;">
+                      <tbody>
+                        <tr *ngFor="let item of detalles_pedido">
+                          <td class="border-top-0">
+                            <div class="media pl-2 py-2">
+                              <a href="shop-single.html" style="min-width: 80px;">
+                                <img [src]="url + 'products/obtenerPortada/'+item.producto.portada" width="80" alt="Product thumb">
+                              </a>
+                              <div class="media-body pl-3">
+                                <h3 class="font-size-sm mb-3">
+                                  <a href="shop-single.html" class="nav-link font-weight-bold">&nbsp;{{item.producto.nombre}}</a>
+                                </h3>
+                                <ul class="list-unstyled font-size-xs mt-n2 mb-2">
+                                  <li class="mb-0"><span class="text-muted">Marca:</span>&nbsp;{{item.producto.marca}}</li>
+                                  <li class="mb-0"><span class="text-muted">Talla:</span>&nbsp;{{item.talla}}</li>
+                                </ul>
+                                <a class="text-primary" data-toggle="modal" [attr.data-target]="'#review-' + item._id" style="cursor: pointer;">[Emitir reseña]</a>
+
+                                <!-- modal de reseña  -->
+                                <div class="modal fade" id="review-{{item._id}}" tabindex="-1" style="display: none;" aria-hidden="true">
+                                  <div class="modal-dialog modal-dialog-centered" role="document">
+                                    <div class="modal-content">
+                                      <div class="modal-header">
+                                        <h4 class="modal-title">Emitir reseña</h4>
+                                        <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"></span></button>
+                                      </div>
+                                      <div class="modal-body">
+                                        
+                                      </div>
+                                      <div class="modal-footer">
+                                        <button class="btn btn-secondary btn-sm" type="button" data-dismiss="modal">Cerrar</button>
+                                        <button class="btn btn-primary btn-shadow btn-sm" type="button">Siguiente</button>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </td>
+                          <td class="border-top-0">
+                            <div class="py-2">
+                              <div class="font-size-xs text-muted mb-1">Precio:</div>
+                              <div class="font-size-sm text-dark">{{item.precio}}€</div>
+                            </div>
+                          </td>
+                          <td class="border-top-0">
+                            <div class="py-2">
+                              <div class="font-size-xs text-muted mb-1">Cantidad:</div>
+                              <div class="font-size-sm text-dark" disabled>1</div>
+                            </div>
+                          </td>
+                        </tr>
+                      
+                      
+                     
+                        <tr>
+                          <td>
+                            <div class="py-2 pl-2">
+                              <span class="font-size-xs text-muted">Envio: </span>
+                              <span class="font-size-sm text-dark">{{pedido.envio.precio}}€</span>
+                            </div>
+                          </td>
+                          <td>
+                            <div class="py-2 pr-3 text-right">
+                              <span class="font-size-xs text-muted">Total: </span>
+                              <span class="font-size-sm font-weight-bold text-dark">{{pedido.subtotal}}€</span>
+                            </div>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+                <div class="d-flex justify-content-end align-items-center mb-4">
+                  <span class="font-weight-bold text-dark mr-3">Puedes ver el estado del envio aqui</span>
+                  <a href="https://www.ups.com/track?loc=es_ES&requester=ST/" target="_blank" class="btn btn-outline-primary btn-sm">Seguir envio</a>
+                </div>
+              </div>
+            </div>
+           
+          </div>
+
+
+          <!-- pedido no existe -->
+          <div class="col-lg-8 ml-auto" *ngIf="pedido == null">
+            <div class="row">
+                <div class="col-12">
+                    <div class="col-lg-12 col-md-5">
+                        <h3 class="h6 mb-2 text-uppercase">No se ha encontrado el pedido</h3>
+                        <h2 class="h1 pb-lg-3">No se encontro detalles de este pedido.</h2>
+                    </div>
+                </div>
+            </div>
+
+          </div>
+
+
+
+         
+        </div>
+    </section>
+
+</main>
+
+<app-footer></app-footer>
+
+
