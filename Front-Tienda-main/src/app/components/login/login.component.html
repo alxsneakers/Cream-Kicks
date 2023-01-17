@@ -1,0 +1,98 @@
+
+<app-nav></app-nav>
+<main  class="cs-page-wrapper">
+  <nav class="bg-secondary mb-3" aria-label="breadcrumb">
+    <div class="container">
+      <ol class="breadcrumb breadcrumb-alt mb-0">
+        <li class="breadcrumb-item">
+          <a href="index.html"><i class="cxi-home"></i></a>
+        </li>
+        <li class="breadcrumb-item active" aria-current="page">Checkout</li>
+      </ol>
+    </div>
+  </nav>
+
+  <section class="container pt-3 pt-md-4 pb-3 pb-sm-4 pb-lg-5 mb-4">
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="px-md-5">
+                <h3 class="modal-title mt-4 mb-0 text-center">Iniciar Sesión</h3>
+                <p class="font-size-sm text-muted text-center">Acceda a su cuenta con la dirección de correo electrónico y la contraseña proporcionadas durante el registro.</p>
+                
+                <!-- Error login -->
+                <app-direccion-error *ngIf="errorLogin" [error]="errorLogin"></app-direccion-error>
+                
+                <form #loginForm="ngForm" (ngSubmit)="login(loginForm)">
+                  <div class="form-group">
+                    <label for="signin-email">Correo Electrónico</label>
+                    <input type="email" class="form-control" placeholder="Correo electrónico" required="" name="email" [(ngModel)]="user.email">
+                  </div>
+                  <div class="form-group">
+                    <label for="signin-password" class="form-label">Contraseña</label>
+                    <div class="cs-password-toggle input-group-overlay">
+                      <input type="password" class="form-control appended-form-control" id="signin-password" placeholder="contraseña" required="" name="password" [(ngModel)]="user.password" >
+                    </div>
+                  </div>
+                  <div class="d-flex justify-content-between align-items-center form-group">
+                    <a href="#" class="font-size-sm text-decoration-none">Olvido su contraseña?</a>
+                  </div>
+                  <button type="submit" class="btn btn-primary btn-block">Iniciar sesión</button>
+                  <p class="font-size-sm pt-4 mb-0">
+                    No tienes una cuenta?
+                    <a href="#" class="font-weight-bold text-decoration-none">Registrate</a>
+                  </p>
+                </form>
+              </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="px-md-5">
+                <h3 class="modal-title mt-4 mb-0 text-center">Registro rápido</h3>
+                
+                <!-- Error create account -->
+                <app-direccion-error *ngIf="errorAccount" [error]="errorAccount"></app-direccion-error>
+                
+                <form #accountForm="ngForm" (ngSubmit)="createAccount(accountForm)">
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <label for="signin-email">Nombre</label>
+                                <input type="text" name="nombre" class="form-control"  placeholder="Nombre" required="" [(ngModel)]="account.nombre">
+                            </div>
+                            <div class="col-lg-6">
+                                <label for="signin-email">Apellidos completos</label>
+                                <input type="text" name="apellidos" class="form-control"  placeholder="Apellidos" required="" [(ngModel)]="account.apellidos"> 
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="signin-email">Correo Electrónico</label>
+                        <input type="email" name="email" class="form-control" placeholder="Correo electrónico" required="" [(ngModel)]="account.email">
+                    </div>
+                    <div class="form-group">
+                        <label for="signin-password" class="form-label">Contraseña</label>
+                        <div class="cs-password-toggle input-group-overlay">
+                        <input type="password" name="password" class="form-control appended-form-control" id="signin-password" placeholder="contraseña" required="" [(ngModel)]="account.password">
+                        </div>
+                    </div>
+                    <!--<div class="d-flex justify-content-between align-items-center form-group">
+                        <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" id="remember-me" checked="">
+                        <label for="remember-me" class="custom-control-label">Recordarme</label>
+                        </div>
+                        <a href="#" class="font-size-sm text-decoration-none">¿Ha olvidado su contraseña?</a>
+                    </div>-->
+                    <button type="submit" class="btn btn-primary btn-block" [disabled]="accountForm.invalid">Crear cuenta</button>
+                    <p class="font-size-sm pt-4 mb-0">
+                        Ya tienes una cuenta?
+                        <a href="#" class="font-weight-bold text-decoration-none">Inicia sesión</a>
+                    </p>
+                </form>
+              </div>
+        </div>
+    </div>
+  </section>
+
+</main>
+
+
+<app-footer></app-footer>
