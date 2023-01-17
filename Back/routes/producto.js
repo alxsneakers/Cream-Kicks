@@ -11,6 +11,7 @@ const PATH= multiparty({uploadDir: './uploads/productos'});
 // metodos del router
 productRouter
     .post('/createProduct', [PATH,userExtractor], productoController.registro_producto)
+    .post('/getProductos', productoController.getProductoSearch)
     .get('/allProducts' ,userExtractor, productoController.all_producto)
     .get('/obtenerPortada/:img', productoController.obtener_portada)
     .get('/obtenerProducto/:id', userExtractor, productoController.obtener_producto)

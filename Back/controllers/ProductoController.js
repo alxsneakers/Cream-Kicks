@@ -43,6 +43,15 @@ const all_producto= (async (req, res)=>{
 });
 
 
+const getProductoSearch= (async (req, res) => {
+    let payload= req.body.payload;
+    let search= await Product.find({nombre:  {$regex: new RegExp(''+payload+'.*', 
+    'i')}}).exec();
+    res.send({payload: search});
+});
+
+
+
 // recupera la info del producto con el (id) de la bdd.
 const obtener_producto= (async (req, res)=>{
    try{
@@ -237,5 +246,6 @@ module.exports = {
     obtener_producto_publico,
     listar_productos_recomendados_publico,
     get_talla_stock_producto,
-    eliminar_seleccionados_producto
+    eliminar_seleccionados_producto,
+    getProductoSearch
 };
