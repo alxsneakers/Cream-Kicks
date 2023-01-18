@@ -17,19 +17,21 @@
           <span class="input-group-text"><i class="cxi-search lead align-middle"></i></span>
         </div>
 
-        <section class="search-results container" style="background: white;">
+        <div class="buscador">
           <h1 *ngIf="productos.length < 1 && hasQuey">Lo sentimos, no hemos podido encontrar coincidencias para "{{event.target.value}}"</h1>
-          <ng-template ngFor let-productos [ngForOf]="productos" let-i="index"  >
-            <hr *ngIf="i > 0">
-            <p>{{productos.nombre}}</p>
-            <a [routerLink]="['/productos/', productos._id] || ['/', productos._id]" style="min-width: 80px;">
-              <img [src]="url + 'products/obtenerPortada/'+productos.portada" width="80" alt="Product thumb">
-            </a>
-
+          <ng-container *ngFor="let producto of productos;let indexOfelement=index;">
+            <a [routerLink]="['/productos/', producto._id]" class="link">
+              <div class="prueba">
+                <hr *ngIf="i > 0">
+                <img style="margin-right: 30px;" [src]="url + 'products/obtenerPortada/'+producto.portada" width="80" alt="Product thumb">
+                <p>{{producto.nombre}}</p>
+              </div>
+            </a>  
             
-
-          </ng-template>
-        </section>
+            
+               
+          </ng-container>
+        </div>
       </div>
 
 
@@ -102,14 +104,9 @@
           <li class="nav-item">
             <a [routerLink]="['/']" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="nav-link">Inicio</a>
           </li>
-          <li class="nav-item dropdown">
-            <a [routerLink]="['/productos']" routerLinkActive="active" class="nav-link dropdown-toggle" data-toggle="dropdown">Tienda</a>
-            <ul class="dropdown-menu">
-          
-              <li *ngFor="let marca of marcas">
-                <a [routerLink]="['/productos/marca/',marca.nombre.toLowerCase()]" class="dropdown-item">{{marca.nombre}}</a>
-              </li>
-            </ul>
+        
+          <li class="nav-item">
+            <a [routerLink]="['/productos']" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="nav-link">Tienda</a>
           </li>
 
           <li class="nav-item">
