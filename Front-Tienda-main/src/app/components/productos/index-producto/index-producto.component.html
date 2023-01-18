@@ -79,12 +79,12 @@
           </div>
         </div>
 
-        <div class="row flex-lg-nowrap">
+        <div class="row flex-lg-nowrap ">
 
 
           <!-- Filters (sidebar) -->
-          <div id="filtersSidebar" class="col-lg-3 pr-lg-4">
-            <div id="filtersOffcanvas" class="cs-offcanvas cs-offcanvas-collapse">
+          <div id="filtersSidebar" class="col-lg-3 pr-lg-4 sidebar-sticky" >
+            <div id="sidebar-sticky-inner filtersOffcanvas" class="cs-offcanvas cs-offcanvas-collapse">
               <div class="cs-offcanvas-cap align-items-center border-bottom mb-3">
                 <h2 class="h5 mb-0">Shop filters</h2>
                 <button class="close mr-n1" type="button" data-dismiss="offcanvas" aria-label="Close">
@@ -107,7 +107,7 @@
                   <div class="collapse show" id="filter" aria-labelledby="filter-panel">
                     <div class="cs-widget pl-1 pb-4 mt-n3">
                       <div class="input-group-overlay d-lg-block d-none order-lg-3 mt-3">
-                        <input class="form-control appended-form-control" [(ngModel)]="valueSearch" type="text" placeholder="Buscar productos....." name="filter_producto" (keyup)="sendData($event)">
+                        <input class="form-control appended-form-control" [value]="valueSearch" [(ngModel)]="valueSearch" type="text" placeholder="Buscar productos....." name="filter_producto" (keyup)="sendData($event)">
                         <div class="input-group-append-overlay" >
                           <span class="input-group-text" style="color: white;">
                             <i class="cxi-search lead align-middle"></i>
@@ -148,7 +148,7 @@
                             <input type="radio" name="group1" (change)="buscar_por_marca()" class="custom-control-input" id="blazers-{{indice}}" value="{{item.nombre}}" [(ngModel)]="filter_cat_productos">
                             <label for="blazers-{{indice}}" class="custom-control-label">
                               <span class="cs-filter-item-text">{{item.nombre}}</span>
-                              <span class="pl-1 text-muted">(235)</span>
+                              <span class="pl-1 text-muted">{{item.cantidad}}</span>
                             </label>
                           </div>
                         </li>
@@ -199,10 +199,12 @@
                 </div>
             </div>
           </div>
+        
+
 
 
           <!-- Product grid -->
-          <div class="col">
+          <div class="col" >
 
             <!-- precargador para listar los productos de la tienda -->
             <div class="row" *ngIf="load_data">

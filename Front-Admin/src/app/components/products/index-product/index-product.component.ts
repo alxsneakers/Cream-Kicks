@@ -100,6 +100,7 @@ export class IndexProductComponent implements OnInit {
         titulo: 'producto',
         nombre: nombre,
         validacion: 'ok',
+        genero: 'el',
       }
     });
 

@@ -28,7 +28,7 @@
             Exportar
         </button>
         <!-- boton elimnar masivamente -->
-        <button class="btn-exportar" *ngIf="this.selection.selected.length != 0" (click)="deleteManyProducto()">
+        <button class="btn-exportar" *ngIf="this.selection.selected.length > 1 && this.productos$ != null" (click)="deleteManyProducto()">
             <ion-icon name="trash-outline"></ion-icon>
             Seleccionados
         </button>

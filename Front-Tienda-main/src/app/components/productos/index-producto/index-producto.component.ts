@@ -3,8 +3,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ClienteService, Producto } from 'src/app/services/cliente.service';
 import { GLOBAL } from 'src/app/services/GLOBAL';
 import { GuestService } from '../../../services/guest.service';
+declare const StickySidebar; // mantiene independiente del scroll del raton
 declare const noUiSlider;
-declare const $: any;
+declare const $: any; // jquery
 
 @Component({
   selector: 'app-index-producto',
@@ -16,7 +17,7 @@ export class IndexProductoComponent implements OnInit {
   // VARIABLES
   public valueSearch: string= '';
   public hasQuey: Boolean= false;
-  public marcas: any= {};
+  public marcas: Array<{nombre: string, cantidad: number}>= [];
   public filter_marca= '';
   public productos: Array<any>= [];
   public filter_producto= '';
@@ -34,15 +35,7 @@ export class IndexProductoComponent implements OnInit {
     this.url= GLOBAL.url;
 
    
-    
-
-    // obtiene todas las marcas de la tienda
-    this._clientService.obtener_marcas().subscribe(
-      response =>{  
-        this.marcas= response;
-      }
-    );
-
+  
     // filtra los productos por marca desde el menu superior.
     this._route.params.subscribe(
       params =>{
@@ -79,6 +72,15 @@ export class IndexProductoComponent implements OnInit {
 
   ngOnInit(): void {
     this.obtener_descuento_activo();
+    this.getMarcas();
+    
+    
+    
+
+    setTimeout(() => {
+      const sidebar = new StickySidebar('.sidebar-sticky', {topSpacing: 20});
+    })
+    
 
     
 
@@ -104,6 +106,21 @@ export class IndexProductoComponent implements OnInit {
         $('.cs-range-slider-value-max').val(values[1]);
     });
     $('.noUi-tooltip').css('font-size','11px');
+  }
+
+
+  getMarcas(){
+    this._clientService.obtener_marcas().subscribe(
+      response =>{  
+        response.forEach(element => {
+          this._clientService.obtener_cantidad_marca(element.nombre).subscribe(
+            response =>{
+              this.marcas.push({nombre: element.nombre, cantidad: response});   
+            }
+          )
+        });
+      }
+    );
   }
 
 
@@ -144,6 +161,7 @@ export class IndexProductoComponent implements OnInit {
         res =>{
           this.productos= res;
           this.load_data= false;
+          this.valueSearch=''; // limpio el buscador
         }
       );
     }else{
@@ -152,6 +170,7 @@ export class IndexProductoComponent implements OnInit {
           this.productos= res;
           this.productos= this.productos.filter(item => item.marca.toLocaleLowerCase() == this.filter_cat_productos.toLocaleLowerCase());
           this.load_data= false;
+          this.valueSearch=''; // limpio el buscador
         }
       ); 
     }
@@ -165,6 +184,7 @@ export class IndexProductoComponent implements OnInit {
       res =>{
         this.productos= res;
         this.load_data= false;
+        
       }
     );
   }

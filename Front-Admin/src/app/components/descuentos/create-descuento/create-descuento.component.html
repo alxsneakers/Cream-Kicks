@@ -25,7 +25,7 @@
             <!-- descuento -->
             <mat-form-field appearance="outline">
                 <mat-label>Descuento %</mat-label>
-                <input matInput formControlName="descuento" type="number" min="1" max="100">
+                <input matInput formControlName="descuento" type="number"  min="1" max="100" (keypress)="onlyNumbers($event)">
                 <mat-error *ngIf="formCreateDescuento
                     .get('descuento')?.errors?.['required']">
                     Descuento obligatorio

@@ -81,6 +81,23 @@ export class CreateDescuentoComponent implements OnInit {
     console.log(this.file);
   }
 
+  onlyNumbers(event): boolean{
+    const charCode= (event.which)?event.which: event.keyCode;
+    if(charCode > 31 && (charCode < 48 || charCode > 57)){
+      return false;
+    }
+    return true;
+  }
+
+
+  onlyText(event): boolean{
+    const charCode= (event.which)?event.which: event.keyCode;
+    if(((charCode >= 65 && charCode <= 90) || (event.keyCode > 96 && event.keyCode < 123) || charCode == 8)){
+      return true;
+    }
+    return false;
+  }
+
 
 
 }

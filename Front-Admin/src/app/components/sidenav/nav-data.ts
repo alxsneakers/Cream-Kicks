@@ -17,7 +17,7 @@ export const navbarData : INavbarData[] = [
 
             },
             {
-                routerLink: '/dashboard/productos',
+                routerLink: '/productos',
                 label: 'Buscar Producto'
             }
         ]
