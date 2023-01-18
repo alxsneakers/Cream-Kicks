@@ -50,6 +50,7 @@ const routes: Routes = [
     path: 'contactos',
     component: IndexContactoComponent
   },
+  //hola estyo es un camuioasd
   {
     path: 'cuenta',
     component: ConfiguracionComponent
