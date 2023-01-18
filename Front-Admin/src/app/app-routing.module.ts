@@ -40,6 +40,9 @@ const routes: Routes = [
     path: 'productos',component: IndexProductComponent
   },
   {
+    path: 'cupones',component: IndexCuponComponent
+  },
+  {
     path: 'descuentos',
     component: IndexDescuentoComponent
   },
@@ -47,6 +50,7 @@ const routes: Routes = [
     path: 'contactos',
     component: IndexContactoComponent
   },
+  //hola estyo es un camuioasd
   {
     path: 'cuenta',
     component: ConfiguracionComponent

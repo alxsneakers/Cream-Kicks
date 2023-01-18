@@ -1,4 +1,5 @@
 const Product= require('../models/products');
+const Marca= require('../models/marca');
 const fs = require('fs-extra'); // permite manegar archivos.
 const path= require('path');
 const { default: mongoose, mongo } = require('mongoose');
@@ -185,6 +186,25 @@ const obtener_producto_publico= (async (req, res)=>{
     res.status(200).json(producto);
 });
 
+const obtener_ultimos_productos= (async (req, res)=> {
+    const productos= await Product.find({publicado: true}, {portada: 1, precioVenta: 1, _id: 1, nombre: 1}).sort([['creado', -1]]).limit(24);
+    return res.status(200).json(productos);
+});
+
+
+const obtener_populares_productos= (async (req, res) => {
+    const productos= await Product.find({publicado: true}, {portada: 1, precioVenta: 1, _id: 1, nombre: 1}).sort([['nventas', -1]]).limit(12);
+    res.status(200).json(productos);
+});
+
+
+const obtener_cantidad_marca= (async (req, res) => {
+    const marca= req.params['marca'];
+
+    const marca= await Marca.findOne({nombre: marca})
+
+});
+
 // devuelve productos segun la marca del parametro url
 const listar_productos_recomendados_publico= (async (req, res)=>{
     const filtro= req.params['marca'];
@@ -247,5 +267,7 @@ module.exports = {
     listar_productos_recomendados_publico,
     get_talla_stock_producto,
     eliminar_seleccionados_producto,
-    getProductoSearch
+    getProductoSearch,
+    obtener_ultimos_productos,
+    obtener_populares_productos
 };
