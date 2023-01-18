@@ -1,0 +1,33 @@
+
+
+.siguiente{
+    background: #24292e;
+    border-color: #24292e;
+}
+
+.siguiente:hover{
+    background-color: black;
+    transition: 0.6s;
+}
+
+
+.buscador {
+    width: 100%;
+    position: absolute;
+    position: fixed;
+    background-color: white;
+}
+
+.prueba{
+    
+    display: flex;
+    flex-direction: row;
+
+}
+
+
+.link {
+    margin-left: 20px;
+    text-decoration: none;
+    color: black;
+}

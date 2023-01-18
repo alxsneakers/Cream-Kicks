@@ -7,8 +7,9 @@ import { Router } from '@angular/router';
 
 
 export interface Producto {
-  nombre: string,
-  portada: string
+  nombre: string;
+  portada: string;
+  _id: string;
 } 
 
 
@@ -48,6 +49,15 @@ export class ClienteService {
 
   registro_cliente(data): Observable<any>{
     return this._http.post(this.url+'registro_cliente', data);
+  }
+
+  obtener_ultimos_productos(): Observable<any>{
+    return this._http.get('http://localhost:4201/api/products/obtener_ultimos_productos');
+  }
+
+
+  obtener_populares_productos(): Observable<any>{
+    return this._http.get('http://localhost:4201/api/products/obtener_populares_productos');
   }
 
   // devuelve información del usuario que ha iniciado sesion

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ClienteService } from 'src/app/services/cliente.service';
+import { GLOBAL } from 'src/app/services/GLOBAL';
 declare const tns;
 
 @Component({
@@ -8,9 +10,21 @@ declare const tns;
 })
 export class InicioComponent implements OnInit {
 
-  constructor() { }
+
+  public recienLLegados: Array<any>= [];
+  public populares: Array<any>= [];
+  public url;
+
+  constructor(private _clienteService: ClienteService) { }
 
   ngOnInit(): void {
+    this.url= GLOBAL.url;
+    this.obtenerRecienLLegados();
+    this.obtenerPopulares();
+    
+
+
+
     setTimeout(()=>{
       tns({
         container: '.cs-carousel-inner',
@@ -137,6 +151,23 @@ export class InicioComponent implements OnInit {
       });
 
     },500);
+  }
+
+
+  obtenerRecienLLegados(): void {
+    this._clienteService.obtener_ultimos_productos().subscribe(
+      response =>{
+        this.recienLLegados= response;
+      }
+    )
+  }
+
+  obtenerPopulares(): void {
+    this._clienteService.obtener_populares_productos().subscribe(
+      response =>{
+        this.populares= response;        
+      }
+    )
   }
 
 }

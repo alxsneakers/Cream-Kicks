@@ -40,6 +40,9 @@ const routes: Routes = [
     path: 'productos',component: IndexProductComponent
   },
   {
+    path: 'cupones',component: IndexCuponComponent
+  },
+  {
     path: 'descuentos',
     component: IndexDescuentoComponent
   },
