@@ -31,6 +31,7 @@ export class CreateDescuentoComponent implements OnInit {
       titulo: ['', Validators.required],
       banner: ['', [Validators.required]],
       descuento: ['', Validators.required],
+      palabraClave: ['', Validators.required],
       fecha_inicio: ['',Validators.required],
       fecha_fin: ['', Validators.required]
     });
@@ -44,7 +45,7 @@ export class CreateDescuentoComponent implements OnInit {
         this.router.navigate(['/descuentos']);
       },
       error: error =>{
-        this.notificationSvc.openSnackBar(error.error.message, 'cerrar')
+        this.notificationSvc.openSnackBar(error.error.message, 'x')
       }
     });
   }

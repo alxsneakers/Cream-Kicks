@@ -153,8 +153,8 @@
               <input type="text" class="form-control form-control-sm bg-light mr-3" style="width: 3rem;" value="1" readonly>
               <div class="text-nowrap">
                 <!--<strong class="text-danger">{{item.producto.precioVenta}}€</strong>-->
-                <span style="font-size: 1.2rem !important;" class="font-size-xs text-muted" *ngIf="descuento_activo == null">{{item.producto.precioVenta}}€</span>
-                <span style="font-size: 1.2rem !important;" class="font-size-xs text-muted" *ngIf="descuento_activo != null">{{item.producto.precioVenta | descuento: descuento_activo.descuento}}€</span>
+                <span style="font-size: 1.2rem !important;" class="font-size-xs text-muted" *ngIf="descuento_activo == null  || !(item.producto.nombre.toLowerCase().includes(descuento_activo.palabraClave))">{{item.producto.precioVenta}}€</span>
+                <span style="font-size: 1.2rem !important;" class="font-size-xs text-muted" *ngIf="descuento_activo != null && item.producto.nombre.toLowerCase().includes(descuento_activo.palabraClave)">{{item.producto.precioVenta | descuento: descuento_activo.descuento: item.producto.nombre: descuento_activo.palabraClave}}€</span>
               </div>
             </div>
          

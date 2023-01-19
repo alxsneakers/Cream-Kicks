@@ -92,6 +92,9 @@ export class IndexProductComponent implements OnInit {
 
 
 
+
+
+
   // abre el modal, para eliminar un producto.
   openDialog(nombre, id): void{
     const dialogRef= this.dialog.open(ConfirmDialogComponent, {
@@ -99,7 +102,6 @@ export class IndexProductComponent implements OnInit {
       data: { // envio los datos al dialog
         titulo: 'producto',
         nombre: nombre,
-        validacion: 'ok',
         genero: 'el',
       }
     });
@@ -108,6 +110,24 @@ export class IndexProductComponent implements OnInit {
       console.log(res);
       if(res){
         this.store.dispatch(deleteProducto({id: id}));
+      }
+    });
+  }
+
+
+   // abre el modal, para borrar varios productos.
+   openDialogMany(): void{
+    const dialogRef= this.dialog.open(ConfirmDialogComponent, {
+      width: '512px',
+      data: { // envio los datos al dialog
+        titulo: 'productos',
+        genero: 'los',
+      }
+    });
+    dialogRef.afterClosed().subscribe(res =>{
+      console.log(res);
+      if(res){
+        this.deleteManyProducto();
       }
     });
   }

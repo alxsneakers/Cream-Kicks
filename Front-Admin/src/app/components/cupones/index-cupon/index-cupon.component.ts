@@ -96,9 +96,7 @@ export class IndexCuponComponent implements OnInit {
       width: '512px',
       data: { // envio los datos al dialog
         titulo: 'cupones',
-        validacion: 'ok',
         genero: 'los',
-        cuerpo: 'escriba ok para confirmar'
       }
     });
     dialogRef.afterClosed().subscribe(res =>{

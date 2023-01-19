@@ -83,8 +83,13 @@ export class CarritoComponent implements OnInit {
       }); // si hay descuento
     }else if(this.descuento_activo != null){
       this.carrito_arr.forEach(element =>{
-        let newPrecio= Math.round(parseInt(element.producto.precioVenta) - (parseInt(element.producto.precioVenta)*this.descuento_activo.descuento)/100) ;
-        this.subtotal=  this.subtotal + newPrecio;
+        // aplico el descuento a los productos necesarios
+        if(element.producto.nombre.toLowerCase().includes(this.descuento_activo.palabraClave)){
+          let newPrecio= Math.round(parseInt(element.producto.precioVenta) - (parseInt(element.producto.precioVenta)*this.descuento_activo.descuento)/100) ;
+          this.subtotal= this.subtotal + newPrecio;
+        }else{
+          this.subtotal=  this.subtotal + parseInt(element.producto.precioVenta);
+        }
         this.calcular_total('');
       });
     }
@@ -228,7 +233,7 @@ export class CarritoComponent implements OnInit {
   ngOnInit(): void {
     // informacion obtenida desde backend
     this.obtener_carrito_cliente();
-   
+    this.obtener_descuento_activo();
     this.get_direccion_principal();
     this.get_tipos_envio();
 
