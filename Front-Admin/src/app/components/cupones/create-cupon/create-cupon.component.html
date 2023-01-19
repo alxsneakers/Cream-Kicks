@@ -48,7 +48,7 @@
         <!-- Valor -->
         <mat-form-field appearance="outline">
             <mat-label>Valor</mat-label>
-            <input matInput formControlName="valor" type="number" min="1" max="100">
+            <input matInput formControlName="valor" type="number" min="1" max="100" (keypress)="onlyNumbers($event)">
             <mat-error *ngIf="formCreateCupon
                 .get('valor')?.touched && formCreateCupon
                 .get('valor')?.errors?.['required']">
@@ -70,7 +70,7 @@
         <!-- Limite -->
         <mat-form-field appearance="outline">
             <mat-label>Limite</mat-label>
-            <input matInput formControlName="limite" type="number" min="1">
+            <input matInput formControlName="limite" type="number" min="1" (keypress)="onlyNumbers($event)">
             <mat-error *ngIf="formCreateCupon
                 .get('limite')?.touched && formCreateCupon
                 .get('limite')?.errors?.['required']">

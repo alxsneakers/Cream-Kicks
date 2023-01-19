@@ -91,13 +91,15 @@ export class GaleriaProductComponent implements OnInit {
  
   subir_images(){
     this.images.forEach(img => this.subir_img(img));
+     
   }
 
   subir_img(imagen){
       const data= {_id: uuidv4()};
       this.productSvc.agregarImgGaleria(data, imagen, this.id).subscribe({
         next: data=>{
-          console.log(data);
+          // si la img se ha subido, vuelvo a carga las img en la tabla.
+          this.store.dispatch(loadGaleria({id: this.id}));
         },
         error: error =>{
           console.log(error);
@@ -109,6 +111,7 @@ export class GaleriaProductComponent implements OnInit {
     this.productSvc.eliminarImgGaleria(this.id, {_id: id}).subscribe({
       next: data=>{
         this.notificationSvc.openSnackBar('Imagen eliminada con exito.', 'cerrar');
+        this.store.dispatch(loadGaleria({id: this.id}));
       },
       error: error =>{
         this.notificationSvc.openSnackBar('No se ha podido eliminar la imagen.', 'cerrar');
@@ -123,7 +126,9 @@ export class GaleriaProductComponent implements OnInit {
       width: '512px',
       data: { // envio los datos al dialog
         titulo: 'imagen',
-        nombre: nombre
+        nombre: nombre,
+        validacion: 'ok',
+        genero: 'la',
       }
     });
     dialogRef.afterClosed().subscribe(res =>{

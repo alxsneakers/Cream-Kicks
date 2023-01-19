@@ -1,11 +1,10 @@
-
 <h2 mat-dialog-title>Borrar {{data.titulo}}</h2>
 <mat-dialog-content [formGroup]="form">
-    <p style="font-size: 13px; color: #737373;">Parra borra {{data.genero}} {{data.titulo}} <strong>{{data.nombre}}</strong>, {{data.cuerpo}}.</p>
-    <input formControlName="productName" placeholder="Introduce el nombre del {{data.titulo}}">
-    <p type="text" formControlName="valueInput"></p>
+    <p style="font-size: 13px; color: #737373;">Seguro desea eliminar {{data.genero}} {{data.titulo}}. <br> <strong>{{data.nombre}}</strong><br></p>
+
+    <p>Esta acción no es reversible</p>
 </mat-dialog-content>
 <div mat-dialog-actions class="container-acciones">
     <button mat-button (click)="onClickNO()">Cancelar</button>
-    <button mat-button [disabled]="form.invalid" [mat-dialog-close]="true" class="btn-eliminar">Borrar</button>
+    <button mat-button [mat-dialog-close]="true" class="btn-eliminar">Borrar</button>
 </div>

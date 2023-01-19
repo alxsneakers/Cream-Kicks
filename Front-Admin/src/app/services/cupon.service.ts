@@ -39,4 +39,8 @@ export class CuponService {
   borrarCupon(id): Observable<any>{
     return this.http.delete('http://localhost:4201/api/cupones/borrarCupon/'+id);
   }
+
+  borrarSeleccionadosCupones(idCupones): Observable<any>{
+    return this.http.delete('http://localhost:4201/api/cupones/borrarSeleccionadosCupones/' + idCupones );
+  }
 }

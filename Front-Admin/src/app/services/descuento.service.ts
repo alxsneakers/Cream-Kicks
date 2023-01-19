@@ -17,6 +17,7 @@ export class DescuentoService {
     fd.append('descuento', data.descuento);
     fd.append('fecha_inicio', this.formatFecha(data.fecha_inicio.toString()));
     fd.append('fecha_fin', this.formatFecha(data.fecha_fin.toString()));
+    fd.append('palabraClave', data.palabraClave.toLowerCase());
     fd.append('banner', file);
     return this.http.post('http://localhost:4201/api/descuentos/registro_descuento', fd);
   }

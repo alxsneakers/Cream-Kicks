@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 
 @Component({
@@ -6,13 +6,20 @@ import { FormBuilder } from '@angular/forms';
   templateUrl: './product-form.component.html',
   styleUrls: ['./product-form.component.scss']
 })
-export class ProductFormComponent implements OnInit {
+export class ProductFormComponent {
 
   @Input() inputFormGroup= this._formBuilder.group({});
 
   constructor(private _formBuilder: FormBuilder) { }
 
-  ngOnInit(): void {
+
+
+  onlyNumbers(event): boolean{
+    const charCode= (event.which)?event.which: event.keyCode;
+    if(charCode > 31 && (charCode < 48 || charCode > 57)){
+      return false;
+    }
+    return true;
   }
 
 }

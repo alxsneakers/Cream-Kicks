@@ -1,6 +1,6 @@
 import { createReducer, on } from "@ngrx/store";
 import { CouponState } from "src/app/models/cupon.state";
-import { loadCoupons, loadedCoupons } from "../actions/cupon.actions";
+import { deleteCupon, deleteCuponSuccess, deleteManyCupon, deleteManyCuponSuccess, loadCoupons, loadedCoupons } from "../actions/cupon.actions";
 
 
 /* ESTADO INICIAL
@@ -28,5 +28,17 @@ export const cuponsReducer= createReducer(
     }),
     on(loadedCoupons, (state, {coupons}) => { // acciones
         return {...state, loading: false, coupons};
-    })
+    }),
+    on(deleteCupon, (state, {id}) => {
+        return {...state, id: id};
+    }),
+    on(deleteCuponSuccess, (state) => {
+        return {...state};
+    }),
+    on(deleteManyCupon, (state, {idCupones}) => {
+        return {...state, idCupones: idCupones};
+    }),
+    on(deleteManyCuponSuccess, (state) => {
+        return {...state};
+    }),
 )

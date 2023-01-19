@@ -5,7 +5,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { MarcaModel } from 'src/app/models/marca.interface';
+import { MarcaModel, MarcaTable } from 'src/app/models/marca.interface';
 import { marca, MarcaService } from 'src/app/services/marca.service';
 import { NotificationService } from 'src/app/services/notification.service';
 import { loadMarcas, deleteMarca, deleteManyMarca  } from 'src/app/state/actions/marca.actions';
@@ -13,11 +13,7 @@ import { selectListMarcas, selectLoadingMarcas, selectIsLoadingDeleteManyMarcas 
 import { ConfirmDialogComponent } from '../../shared/confirm-dialog/confirm-dialog.component';
 
 
-export interface MarcaTable {
-  nombre: string;
-  index: number;
-  _id: string;
-}
+
 
 
 @Component({

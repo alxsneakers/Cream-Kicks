@@ -173,4 +173,11 @@ cuponRouter.get('/validarCupon/:cupon', userExtractor, validateCorrectCupon);
 
 
 
+
+
+cuponRouter.delete('/borrarSeleccionadosCupones/:idCupones', userExtractor, cuponController.eliminar_seleccionados_cupon);
+
+
+
+
 module.exports= cuponRouter;

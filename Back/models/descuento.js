@@ -16,6 +16,10 @@ const DescuentoSchema= Schema({
         type: Number,
         required: true
     },
+    palabraClave: {
+        type: String,
+        required: true
+    },
     fecha_inicio: {
         type: String,
         required: true

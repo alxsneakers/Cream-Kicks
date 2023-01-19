@@ -57,6 +57,13 @@ const eliminar_cupon= (async (req, res)=>{
 });
 
 
+const eliminar_seleccionados_cupon= (async (req, res)=>{
+    // separo los ids por comas (234,345,453) a ['234', '345', '453']
+    const ids= req.params['idCupones'].split(',');
+    const cupones= await Cupon.deleteMany({_id: { $in: ids}});
+    res.status(200).json('Cupones eliminados con exito.');
+});
+
 
 
 
@@ -65,5 +72,6 @@ module.exports= {
     all_cupones,
     actualizar_cupon,
     obtener_cupon,
-    eliminar_cupon
+    eliminar_cupon,
+    eliminar_seleccionados_cupon
 };
