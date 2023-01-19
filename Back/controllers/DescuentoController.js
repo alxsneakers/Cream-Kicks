@@ -11,6 +11,7 @@ const registro_descuento= (async (req, res)=>{
     const descuento= new Descuento({
         titulo: data.titulo,
         descuento: data.descuento,
+        palabraClave: data.palabraClave,
         fecha_inicio: data.fecha_inicio,
         fecha_fin: data.fecha_fin,
         banner: banner

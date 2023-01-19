@@ -250,6 +250,8 @@ export class IndexProductoComponent implements OnInit {
     this._guestService.obtener_descuento_activo().subscribe(
       response =>{
         this.descuento_activo=response[0];
+        console.log(this.descuento_activo.palabraClave);
+        
       },
       error =>{
         this.descuento_activo= null;

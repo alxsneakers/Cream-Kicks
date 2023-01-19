@@ -96,7 +96,7 @@ export class MarcaEffects {
         this.actions$.pipe(
             ofType(marcaActions.deleteManyMarcaSuccess),
             map((response)=> {
-                this._ntfService.openSnackBar('Marcas eliminadas con exito', 'x');
+                this._ntfService.openSnackBar('Marcas eliminadas con exito.', 'x');
                 return marcaActions.loadMarcas();
             })
         )

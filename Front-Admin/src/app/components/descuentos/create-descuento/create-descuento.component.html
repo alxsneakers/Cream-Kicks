@@ -40,6 +40,17 @@
                 </mat-error>
             </mat-form-field>
 
+
+             <!-- palabra clave -->
+             <mat-form-field appearance="outline">
+                <mat-label>Palabra clave</mat-label>
+                <input type="text" matInput formControlName="palabraClave">
+                <mat-error *ngIf="formCreateDescuento
+                    .get('palabraClave')?.errors?.['required']">
+                    Palabra clave obligatorio
+                </mat-error>
+            </mat-form-field>
+
             <!-- Fecha inicio -->
             <mat-form-field appearance="outline">
                 <mat-label>Selecciona un rango de duracion</mat-label>
