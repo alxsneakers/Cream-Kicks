@@ -58,13 +58,13 @@
 
 
               <!-- Price normal -->
-              <div class="d-flex align-items-center mb-sm-0 mb-4" *ngIf="descuento_activo == null">
+              <div class="d-flex align-items-center mb-sm-0 mb-4" *ngIf="descuento_activo == null || !(producto.nombre.toLowerCase().includes(descuento_activo.palabraClave))">
                 <span class="h3 d-inline-block mb-0">{{producto.precioVenta}}€</span>
               </div>
 
               <!-- Price descuento -->
-              <div class="d-flex align-items-center mb-sm-0 mb-4" *ngIf="descuento_activo != null">
-                <span class="h3 d-inline-block mb-0 text-danger">{{producto.precioVenta | descuento: descuento_activo.descuento}}€</span>
+              <div class="d-flex align-items-center mb-sm-0 mb-4" *ngIf="descuento_activo != null && producto.nombre.toLowerCase().includes(descuento_activo.palabraClave)">
+                <span class="h3 d-inline-block mb-0 text-danger">{{producto.precioVenta | descuento: descuento_activo.descuento: producto.nombre: descuento_activo.palabraClave}}€</span>
                 <del class="d-inline-block ml-2 pl-1 font-size-lg text-muted">{{producto.precioVenta}}€</del>
                 <span class="ml-4 p-2 badge badge-danger font-size-base font-weight-bold" style="background: black;">-{{descuento_activo.descuento}}%</span>
               </div>

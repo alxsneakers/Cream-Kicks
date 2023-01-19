@@ -12,7 +12,7 @@
         <!-- Codigo de cupon -->
         <mat-form-field appearance="outline">
             <mat-label>Nombre</mat-label>
-            <input matInput formControlName="nombre">
+            <input matInput formControlName="nombre" (keypress)="onlyText($event)">
             <mat-error *ngIf="formCreateMarca
                 .get('nombre')?.touched">
                 Nombre obligatario

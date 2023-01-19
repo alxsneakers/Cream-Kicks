@@ -7,7 +7,6 @@ import { CustomValidators } from '../custom-validators';
 export interface DialogData{
   titulo: string,
   nombre: string,
-  validacion: string,
   genero: string,
   cuerpo: string
 }
@@ -18,7 +17,7 @@ export interface DialogData{
   templateUrl: './confirm-dialog.component.html',
   styleUrls: ['./confirm-dialog.component.scss']
 })
-export class ConfirmDialogComponent implements OnInit {
+export class ConfirmDialogComponent {
 
   // variables
   form!: FormGroup;
@@ -28,25 +27,10 @@ export class ConfirmDialogComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: DialogData, private fb: FormBuilder) { }
 
 
-  // inicia la validacion del input
-  ngOnInit(): void {
-    this.form= this.initForm();
-    this.form.patchValue({valueInput: this.data.validacion});
-  }
+  
+ 
 
-  // valida el input
-  initForm(): FormGroup{
-    return this.fb.group({
-      productName: ['', Validators.required],
-      valueInput: ['', []]
-    },
-    { validators: CustomValidators.productMaching });
-  }
-
-  get productName(): FormControl{
-    return this.form.get('productName') as FormControl;
-  }
-
+ 
 
   // cierra el dialog (modal)
   onClickNO(): void{

@@ -71,7 +71,7 @@
                     <div class="row">
                     <div class="col-sm-6 form-group">
                         <label for="cont-name">Nombre *</label>
-                        <input type="text" id="cont-name" class="form-control form-control-lg" placeholder="Tu nombre" required name="nombre" [(ngModel)]="contacto.nombre">
+                        <input type="text" (keypress)="onlyText($event)"  id="cont-name" class="form-control form-control-lg" placeholder="Tu nombre" required name="nombre" [(ngModel)]="contacto.nombre">
                         <div *ngIf="registroForm.controls['nombre'].invalid && (registroForm.controls['nombre'].dirty || registroForm.controls['nombre'].touched)" >
                             <div class="text-danger" *ngIf="registroForm.controls['nombre'].errors">
                                 Campo obligatorio
@@ -267,7 +267,7 @@
                     <div class="card border-bottom">
                     <div class="card-header" id="headingFaq-1">
                         <h5 class="accordion-heading">
-                        <a href="#faq-1" role="button" data-toggle="collapse" aria-expanded="true" aria-controls="faq-1">Do I need to register to place an order?
+                        <a href="#faq-1" role="button" data-toggle="collapse" aria-expanded="true" aria-controls="faq-1">¿Necesito registrarme para hacer un pedido?
                             <span class="accordion-indicator"></span>
                         </a>
                         </h5>
@@ -280,7 +280,7 @@
                     <div class="card border-bottom">
                     <div class="card-header" id="headingFaq-2">
                         <h5 class="accordion-heading">
-                        <a href="#faq-2" class="collapsed" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="faq-2">What is the estimated delivery time?
+                        <a href="#faq-2" class="collapsed" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="faq-2">¿Cual es el tiempo estimado de entrega?
                             <span class="accordion-indicator"></span>
                         </a>
                         </h5>
@@ -293,20 +293,20 @@
                     <div class="card border-bottom">
                     <div class="card-header" id="headingFaq-3">
                         <h5 class="accordion-heading">
-                        <a href="#faq-3" class="collapsed" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="faq-3">How can I pay for my order?
+                        <a href="#faq-3" class="collapsed" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="faq-3">¿Como puedo pagar mi pedido?
                             <span class="accordion-indicator"></span>
                         </a>
                         </h5>
                     </div>
                     <div id="faq-3" class="collapse" aria-labelledby="headingFaq-3" data-parent="#accordion">
-                        <div class="card-body text-muted">At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga.</div>
+                        <div class="card-body text-muted">Tienes dos formas de pagar tu pedido, con tarjeta bancaria y paypal.</div>
                     </div>
                     </div>
                     <!-- Card -->
                     <div class="card border-bottom">
                     <div class="card-header" id="headingFaq-4">
                         <h5 class="accordion-heading">
-                        <a href="#faq-4" class="collapsed" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="faq-4">Can I get a refund if the price has changed since I ordered it?
+                        <a href="#faq-4" class="collapsed" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="faq-4">¿Puedo pedir un reembolso si el precio ha cambiado desde que lo pedi?
                             <span class="accordion-indicator"></span>
                         </a>
                         </h5>
@@ -319,7 +319,7 @@
                     <div class="card border-bottom">
                     <div class="card-header" id="headingFaq-5">
                         <h5 class="accordion-heading">
-                        <a href="#faq-5" class="collapsed" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="faq-5">Do you refund delivery charges if I return something?
+                        <a href="#faq-5" class="collapsed" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="faq-5">¿Reembolsan los gastos de envio si devuelvo el pedido?
                             <span class="accordion-indicator"></span>
                         </a>
                         </h5>
@@ -332,7 +332,7 @@
                     <div class="card border-bottom">
                     <div class="card-header" id="headingFaq-6">
                         <h5 class="accordion-heading">
-                        <a href="#faq-6" class="collapsed" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="faq-6">What documents will be provided with the order?
+                        <a href="#faq-6" class="collapsed" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="faq-6">¿Que documentos se porpocionarán con el pedido?
                             <span class="accordion-indicator"></span>
                         </a>
                         </h5>
@@ -345,7 +345,7 @@
                     <div class="card border-bottom">
                     <div class="card-header" id="headingFaq-7">
                         <h5 class="accordion-heading">
-                        <a href="#faq-7" class="collapsed" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="faq-7">Can I return the order to the courier if anything does not suit me?
+                        <a href="#faq-7" class="collapsed" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="faq-7">¿Puedo devolver el pedido al mensajero si algo no me convence?
                             <span class="accordion-indicator"></span>
                         </a>
                         </h5>
@@ -358,7 +358,7 @@
                     <div class="card border-bottom">
                     <div class="card-header" id="headingFaq-8">
                         <h5 class="accordion-heading">
-                        <a href="#faq-8" class="collapsed" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="faq-8">What should I do if my order hasn't been delivered yet?
+                        <a href="#faq-8" class="collapsed" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="faq-8">¿Que debo hacer si mi pedido aún no ha llegado?
                             <span class="accordion-indicator"></span>
                         </a>
                         </h5>
@@ -371,7 +371,7 @@
                     <div class="card border-bottom">
                     <div class="card-header" id="headingFaq-9">
                         <h5 class="accordion-heading">
-                        <a href="#faq-9" class="collapsed" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="faq-9">What is your Returns Policy?
+                        <a href="#faq-9" class="collapsed" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="faq-9">¿Cual es la política de devolución?
                             <span class="accordion-indicator"></span>
                         </a>
                         </h5>

@@ -22,7 +22,6 @@
                 <h3 class="mb-2 pb-1 font-size-sm text-uppercase">{{descuento_activo.fecha_inicio}} <br>
                    hasta  <br> {{descuento_activo.fecha_fin}}</h3>
                 <h2 class="pb-3">{{descuento_activo.titulo}}</h2>
-                <a class="btn btn-primary mb-5">Todos los productos</a>
               </div>
               <div class="mb-md-3 pt-5 p-md-2">
                 <h3 class="mb-2 pb-1 font-size-sm text-uppercase">Descuento del {{descuento_activo.descuento}}%</h3>
@@ -79,12 +78,12 @@
           </div>
         </div>
 
-        <div class="row flex-lg-nowrap">
+        <div class="row flex-lg-nowrap ">
 
 
           <!-- Filters (sidebar) -->
-          <div id="filtersSidebar" class="col-lg-3 pr-lg-4">
-            <div id="filtersOffcanvas" class="cs-offcanvas cs-offcanvas-collapse">
+          <div id="filtersSidebar" class="col-lg-3 pr-lg-4 sidebar-sticky" >
+            <div id="sidebar-sticky-inner filtersOffcanvas" class="cs-offcanvas cs-offcanvas-collapse">
               <div class="cs-offcanvas-cap align-items-center border-bottom mb-3">
                 <h2 class="h5 mb-0">Shop filters</h2>
                 <button class="close mr-n1" type="button" data-dismiss="offcanvas" aria-label="Close">
@@ -107,7 +106,7 @@
                   <div class="collapse show" id="filter" aria-labelledby="filter-panel">
                     <div class="cs-widget pl-1 pb-4 mt-n3">
                       <div class="input-group-overlay d-lg-block d-none order-lg-3 mt-3">
-                        <input class="form-control appended-form-control" [(ngModel)]="valueSearch" type="text" placeholder="Buscar productos....." name="filter_producto" (keyup)="sendData($event)">
+                        <input class="form-control appended-form-control" [value]="valueSearch" [(ngModel)]="valueSearch" type="text" placeholder="Buscar productos....." name="filter_producto" (keyup)="sendData($event)">
                         <div class="input-group-append-overlay" >
                           <span class="input-group-text" style="color: white;">
                             <i class="cxi-search lead align-middle"></i>
@@ -148,7 +147,7 @@
                             <input type="radio" name="group1" (change)="buscar_por_marca()" class="custom-control-input" id="blazers-{{indice}}" value="{{item.nombre}}" [(ngModel)]="filter_cat_productos">
                             <label for="blazers-{{indice}}" class="custom-control-label">
                               <span class="cs-filter-item-text">{{item.nombre}}</span>
-                              <span class="pl-1 text-muted">(235)</span>
+                              <span class="pl-1 text-muted">{{item.cantidad}}</span>
                             </label>
                           </div>
                         </li>
@@ -199,10 +198,12 @@
                 </div>
             </div>
           </div>
+        
+
 
 
           <!-- Product grid -->
-          <div class="col">
+          <div class="col" >
 
             <!-- precargador para listar los productos de la tienda -->
             <div class="row" *ngIf="load_data">
@@ -237,7 +238,7 @@
                       </a>
              
                       <div class="card-product-widgets-top">
-                        <span class="badge product-badge badge-danger" *ngIf="descuento_activo">-{{descuento_activo.descuento}}%</span>
+                        <span class="badge product-badge badge-danger" *ngIf="descuento_activo && item.nombre.toLowerCase().includes(descuento_activo.palabraClave)">-{{descuento_activo.descuento}}%</span>
                       </div>
  
                     </div>
@@ -247,13 +248,13 @@
                       </h3>
 
                       <!-- Cuando hay una oferta activa-->
-                      <div class="d-flex align-items-center" *ngIf="descuento_activo == null">
+                      <div class="d-flex align-items-center" *ngIf="!(item.nombre.toLowerCase().includes(descuento_activo.palabraClave)) ">
                         <span class="h5 d-inline-block mb-0">{{item.precioVenta}}€</span>
                       </div>
 
                       <!-- Cuando no hya ofera activa -->
-                      <div class="d-flex align-items-center" *ngIf="descuento_activo != null">
-                        <span class="h5 d-inline-block text-danger mb-0">{{item.precioVenta | descuento: descuento_activo.descuento}}€</span>
+                      <div class="d-flex align-items-center" *ngIf="descuento_activo != null && item.nombre.toLowerCase().includes(descuento_activo.palabraClave)">
+                        <span class="h5 d-inline-block text-danger mb-0">{{item.precioVenta | descuento: descuento_activo.descuento: item.nombre: descuento_activo.palabraClave}}€</span>
                         <del class="d-inline-block ml-2 pl-1 text-muted">{{item.precioVenta}}€</del>
                       </div>
                     </div>

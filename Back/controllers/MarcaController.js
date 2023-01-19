@@ -34,7 +34,7 @@ const eliminar_seleccionados_marca= (async (req, res)=>{
     // separo los ids por comas (234,345,453) a ['234', '345', '453']
     const ids= req.params['idMarcas'].split(',');
     const marcas= await Marca.deleteMany({_id: { $in: ids}});
-    res.status(200).json('Marcas eliminadas con exito');
+    res.status(200).json('Marcas eliminadas con exito.');
 });
 
 // devuelve todas las marcas

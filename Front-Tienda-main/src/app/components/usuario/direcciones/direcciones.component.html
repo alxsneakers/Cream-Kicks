@@ -37,7 +37,7 @@
                     <div class="row mb-3">
                         <div class="col-sm-6 form-group">
                             <label for="ac-fn">Destinatario</label>
-                            <input type="text" required class="form-control form-control-lg" name="destinatario"
+                            <input type="text" (keypress)="onlyText($event)" required class="form-control form-control-lg" name="destinatario"
                                 [(ngModel)]="direccion.destinatario" placeholder="Destinatario">
                         </div>
                         <div class="col-sm-6 form-group">
@@ -53,7 +53,7 @@
                         <div class="col-sm-6 form-group">
                             <label for="ac-fn">Codigo Postal</label>
                             <input type="text" required class="form-control form-control-lg" name="codigoPostal"
-                                [(ngModel)]="direccion.codigoPostal" placeholder="Codigo Postal" maxlength="5" minlength="5">
+                                [(ngModel)]="direccion.codigoPostal" placeholder="Codigo Postal" maxlength="5" minlength="5" (keypress)="onlyNumbers($event)">
                         </div>
                         <div class="col-sm-6 form-group">
                             <label for="ac-city">Provincia</label>
@@ -65,7 +65,7 @@
                         </div>
                         <div class="col-sm-6 form-group">
                             <label for="ac-fn">Ciudad</label>
-                            <input type="text" required class="form-control form-control-lg" name="ciudad"
+                            <input type="text" (keypress)="onlyText($event)" required class="form-control form-control-lg" name="ciudad"
                                 [(ngModel)]="direccion.ciudad" placeholder="Ciudad">
                         </div>
                         <div class="col-sm-6 form-group">

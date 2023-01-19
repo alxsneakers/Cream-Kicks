@@ -60,6 +60,11 @@ export class ClienteService {
     return this._http.get('http://localhost:4201/api/products/obtener_populares_productos');
   }
 
+  obtener_cantidad_marca(marca: string): Observable<any>{
+    return this._http.get('http://localhost:4201/api/products/obtener_cantidad_marca/'+marca);
+  }
+
+
   // devuelve información del usuario que ha iniciado sesion
   obtener_cliente_guest(id,token):Observable<any>{
     let headers = new HttpHeaders({'Content-type':'application/json','Authorization': 'Bearer '+ token});

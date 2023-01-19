@@ -31,6 +31,7 @@ export class CreateDescuentoComponent implements OnInit {
       titulo: ['', Validators.required],
       banner: ['', [Validators.required]],
       descuento: ['', Validators.required],
+      palabraClave: ['', Validators.required],
       fecha_inicio: ['',Validators.required],
       fecha_fin: ['', Validators.required]
     });
@@ -44,7 +45,7 @@ export class CreateDescuentoComponent implements OnInit {
         this.router.navigate(['/descuentos']);
       },
       error: error =>{
-        this.notificationSvc.openSnackBar(error.error.message, 'cerrar')
+        this.notificationSvc.openSnackBar(error.error.message, 'x')
       }
     });
   }
@@ -79,6 +80,23 @@ export class CreateDescuentoComponent implements OnInit {
       this.notificationSvc.openSnackBar('La imagen no debe pasar de 4MB.', 'cerrar');
     }
     console.log(this.file);
+  }
+
+  onlyNumbers(event): boolean{
+    const charCode= (event.which)?event.which: event.keyCode;
+    if(charCode > 31 && (charCode < 48 || charCode > 57)){
+      return false;
+    }
+    return true;
+  }
+
+
+  onlyText(event): boolean{
+    const charCode= (event.which)?event.which: event.keyCode;
+    if(((charCode >= 65 && charCode <= 90) || (event.keyCode > 96 && event.keyCode < 123) || charCode == 8)){
+      return true;
+    }
+    return false;
   }
 
 

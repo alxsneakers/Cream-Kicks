@@ -67,7 +67,7 @@
              <!-- Precio compra --> 
             <mat-form-field appearance="outline" floatLabel="always">
                 <mat-label>Precio Compra</mat-label>
-                <input matInput type="number" placeholder="0" formControlName="precioCompra" min="1">
+                <input matInput type="number" placeholder="0" formControlName="precioCompra" min="1" (keypress)="onlyNumbers($event)">
                 <mat-error *ngIf="form1
                         .get('precioCompra')?.touched && form1
                         .get('precioCompra')?.errors?.['required']">
@@ -85,7 +85,7 @@
             <!-- Precio venta -->
             <mat-form-field appearance="outline" floatLabel="always">
                 <mat-label>Precio Venta</mat-label>
-                <input matInput type="number" placeholder="0" formControlName="precioVenta" min="1">
+                <input matInput type="number" placeholder="0" formControlName="precioVenta" min="1" (keypress)="onlyNumbers($event)">
                 <mat-error *ngIf="form1
                         .get('precioVenta')?.touched && form1
                         .get('precioVenta')?.errors?.['required']">
