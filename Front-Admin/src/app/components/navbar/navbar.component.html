@@ -1,30 +1,47 @@
-<mat-toolbar>
-    <a href="/"><img src="../../assets/logo_116x33.svg" alt="logo de la marca"></a>
-    <div class="menu-container">
+<nav class="navbar">
+    <div class="container-fluid">
+      <!-- bugfix Cambiar para que sea automatico -->
+      <h4 class="text-uppercase mb-0"><i class="fa fa-bars colorPrimario px-2"></i>Cambiar</h4>
 
-       
-        
-        <!-- si el usuario no tiene img de perfil -->
-        <button mat-button [matMenuTriggerFor]="menu" *ngIf="userInfo.imgPerfil == null">{{userInfo.nombre}}</button>
-        
-        
-        <!-- si tiene img -->
-        <button mat-button [matMenuTriggerFor]="menu" *ngIf="userInfo.imgPerfil">
-            <img [src]="imgSelect" >
-            {{userInfo.nombre}}
-        </button>
+      <form class="d-flex">
+        <ul class="navbar-nav">
 
+            <!-- Notificaciones -->
+            <li class="nav-item icon-notify">
+                <a href="#" class="nav-link icon-notify-link">
+                    <i class="fa fa-bell colorGrey fa-lg"></i>
+                </a>
+            </li>
 
 
-        <mat-menu #menu="matMenu">
-            <button mat-menu-item [routerLink]="['/cuenta']">
-                <ion-icon name="settings-outline"></ion-icon>
-                Configuración
-            </button>
-            <button mat-menu-item>
-                <ion-icon name="log-out-outline"></ion-icon>
-                Cerrar sesión
-            </button>
-        </mat-menu>
+            <div class="d-flex">
+                <!-- si el usuario no tiene img de perfil -->
+
+
+                <button class="" mat-button [matMenuTriggerFor]="menu"
+                    *ngIf="userInfo.imgPerfil == null">{{userInfo.nombre}}</button>
+                <!-- si tiene img -->
+                <button class="" mat-button [matMenuTriggerFor]="menu" *ngIf="userInfo.imgPerfil">
+                    <img [src]="imgSelect">
+                    {{userInfo.nombre}}
+                </button>
+            </div>
+
+            <!-- Desplegable -->
+            <mat-menu #menu="matMenu">
+                <!-- configuracion -->
+                <button mat-menu-item [routerLink]="['/cuenta']">
+                    <ion-icon name="settings-outline"></ion-icon>
+                    Configuración
+                </button>
+
+                <!-- Cerrar sesion -->
+                <button mat-menu-item (click)="logout()">
+                    <ion-icon name="log-out-outline"></ion-icon>
+                    Cerrar sesión
+                </button>
+            </mat-menu>
+        </ul>
+      </form>
     </div>
-</mat-toolbar>
+  </nav>

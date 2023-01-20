@@ -9,10 +9,18 @@ const registro_producto= (async (req, res)=>{
     const dataProducto = req.body;
     const tallas= JSON.parse(dataProducto.tallaStockArray);    
     let stockTotal=0;
+    let nameGaleria= [];
+
 
     // recupero el nombre de la img.
     const imgPath= req.files.portada.path; // uploads/productos/dpdnk12DXeyVz_TdpW2eiCF_.webp
     const portada= imgPath.split('/')[2]; // dpdnk12DXeyVz_TdpW2eiCF_.webp
+
+    for(let img of req.files.galeria){
+        const imgGaleria= img.path;
+        const galeria= imgGaleria.split('/')[2];
+        nameGaleria.push(galeria);
+    }
 
     //calculo el stock total
     tallas.forEach(element =>{
@@ -29,7 +37,8 @@ const registro_producto= (async (req, res)=>{
         publicado: dataProducto.publicado,
         precioCompra: dataProducto.precioCompra,
         precioVenta: dataProducto.precioVenta,
-        portada: portada
+        portada: portada,
+        galeria: nameGaleria
     });
     const saveProduct= product.save();
     res.status(200).json({message: 'Producto creado con exito.'});

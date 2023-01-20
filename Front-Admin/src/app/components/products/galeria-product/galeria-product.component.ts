@@ -12,8 +12,7 @@ import { loadGaleria } from 'src/app/state/actions/producto.actions';
 import { selectListGaleria, selectLoadingGaleria } from 'src/app/state/selectors/producto.selectors';
 import { v4 as uuidv4 } from 'uuid';
 import { ConfirmDialogComponent } from '../../shared/confirm-dialog/confirm-dialog.component';
-declare const tns; //  time-slider
-declare const lightGallery;
+
 
 
 @Component({
@@ -22,10 +21,6 @@ declare const lightGallery;
   styleUrls: ['./galeria-product.component.scss']
 })
 export class GaleriaProductComponent implements OnInit {
-
-
-  
-
 
   // variables
   public id;

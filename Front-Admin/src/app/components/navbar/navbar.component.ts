@@ -45,11 +45,11 @@ export class NavbarComponent implements OnInit {
       console.log(info);
       
     })*/
-
-    
-
-    
+  
   }
     
-
+  // cierra la sesión actual
+  logout(){
+    this._loginSvc.logOut()
+  }
 }
