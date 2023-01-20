@@ -1,0 +1,66 @@
+ public id;
+  checked: boolean= false;
+
+
+
+
+ 
+
+
+  constructor(private _formBuilder: FormBuilder, private productSvc: ProductService, private router: Router, private notificationSvc: NotificationService, private marcaSvc: MarcaService, private prueba: FormTallaStockService) {
+   
+    
+  }
+
+
+
+
+
+
+  constructor(private _formBuilder: FormBuilder, private productSvc: ProductService, private router: Router, private notificationSvc: NotificationService, private marcaSvc: MarcaService, private prueba: FormTallaStockService) {
+   
+    
+  }
+
+
+
+  onSelect(event){
+    // antes de añadir el archivo compruebo si es una imagen.    
+    if(event.addedFiles[0].size <= 4000000){
+      if(event.addedFiles[0].type == 'image/png' || event.addedFiles[0].type == 'image/jpg' || event.addedFiles[0].type == 'image/jpeg' || event.addedFiles[0].type == 'image/webp'){
+          // inserta la imagen en el array.
+          this.images.push(...event.addedFiles);
+          const formData= new FormData();
+          for(var i=0; i < this.images.length; i++){
+            formData.append('',this.images[i]);
+          }
+      }else{
+        this.notificationSvc.openSnackBar('El formato '+ event.addedFiles.type +' no es compatible.', 'cerrar');
+      }
+    }else{
+      this.notificationSvc.openSnackBar('La imagen debe pesar menos de 4MB', 'cerrar');
+    } 
+  }
+
+
+  //-------------------------------------------------------------
+
+  onRemove(event) {
+    this.images.splice(this.images.indexOf(event), 1);
+  }
+
+ 
+  
+  
+
+
+
+  createProduct(){
+    this.productSvc.createProduct(this.form1.value, this.images[0], this.images).subscribe({
+      next: data =>{
+
+
+
+
+              
+      tallaStockArray: new FormArray([])

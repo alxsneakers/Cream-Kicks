@@ -9,7 +9,7 @@ import {
 } from '@angular/forms';
 import { MatChipInputEvent } from '@angular/material/chips';
 import { Router } from '@angular/router';
-import { ProductService } from 'src/app/services/product.service';
+import { ProductService } from '../../../services/product.service';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { timeStamp } from 'console';
 import { NotificationService } from 'src/app/services/notification.service';
@@ -51,8 +51,9 @@ export class CreateProductComponent implements OnInit {
     '42',
   ];
   formCreateProduct!: FormGroup;
-  file: File = undefined;
   imgSelect: any | ArrayBuffer = ''; // img por defecto.
+  images: File[]=[];
+
 
   constructor(
     private _formBuilder: FormBuilder,
@@ -74,7 +75,6 @@ export class CreateProductComponent implements OnInit {
       precioVenta: ['', [Validators.required]],
       precioCompra: ['', [Validators.required]],
       publicado: ['', []],
-      portada: ['', [Validators.required]],
       tallaStockArray: new FormArray([]),
     });
 
@@ -124,12 +124,10 @@ export class CreateProductComponent implements OnInit {
 
   // crea un producto
   createProduct() {
-    //const data= this.form1.value
-    //console.log(data.tallaStockArray[0].talla)
-    this.productSvc.createProduct(this.form1.value, this.file).subscribe({
+    this.productSvc.createProduct(this.form1.value, this.images[0], this.images).subscribe({
       next: (data) => {
         this.notificationSvc.openSnackBar(data.message, 'cerrar');
-        this.router.navigate(['/products']);
+        this.router.navigate(['/productos']);
       },
       error: (error) => {
         this.notificationSvc.openSnackBar(error.error.message, 'cerrar');
@@ -137,52 +135,7 @@ export class CreateProductComponent implements OnInit {
     });
   }
 
-  // carga la imagen en el formulario cuando se añade una img.
-  fileChangeEvent(event: any): void {
-    var file; // guarda la img selecciona por el usuario.
-    if (event.target.files && event.target.files[0]) {
-      // comprueba si es una img.
-      file = <File>event.target.files[0];
-    } else {
-      this.notificationSvc.openSnackBar('Error al subir la imagen.', 'cerrar');
-    }
-    // valida que la imagen pese menos de 4MB.
-    if (file.size <= 4000000) {
-      // valida el tipo de img.
-      if (
-        file.type == 'image/png' ||
-        file.type == 'image/jpg' ||
-        file.type == 'image/jpeg' ||
-        file.type == 'image/webp'
-      ) {
-        // carga la img.
-        const reader = new FileReader();
-        reader.onload = (e) => (this.imgSelect = reader.result);
-        reader.readAsDataURL(file);
-
-        // pone el nombre de la imagen en el input (inputPortada)
-        //this.formCreateProduct.patchValue({inputPortada: file.name});
-
-        // guardo la img seleccionada por el usuario en la variable.
-        this.file = file;
-      } else {
-        this.formCreateProduct.patchValue({
-          inputPortada: 'Seleccionar imagen',
-        }); // si la img no es valida reseteo el nombre del input.
-        this.notificationSvc.openSnackBar(
-          'Formato no compatible. Recuerda (png, webp, jpg o jpge).',
-          'cerrar'
-        );
-      }
-    } else {
-      this.notificationSvc.openSnackBar(
-        'La imagen no debe pasar de 4MB.',
-        'cerrar'
-      );
-    }
-    console.log(this.file);
-  }
-
+ 
   onlyNumbers(event): boolean {
     const charCode = event.which ? event.which : event.keyCode;
     if (charCode > 31 && (charCode < 48 || charCode > 57)) {
@@ -191,18 +144,30 @@ export class CreateProductComponent implements OnInit {
     return true;
   }
 
-
-
-  // IMAGENES GLOBALES
-  files: File[] = [];
-
-  onSelect(event) {
-    console.log(event);
-    this.files.push(...event.addedFiles);
+  onSelect(event){
+    // antes de añadir el archivo compruebo si es una imagen.    
+    if(event.addedFiles[0].size <= 4000000){
+      if(event.addedFiles[0].type == 'image/png' || event.addedFiles[0].type == 'image/jpg' || event.addedFiles[0].type == 'image/jpeg' || event.addedFiles[0].type == 'image/webp'){
+          // inserta la imagen en el array.
+          this.images.push(...event.addedFiles);
+          const formData= new FormData();
+          for(var i=0; i < this.images.length; i++){
+            formData.append('',this.images[i]);
+          }
+      }else{
+        this.notificationSvc.openSnackBar('El formato '+ event.addedFiles.type +' no es compatible.', 'cerrar');
+      }
+    }else{
+      this.notificationSvc.openSnackBar('La imagen debe pesar menos de 4MB', 'cerrar');
+    } 
   }
+
 
   onRemove(event) {
-    console.log(event);
-    this.files.splice(this.files.indexOf(event), 1);
+    this.images.splice(this.images.indexOf(event), 1);
   }
+
+ 
 }
+
+
