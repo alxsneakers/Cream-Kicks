@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAEA,AAAA,CAAC,CAAA;EACG,SAAS,EAAE,IAAI;CAClB;;AAED,AAAA,CAAC,CAAA;EACG,OAAO,EAAE,IAAI;EACb,eAAe,EAAE,SAAS;EAC1B,KAAK,EAAE,OAAO;CAEjB",
+    "sources": [
+        "../index-contacto/index-contacto.component.scss"
+    ],
+    "names": [],
+    "file": "index-contacto.component.css"
+}

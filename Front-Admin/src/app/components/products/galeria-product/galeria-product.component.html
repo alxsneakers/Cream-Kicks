@@ -1,89 +1,93 @@
-<!-- Barra superior -->
-<app-navbar></app-navbar>
-<!-- Barra navegacion lateral -->
-<app-sidenav></app-sidenav>
+<!-- MENU NAV -->
+<app-nav></app-nav>
+
+<section>
+    <div class="container-fluid pt-4 px-4">
+        <div class="row my-5">
+            <div class=" col-xl-10 col-lg-9 col-md-8 ml-auto ">
+                <div class="card">
+                    <!-- Si hay producto lo enseño -->
+                    <div class="col-md-12 pt-4" *ngIf="!(loading$ | async)">
+                        <!-- Single product -->
+
+                        <!-- Imagen portada producto -->
+                        <!-- <div class="image-portada">
+                            <mat-card>
+                                <img mat-card-image [src]="url + 'obtenerPortada/' + this.id" class="image-card">
+                            </mat-card>
+                        </div> -->
+
+                        <!-- Drop zone -->
+                        <mat-card class="card">
+                            <mat-card-content class="dropzone">
+                                <ngx-dropzone (change)="onSelect($event)">
+                                    <ngx-dropzone-label>Arrastre y suelte su imagen</ngx-dropzone-label>
+                                    <ngx-dropzone-preview *ngFor="let i of images" [removable]="true"
+                                        (removed)="onRemove(i)">
+                                        <ngx-dropzone-label>{{ i.name }}</ngx-dropzone-label>
+                                    </ngx-dropzone-preview>
+                                </ngx-dropzone>
+                            </mat-card-content>
+                            <mat-card-actions class="accion">
+                                <button class="btn-subir" mat-button (click)="subir_images()"
+                                    [disabled]="this.images.length == 0">
+                                    <ion-icon name="cloud-upload-outline"></ion-icon>
+                                    Subir
+                                </button>
+                            </mat-card-actions>
+                        </mat-card>
+                    </div>
 
 
 
-<!-- spinner -->
-<div class="container-loader" *ngIf="loading$ | async">
-    <span class="loader"></span>
-</div>
+
+
+                    <div class="col-md-12 ">
+                        <!-- Tabla -->
+                        <table class="table" mat-table [dataSource]="data">
+
+                            <!-- Img Product -->
+                            <ng-container matColumnDef="imagen">
+                                <th mat-header-cell *matHeaderCellDef>Imagen</th>
+                                <td mat-cell *matCellDef="let element">
+                                    <img style="max-width: 50px; max-height: 50px;" mat-card-image
+                                        [src]="url + 'obtenerPortada/' + element">
+                                </td>
+                            </ng-container>
+
+
+                            <!-- Function Column -->
+                            <ng-container matColumnDef="eliminar">
+                                <th mat-header-cell *matHeaderCellDef>Eliminar</th>
+                                <td mat-cell *matCellDef="let element">
+                                    <ion-icon name="trash-outline"
+                                        (click)="openDialog(element.imagen, element._id)"></ion-icon>
+                                </td>
+                            </ng-container>
+
+                            <tr mat-header-row *matHeaderRowDef="columnsDisplay"></tr>
+                            <tr mat-row *matRowDef="let row; columns: columnsDisplay;">
+                        </table>
+                        <!-- Paginator
+                        <mat-paginator [pageSize]="4" aria-label="Select page of user"
+                            class="paginator"></mat-paginator> -->
+                    </div>
 
 
 
 
-<div class="container" *ngIf="!(loading$ | async)">
-  <!-- Single product -->
- 
-    <!-- Imagen portada producto -->
-    <div class="image-portada">
-        <mat-card>
-            <img mat-card-image [src]="url + 'obtenerPortada/' + this.id" class="image-card">
-        </mat-card>
+
+
+
+
+
+
+
+                </div>
+                <!-- ------------------------ -->
+
+
+            </div>
+        </div>
     </div>
-
-    <!-- Drop zone -->
-    <mat-card class="card">    
-        <mat-card-content class="dropzone">
-            <ngx-dropzone (change)="onSelect($event)">
-                <ngx-dropzone-label>Arrastre y suelte su imagen</ngx-dropzone-label>
-                <ngx-dropzone-preview *ngFor="let i of images" [removable]="true" (removed)="onRemove(i)">
-                    <ngx-dropzone-label>{{ i.name }}</ngx-dropzone-label>
-                </ngx-dropzone-preview>
-                </ngx-dropzone>
-        </mat-card-content>
-        <mat-card-actions class="accion">
-            <button class="btn-subir" mat-button (click)="subir_images()" [disabled]="this.images.length == 0">
-                <ion-icon name="cloud-upload-outline"></ion-icon>
-                Subir
-            </button>
-        </mat-card-actions>
-    </mat-card>
-</div>
-
-
-
-
-
-<div class="container-table">
-    <!-- Tabla -->
-    <table mat-table [dataSource]="data">
-
-        <!-- Img Product -->
-        <ng-container matColumnDef="imagen">
-            <th mat-header-cell *matHeaderCellDef>Imagen</th>
-            <td mat-cell *matCellDef="let element">
-               <img style="max-width: 50px; max-height: 50px;" mat-card-image [src]="url + 'obtenerPortada/' + element">
-            </td>
-        </ng-container>
-
-    
-        <!-- Function Column -->
-        <ng-container matColumnDef="eliminar">
-            <th mat-header-cell *matHeaderCellDef>Eliminar</th>
-            <td mat-cell *matCellDef="let element" >
-                <ion-icon name="trash-outline" (click)="openDialog(element.imagen, element._id)"></ion-icon>
-            </td>
-        </ng-container>
-    
-        <tr mat-header-row *matHeaderRowDef="columnsDisplay"></tr>
-        <tr mat-row *matRowDef="let row; columns: columnsDisplay;"> 
-    </table>
-    <!-- Paginator -->
-    <mat-paginator [pageSize]="4" aria-label="Select page of user" class="paginator"></mat-paginator>  
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+</section>

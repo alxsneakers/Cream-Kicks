@@ -1,0 +1,96 @@
+.btn-subir {
+  width: 90px;
+  height: 39px;
+  font-weight: 500;
+  border: 2px solid #C6C6C6;
+  border-radius: 5px;
+}
+
+.dropzone {
+  max-width: calc(100vh - 252px);
+  width: 647px;
+}
+
+.text-wrapper {
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+}
+
+.mat-paginator {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+ion-icon {
+  font-size: 20px;
+}
+
+.container-loader {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  height: calc(100% - 75px);
+}
+
+.loader {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background-color: #fff;
+  -webkit-box-shadow: 32px 0 #fff, -32px 0 #fff;
+          box-shadow: 32px 0 #fff, -32px 0 #fff;
+  position: relative;
+  -webkit-animation: flash 0.5s ease-out infinite alternate;
+          animation: flash 0.5s ease-out infinite alternate;
+}
+
+@-webkit-keyframes flash {
+  0% {
+    background-color: #FFF2;
+    -webkit-box-shadow: 32px 0 #FFF2, -32px 0 black;
+            box-shadow: 32px 0 #FFF2, -32px 0 black;
+  }
+  50% {
+    background-color: black;
+    -webkit-box-shadow: 32px 0 #FFF2, -32px 0 #FFF2;
+            box-shadow: 32px 0 #FFF2, -32px 0 #FFF2;
+  }
+  100% {
+    background-color: #FFF2;
+    -webkit-box-shadow: 32px 0 black, -32px 0 #FFF2;
+            box-shadow: 32px 0 black, -32px 0 #FFF2;
+  }
+}
+
+@keyframes flash {
+  0% {
+    background-color: #FFF2;
+    -webkit-box-shadow: 32px 0 #FFF2, -32px 0 black;
+            box-shadow: 32px 0 #FFF2, -32px 0 black;
+  }
+  50% {
+    background-color: black;
+    -webkit-box-shadow: 32px 0 #FFF2, -32px 0 #FFF2;
+            box-shadow: 32px 0 #FFF2, -32px 0 #FFF2;
+  }
+  100% {
+    background-color: #FFF2;
+    -webkit-box-shadow: 32px 0 black, -32px 0 #FFF2;
+            box-shadow: 32px 0 black, -32px 0 #FFF2;
+  }
+}
+/*# sourceMappingURL=galeria-product.component.css.map */

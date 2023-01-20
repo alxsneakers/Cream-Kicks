@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "",
+    "sources": [
+        "../grafico-ventas/grafico-ventas.component.scss"
+    ],
+    "names": [],
+    "file": "grafico-ventas.component.css"
+}

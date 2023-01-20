@@ -1,0 +1,68 @@
+* {
+  font-size: 14px;
+}
+
+.card {
+  border-radius: 10px;
+}
+
+.imgTabla {
+  width: 85px;
+  height: 59px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.mat-row:hover .mat-cell {
+  background-color: #EEF0F2;
+}
+
+.btn {
+  background-color: var(--segundoColor);
+  color: var(--white);
+}
+
+.btn-eliminar {
+  background-color: var(--red);
+}
+
+ion-icon {
+  font-size: 25px;
+  margin-right: 10px;
+}
+
+.NoPublicado {
+  color: red;
+  font-weight: bold;
+  font-size: 30px;
+}
+
+.SiPublicado {
+  color: green;
+  font-size: 30px;
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+::ng-deep .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick {
+  color: var(--primerColor) !important;
+}
+
+::ng-deep .mat-input-element {
+  caret-color: var(--primerColor) !important;
+}
+
+::ng-deep .mat-form-field.mat-focused .mat-form-field-label {
+  color: var(--black) !important;
+}
+
+::ng-deep .mat-checkbox-checked.mat-accent .mat-checkbox-background {
+  background-color: var(--primerColor) !important;
+}
+
+::ng-deep .mat-checkbox-indeterminate.mat-accent .mat-checkbox-background {
+  background-color: var(--primerColor) !important;
+}
+/*# sourceMappingURL=index-product.component.css.map */

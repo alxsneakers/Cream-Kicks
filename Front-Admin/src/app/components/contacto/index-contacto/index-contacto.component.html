@@ -1,84 +1,54 @@
-<!-- Barra superior -->
-<app-navbar></app-navbar>
-<!-- Barra navegacion lateral -->
-<app-sidenav></app-sidenav>
+<!-- MENU NAV -->
+<app-nav></app-nav>
 
 
-<div class="container">
+<!-- Tabla de cuponess -->
+
+<section>
+  <div class="container-fluid pt-4 px-4">
+    <div class="row my-5 ">
+      <div class=" col-xl-10 col-lg-9 col-md-8 ml-auto ">
+        <div class="card">
+
+          <!-- Buscador -->
+          <div class="col-md-12 py-4">
+            <ion-icon name="search-outline" class="iconSearch"></ion-icon>
+            <input mat-input class="input" name="mensajesFiltrados" [(ngModel)]="mensajesFiltrados"
+              placeholder="Buscar por email">
+          </div>
 
 
-  <!-- Buscador -->
-  <div class="buscador">
-    <ion-icon name="search-outline" class="iconSearch"></ion-icon>
-    <input mat-input class="input" name="mensajesFiltrados" [(ngModel)]="mensajesFiltrados" placeholder="Buscar por email">
+        
+          <!-- mensaje card -->
+          <div class="col-md-12 pb-4">
+            <div *ngFor="let item of (contactos$ | async) | filterMensajes: mensajesFiltrados; index as i;">
+              <div>
+
+                <button class="btn btn-block text-left mensaje" data-toggle="collapse" [attr.data-target]="'#test' + i">
+                  <i class="bi bi-envelope fa-lg mr-3"></i>
+                  <a href="mailto:{{item.email}}">{{item.email}}</a>
+                  <p>Asunto: {{item.asunto}}</p>
+                  
+
+                  <!-- <p>Nombre: {{item.nombre}}</p> -->
+                  <p>Fecha: {{item.creado | date }}</p>
+                  <!-- <mat-card-subtitle>{{item.estado}}</mat-card-subtitle> -->
+
+                </button>
+              </div>
+
+              <div class="collapse" id="test{{i}}">
+                <div class="card-body">{{item.mensaje}}</div>
+              </div>
+              <hr>
+            </div>
+          </div>
+
+
+
+        </div>
+      </div>
+    </div>
   </div>
 
-
-    <!-- mensaje card -->
-    <mat-card style="background-color: #FFFFFF;" class="example-card" *ngFor="let item of (contactos$ | async) | filterMensajes: mensajesFiltrados" >
-      <div class="card-boy">
-        <mat-card-header>
-          <mat-card-title>{{item.nombre}}</mat-card-title>
-          <mat-card-subtitle>{{item.creado | date }}</mat-card-subtitle>
-          <mat-card-subtitle>{{item.estado}}</mat-card-subtitle>
-        </mat-card-header>
-        <mat-card-content>
-          <p>{{item.asunto}}</p>
-          <p>{{item.mensaje}}</p>
-          <a href="mailto:{{item.email}}">{{item.email}}</a>
-        </mat-card-content>
-
-      </div>
-
-
-      <mat-card-actions style="background: #FAFAFA;">
-        <button mat-button class="button" (click)="openDialog(item.nombre, item._id)">Contestado</button>
-      </mat-card-actions>
-
-
-      
-      
-  </mat-card>
-</div>       
-
-
-<!--<mat-accordion class="example-headers-align">
-          <mat-expansion-panel>
-            <mat-expansion-panel-header>
-              <mat-panel-title>
-                Responder mensaje
-              </mat-panel-title>
-            </mat-expansion-panel-header>
-        
-            <mat-form-field appearance="fill">
-              <mat-label>Asunto</mat-label>
-              <input matInput>
-            </mat-form-field>
-            <mat-form-field class="example-full-width">
-              <mat-label>Cuerpo del mensaje</mat-label>
-              <textarea matInput></textarea>
-            </mat-form-field>-->
-
-
-        
-
-
-
-      
-
-     
-
-      
-      
-
-
-
-
-
-  
-
-   
-
-
-
-  
+</section>

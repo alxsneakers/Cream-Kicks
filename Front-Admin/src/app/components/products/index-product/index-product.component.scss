@@ -1,8 +1,21 @@
+// tamaño de letra de todo el componente
+*{
+    font-size: 14px;
+}
 
 // Tarjeta
 .card{
     border-radius: 10px;
 }
+
+
+// imagen tabla
+.imgTabla{
+    width: 85px; 
+    height: 59px;
+    object-fit: cover;
+}
+
 
 // color del la fila al pasar por ella.
 .mat-row:hover .mat-cell{

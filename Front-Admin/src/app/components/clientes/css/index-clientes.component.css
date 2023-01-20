@@ -1,0 +1,41 @@
+* {
+  font-size: 14px;
+}
+
+.card {
+  border-radius: 10px;
+}
+
+.mat-row:hover .mat-cell {
+  background-color: #EEF0F2;
+}
+
+ion-icon {
+  font-size: 25px;
+  margin-right: 10px;
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+::ng-deep .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick {
+  color: var(--primerColor) !important;
+}
+
+::ng-deep .mat-input-element {
+  caret-color: var(--primerColor) !important;
+}
+
+::ng-deep .mat-form-field.mat-focused .mat-form-field-label {
+  color: var(--black) !important;
+}
+
+::ng-deep .mat-checkbox-checked.mat-accent .mat-checkbox-background {
+  background-color: var(--primerColor) !important;
+}
+
+::ng-deep .mat-checkbox-indeterminate.mat-accent .mat-checkbox-background {
+  background-color: var(--primerColor) !important;
+}
+/*# sourceMappingURL=index-clientes.component.css.map */
