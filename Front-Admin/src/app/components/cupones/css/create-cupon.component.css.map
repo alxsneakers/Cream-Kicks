@@ -1,9 +1,0 @@
-{
-    "version": 3,
-    "mappings": "AACA,AAAA,cAAc,CAAC;EACX,KAAK,EAAE,IAAI;CACd;;AAGD,AAAA,SAAS,CAAC,kCAAkC,AAAA,YAAY,CAAC,6BAA6B,CAAC;EACnF,KAAK,EAAE,kBAAkB,CAAA,UAAU;CACtC;;AAGD,AAAA,SAAS,CAAC,kBAAkB,CAAC;EACzB,WAAW,EAAE,kBAAkB,CAAC,UAAU;CAC7C;;AAGD,AAAA,SAAS,CAAC,eAAe,AAAA,YAAY,CAAC,qBAAqB,CAAC;EACxD,KAAK,EAAE,YAAY,CAAA,UAAU;CAChC",
-    "sources": [
-        "../create-cupon/create-cupon.component.scss"
-    ],
-    "names": [],
-    "file": "create-cupon.component.css"
-}
