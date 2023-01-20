@@ -1,9 +1,0 @@
-{
-    "version": 3,
-    "mappings": "AAGA,AAAA,MAAM,CAAA;EACF,KAAK,EAAE,KAAK;EACZ,UAAU,EAAE,KAAK;EACjB,MAAM,EAAE,iBAAiB;CAC5B",
-    "sources": [
-        "../update-cupon/update-cupon.component.scss"
-    ],
-    "names": [],
-    "file": "update-cupon.component.css"
-}
