@@ -1,54 +1,52 @@
-<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+<div class="col-xl-2 col-lg-3 col-md-4 fixed-top sidebar h-100">
+    <!-- class active para visualizar cuando este activo -->
+    <a [routerLink]="['/dashboard']" class="logo d-block mx-auto text-center py-4 ">
+        <img src="../../../assets/Cream-Kicks-Logotipo.svg" alt="logo">
+    </a>
 
-<nav class="col-1">
-    <div class="sidenav" [ngClass]="collapsed ? 'sidenav-collapsed' : '' ">
-        <div class="logoContainer">
-            <a (click)="toggleCollapsed()"><i *ngIf="!collapsed" class='logo bx bx-menu'></i></a>
-            <div class="userName" @fadeInout *ngIf="collapsed">UsuarioPrueba</div>
-            <button class="btn-close" *ngIf="collapsed" (click)="closeSidenav()">
-                <i class='bx bx-x'></i>
-            </button>
-    </div>
-    
-    
-
-    <ul class="sidenav-nav">
-        <span style="margin-top: 24px;"></span>
-        <li class="sidenav-nav-item" *ngFor="let data of navData">
-            <a class="sidenav-nav-link" (click)="handleClick(data)"  *ngIf="data.items && data.items.length > 0">
-                <ion-icon [name]="data.icon" class="sidenav-link-icon"></ion-icon>
-                <span class="sidenav-link-text" *ngIf="collapsed">{{data.label}}</span>
-                <i *ngIf="data.items && collapsed"  class="menu-collapsed-icon"
-                    [ngClass]="!data.expanded ? 'bx bx-chevron-right' : 'bx bx-chevron-down'"
-                ></i>
+    <ul class="navbar-nav flex-column mt-4">
+        <li class="nav-item">
+            <a [routerLink]="['/dashboard']" routerLinkActive="active" class="nav-link p-3 colorBlack mb-2 sidebar-link">
+                <i class="bi bi-speedometer2 fa-lg mr-3 "></i>Dashboard
             </a>
-
-            <a class="sidenav-nav-link" *ngIf="!data.items || (data.items && data.items.length === 0)"  [routerLink]="[data.routerLink]" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
-                <ion-icon [name]="data.icon" class="sidenav-link-icon"></ion-icon>
-                <span class="sidenav-link-text" *ngIf="collapsed">{{data.label}}</span>
+        </li>
+        <li class="nav-item">
+            <a [routerLink]="['/productos']" routerLinkActive="active" class="nav-link colorBlack p-3 mb-2 sidebar-link">
+                <i class="bi bi-box-seam fa-lg mr-3"></i>Productos
             </a>
-            <div *ngIf="collapsed && data.items && data.items.length > 0">
-                <app-sublevel-menu
-                    [data]="data"
-                    [collapsed]="collapsed"
-                    [multiple]="multiple"
-                    [expanded]="data.expanded"
-                ></app-sublevel-menu>
-            </div>
         </li>
 
-        <!-- boton cerrar sesion  -->
-    
-        <div class="logout">
-            <li class="sidenav-nav-item">
-                <a class="sidenav-nav-link" (click)="logout()">
-                    <ion-icon name="log-out-outline" class="sidenav-link-icon"></ion-icon>
-                    <span class="sidenav-link-text" @fadeInout *ngIf="collapsed">Logout</span>
-                </a>
-            </li>
-        </div>
+        <li class="nav-item">
+            <a [routerLink]="['/cupones']" routerLinkActive="active" class="nav-link colorBlack p-3 mb-2 sidebar-link">
+                <i class="bi bi-percent fa-lg mr-3"></i>Cupones
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a [routerLink]="['/clientes']" routerLinkActive="active" class="nav-link colorBlack p-3 mb-2 sidebar-link">
+                <i class="bi bi-people fa-lg mr-3"></i>Clientes
+            </a>
+        </li>
+        <li class="nav-item">
+            <a [routerLink]="['/contactos']" routerLinkActive="active" class="nav-link colorBlack p-3 mb-2 sidebar-link">
+                <i class="bi bi-envelope fa-lg mr-3"></i>Mensajes
+            </a>
+        </li>
+        <li class="nav-item">
+            <a [routerLink]="['/pedidos']" routerLinkActive="active" class="nav-link colorBlack p-3 mb-2 sidebar-link">
+                <i class="bi bi-list-stars fa-lg mr-3"></i>Pedidos
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a [routerLink]="['/configuracion']" routerLinkActive="active" class="nav-link colorBlack p-3 mb-2 sidebar-link">
+                <i class="bi bi-gear fa-lg mr-3"></i>Configuración
+            </a>
+        </li>
+        <li class="nav-item">
+            <a href="/" class="nav-link colorBlack p-3 mb-2 sidebar-link" (click)="logout()">
+                <i class="bi bi-box-arrow-right fa-lg mr-3"></i>Cerrar sesión
+            </a>
+        </li>
     </ul>
-    </div>
-</nav>
-
-
+</div>

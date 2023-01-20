@@ -5,27 +5,22 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
-import {MatButtonModule} from '@angular/material/button'; 
-import {MatFormFieldModule} from '@angular/material/form-field';
-import {MatCheckboxModule} from '@angular/material/checkbox';
+import { MatButtonModule } from '@angular/material/button'; 
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatSelectModule } from '@angular/material/select';
 import { MatToolbarModule } from '@angular/material/toolbar'; 
-import {MatTabsModule} from '@angular/material/tabs';
+import { MatTabsModule } from '@angular/material/tabs';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import {MatSnackBarModule} from '@angular/material/snack-bar'; 
-import {MatMenuModule} from '@angular/material/menu';  
-import { MatDatepickerModule} from '@angular/material/datepicker'; 
-import {MatBadgeModule} from '@angular/material/badge';
-import {MatExpansionModule} from '@angular/material/expansion';
-
-
+import { MatSnackBarModule } from '@angular/material/snack-bar'; 
+import { MatMenuModule } from '@angular/material/menu';  
+import { MatDatepickerModule } from '@angular/material/datepicker'; 
+import { MatBadgeModule } from '@angular/material/badge';
+import { MatExpansionModule } from '@angular/material/expansion';
 // graficos in real time
 import { NgxChartsModule } from '@swimlane/ngx-charts';
-
-
 //MatNativeDateModule, MatMomentDateModule
 import { MatNativeDateModule } from '@angular/material/core';
-
 // animaciones del navegador
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 // peticiones http
@@ -36,21 +31,20 @@ import { JwtInterceptor } from './interceptors/jwt.interceptor';
 // componentes
 import { LoginErrorComponent } from './components/login/login-error/login-error.component';
 import { SidenavComponent } from './components/sidenav/sidenav.component';
-import { BodyComponent } from './components/body/body.component';
+import { NavComponent } from './components/nav/nav.component';
 import { SublevelMenuComponent } from './components/sidenav/sublevel-menu.component';
 import { MatTableModule } from '@angular/material/table';
-import { MatPaginatorModule} from '@angular/material/paginator';
+import { MatPaginatorModule } from '@angular/material/paginator';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
-
 import { MatInputModule } from '@angular/material/input';
 import { CreateProductComponent } from './components/products/create-product/create-product.component';
 import { IndexProductComponent } from './components/products/index-product/index-product.component';
-import {MatCardModule} from '@angular/material/card';
+import { MatCardModule } from '@angular/material/card';
 import { UpdateProductComponent } from './components/products/update-product/update-product.component';
 import { IonicModule } from '@ionic/angular'; 
-import {MatDialogModule} from '@angular/material/dialog';
+import { MatDialogModule } from '@angular/material/dialog';
 import { ConfirmDialogComponent } from './components/shared/confirm-dialog/confirm-dialog.component';
 import { CreateCuponComponent } from './components/cupones/create-cupon/create-cupon.component';
 import { IndexCuponComponent } from './components/cupones/index-cupon/index-cupon.component';
@@ -68,7 +62,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { ROOT_REDUCERS } from './state/app.state';
 import { EffectsModule } from '@ngrx/effects';
 import { CuponEffects } from './state/effects/cupon.effects';
-import {MatStepperModule} from '@angular/material/stepper';
+import { MatStepperModule } from '@angular/material/stepper';
 import { ProductFormComponent } from './components/products/product-form/product-form.component';
 import { DescuentoEffects } from './state/effects/descuento.effects';
 import { NotFoundItemComponent } from './components/not-found-item/not-found-item.component';
@@ -93,7 +87,7 @@ import { GraficoVentasComponent } from './components/dashboard/graficos/grafico-
     LoginComponent,
     LoginErrorComponent,
     SidenavComponent,
-    BodyComponent,
+    NavComponent,
     SublevelMenuComponent,
     NotFoundComponent,
     DashboardComponent,

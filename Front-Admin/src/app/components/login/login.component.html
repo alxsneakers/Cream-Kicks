@@ -1,26 +1,40 @@
-<div class="container">
-    <form class="login" [formGroup]="formValidator">
-        <div class="logo">
-            <img src="../../assets/logo_434x126.svg">
+<section class="vh-100">
+    <div class="container py-5 h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+                <div class="card  " style="border-radius: 1rem;">
+                    <div class="card-body p-5">
+
+                        <div class="mb-md-5 mt-md-4 pb-5 text-center">
+
+                            <img class="logo mb-5 text-center" src="../../../assets/Cream-Kicks-Logotipo.svg">
+
+                            <h2 class="fw-bold mb-2 text-uppercase text-center">Admin</h2>
+
+                            <form class="login" [formGroup]="formValidator">
+                                <app-login-error *ngIf="isError$ | async" [error]="isError$ | async"></app-login-error>
+                                
+                                <div class="form-outline  mb-4">
+                                    <label class="text-left" for="">Correo electrónico</label>
+                                    <input type="email" class="form-control form-control-lg input" placeholder="Correo electrónico" formControlName="email">
+                                </div>
+                                
+                                <div class="form-outline  mb-4">
+                                    <label class="text-left" for="">Contraseña</label>
+                                    <input type="password" class="form-control form-control-lg input" placeholder="Contraseña" formControlName="password">
+                                </div>
+                                
+                                <button class="btn btn-outline-dark btn-lg px-5" (click)="login()">Login</button>
+
+                            </form>
+
+                            
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
         </div>
-       
-        <hr class="separator">
-        <h1 class="dashboard">DASHBOARD</h1>
-
-        <div class="form">
-           <section>
-                <app-login-error *ngIf="isError$ | async" [error]="isError$ | async"></app-login-error>
-            </section>
-            <span style="margin-top: 23px;"></span>
-            <input type="email" placeholder="Email Address" formControlName="email">
-            <span style="margin-top: 11px;"></span>
-            <input placeholder="Password" type="password" formControlName="password">
-            <span style="margin-top: 11px;"></span>
-
-            <button class="button" mat-button (click)="login()" [class.spinner]="isLoading$ | async" [disabled]="isLoading$ | async">Login</button>
-            <span style="margin-top: 11px;"></span>
-        </div>
-        
-    </form>
-</div>
-
+    </div>
+</section>

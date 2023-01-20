@@ -23,10 +23,6 @@ declare const lightGallery;
 })
 export class GaleriaProductComponent implements OnInit {
 
-
-  
-
-
   // variables
   public id;
   loading$: Observable<boolean>;

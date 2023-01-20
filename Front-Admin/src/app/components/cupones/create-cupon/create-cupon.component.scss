@@ -1,34 +1,19 @@
-
-
-.form-container{
-    height: calc(100vh - 75px);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+// estilos para el input
+mat-form-field {
+    width: 100%;
 }
 
-
-button{
-    color: black;
-    background: white;
-    border: 1px solid black;
+//mat-input focused color
+::ng-deep .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick {
+    color: var(--primerColor)!important;
 }
 
-.firstGroup{
-    display: flex;
-    flex-direction: row;
+// mat-input carent color
+::ng-deep .mat-input-element {
+    caret-color: var(--primerColor) !important;
 }
 
-.prueba{
-    text-align: right;
+// mat-label focused style
+::ng-deep .mat-form-field.mat-focused .mat-form-field-label {
+    color: var(--black)!important;
 }
-
-// espacio entre inputs
-mat-form-field{
-    margin-right: 12px;
-    margin-bottom: 12px;
-    text-decoration: none;
-}
-
-
