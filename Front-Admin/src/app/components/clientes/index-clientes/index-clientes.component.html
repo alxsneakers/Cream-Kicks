@@ -1,63 +1,79 @@
+<!-- MENU NAV -->
+<app-nav></app-nav>
 
-<!-- Barra superior -->
-<app-navbar></app-navbar>
-<!-- Barra navegacion lateral -->
-<app-sidenav></app-sidenav>
+<!-- Tabla de productos -->
+
+<section>
+    <div class="container-fluid pt-4 px-4">
+        <div class="row my-5 ">
+            <div class=" col-xl-10 col-lg-9 col-md-8 ml-auto ">
+                <div class="card">
+
+                    <!-- ------------------------ -->
+
+                    <!-- Input Buscador -->
+                    <div class="col-md-12 pt-4">
+                        <div class="input-group">
+                            <mat-form-field appearance="outline">
+                                <mat-label> <i class="bi bi-search"></i> Filtrar clientes</mat-label>
+                                <input matInput formControlName="nombre" (keyup)="applyFilter($event)" #input>
+                            </mat-form-field>
+                        </div>
+                    </div>
 
 
-<!-- spinner -->
-<div class="container-loader" *ngIf="isLoading$ | async">
-    <span class="loader"></span>
-</div>
+                    <!-- Tabla -->
+                    <div class="col-md-12 " tabindex="0" *ngIf="!(isLoading$ | async)">
+                        <table class="table" mat-table [dataSource]="data">
 
 
+                            <!-- Nombre Column -->
+                            <ng-container matColumnDef="nombre completo">
+                                <th class="pb-3" mat-header-cell *matHeaderCellDef>Nombre completo</th>
+                                <td class="pt-3" mat-cell *matCellDef="let element">{{element.nombre + ' ' + element.apellidos}}</td>
+                            </ng-container>
 
-<div class="table-container" tabindex="0" *ngIf="!(isLoading$ | async)">
+                            <ng-container matColumnDef="email">
+                                <th class="pb-3" mat-header-cell *matHeaderCellDef>Email</th>
+                                <td class="pt-3" mat-cell *matCellDef="let element">{{element.email}}</td>
+                            </ng-container>
 
-    <!-- Buscador -->
-    <div class="barraSuperior">
-        <ion-icon name="search-outline" class="iconSearch"></ion-icon>
-        <input class="input" matInput (keyup)="applyFilter($event)" placeholder="Filtrar Clientes" #input>
+                            <!-- Function Column -->
+                            <ng-container matColumnDef="funciones" class="funciones">
+                                <th class="pb-3" mat-header-cell *matHeaderCellDef>Funciones</th>
+                                <td class="pt-3" mat-cell *matCellDef="let element">
+                                    <ion-icon name="trash-outline"
+                                        (click)="openDialog(element.nombre, element._id)"></ion-icon>
+                                    <ion-icon name="albums-outline" [routerLink]="['compras/', element._id]"></ion-icon>
+                                </td>
+                            </ng-container>
+
+
+                            <tr mat-header-row *matHeaderRowDef="columnsDisplay"></tr>
+                            <tr mat-row *matRowDef="let row; columns: columnsDisplay;">
+
+
+                                <!-- Cuando no hay ningun resultado, agrega una fifla con ese mensaje --->
+                            <tr *matNoDataRow>
+                                <td class="mat-cell" colspan="4">No se ha encontrado ningun cliente "{{input.value}}"
+                                </td>
+                            </tr>
+
+                        </table>
+
+                        <!-- Paginator -->
+                        <div class="col-md-12 pt-4 d-flex justify-content-center">                           
+                            <mat-paginator [pageSize]="10" aria-label="Select page of user"
+                            class="paginator"></mat-paginator>
+                        </div>
+                    </div>
+
+                    <!-- ------------------------ -->
+
+
+                </div>
+            </div>
+        </div>
     </div>
 
-    <!-- Tabla -->
-    <table mat-table [dataSource]="data">
-
-       
-        <!-- Nombre Column -->
-        <ng-container matColumnDef="nombre completo">
-            <th mat-header-cell *matHeaderCellDef>Nombre completo</th>
-            <td mat-cell *matCellDef="let element">{{element.nombre + ' ' + element.apellidos}}</td>
-        </ng-container>
-
-        <ng-container matColumnDef="email">
-            <th mat-header-cell *matHeaderCellDef>Email</th>
-            <td mat-cell *matCellDef="let element">{{element.email}}</td>
-        </ng-container>
-
-        <!-- Function Column -->
-        <ng-container matColumnDef="funciones" class="funciones">
-            <th mat-header-cell *matHeaderCellDef>Funciones</th>
-            <td mat-cell *matCellDef="let element" >
-                <ion-icon name="trash-outline" (click)="openDialog(element.nombre, element._id)"></ion-icon>
-                <ion-icon name="albums-outline" [routerLink]="['compras/', element._id]"></ion-icon>
-            </td>
-        </ng-container>
-    
-        
-        <tr mat-header-row *matHeaderRowDef="columnsDisplay"></tr>
-        <tr mat-row *matRowDef="let row; columns: columnsDisplay;">
-    
-        
-        <!-- Cuando no hay ningun resultado, agrega una fifla con ese mensaje --->
-        <tr *matNoDataRow>
-            <td class="mat-cell" colspan="4">No se ha encontrado ningun cliente "{{input.value}}"</td>
-        </tr>
-        
-    </table>
-
-    <!-- Paginator -->
-    <mat-paginator [pageSize]="10" aria-label="Select page of user" class="paginator"></mat-paginator>  
-</div>
-
-
+</section>

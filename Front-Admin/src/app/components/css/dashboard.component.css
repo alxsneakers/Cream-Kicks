@@ -1,0 +1,11 @@
+.card {
+  border-radius: 10px;
+}
+
+.tarjetas:hover {
+  -webkit-box-shadow: 1px 5px 10px #222121;
+          box-shadow: 1px 5px 10px #222121;
+  -webkit-transform: translateY(4px);
+          transform: translateY(4px);
+}
+/*# sourceMappingURL=dashboard.component.css.map */

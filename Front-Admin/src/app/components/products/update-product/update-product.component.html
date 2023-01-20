@@ -1,182 +1,168 @@
-<!-- Barra superior -->
-<app-navbar></app-navbar>
-<!-- Barra navegacion lateral -->
-<app-sidenav></app-sidenav>
-
+<!-- MENU NAV -->
+<app-nav></app-nav>
 
 <!-- Se cargar cuando no se ha encontrado ningun producto -->
 <app-not-found-item *ngIf="product== undefined" name="producto" ruta="/products"></app-not-found-item>
-
 
 <ng-container *ngIf="product == undefined">
     <h1 style="text-align: center;">Producto no encontrado</h1>
 </ng-container>
 
+<section>
+    <div class="container-fluid pt-4 px-4">
+        <div class="row my-5">
+            <div class=" col-xl-10 col-lg-9 col-md-8 ml-auto ">
+                <div class="card">
+                    <!-- Si hay producto lo enseño -->
+                    <div class="col-md-12 pt-4" *ngIf="product != undefined">
+                        <form (ngSubmit)="updateProduct()" [formGroup]="formUpdateProduct">
 
-<!-- Si hay producto lo enseño -->
-<div class="form-container" *ngIf="product != undefined">
-    <form (ngSubmit)="updateProduct()" [formGroup]="formUpdateProduct">
+                            <!-- Modelo -->
+                            <mat-form-field class="w-100" appearance="outline">
+                                <mat-label>Modelo</mat-label>
+                                <input matInput formControlName="nombre">
+                                <mat-error *ngIf="formUpdateProduct
+                                    .get('nombre')?.touched && formUpdateProduct
+                                    .get('nombre')?.errors?.['required']">
+                                    Modelo obligatario
+                                </mat-error>
+                            </mat-form-field>
 
-        <div class="firstGroup">
-            <!-- Modelo -->
-            <mat-form-field appearance="outline">
-                <mat-label>Modelo</mat-label>
-                <input matInput formControlName="nombre">
-                <mat-error *ngIf="formUpdateProduct
-                    .get('nombre')?.touched && formUpdateProduct
-                    .get('nombre')?.errors?.['required']">
-                    Modelo obligatario
-                    </mat-error>
-            </mat-form-field>
-         
-            <!-- Marca -->
-            <mat-form-field appearance="outline">
-                <mat-label>Marca</mat-label>
-                <input matInput formControlName="marca">
-                <mat-error *ngIf="formUpdateProduct
-                    .get('marca')?.touched && formUpdateProduct
-                    .get('marca')?.errors?.['required']">
-                    Marca obligatorio
-                    </mat-error>
-            </mat-form-field>
-    
-            <!-- Sku -->
-            <mat-form-field appearance="outline">
-                <mat-label>sku</mat-label>
-                <input matInput formControlName="sku">
-                <mat-error *ngIf="formUpdateProduct
-                    .get('sku')?.touched && formUpdateProduct
-                    .get('sku')?.errors?.['required']">
-                    SKU obligatorio
-                </mat-error>
-            </mat-form-field>
-        </div>
+                            <!-- Marca -->
+                            <mat-form-field class="w-100" appearance="outline">
+                                <mat-label>Marca</mat-label>
+                                <input matInput formControlName="marca">
+                                <mat-error *ngIf="formUpdateProduct
+                                    .get('marca')?.touched && formUpdateProduct
+                                    .get('marca')?.errors?.['required']">
+                                    Marca obligatorio
+                                </mat-error>
+                            </mat-form-field>
 
-        <div class="secondGroup">
+                            <!-- Sku -->
+                            <mat-form-field class="w-100" appearance="outline">
+                                <mat-label>sku</mat-label>
+                                <input matInput formControlName="sku">
+                                <mat-error *ngIf="formUpdateProduct
+                                    .get('sku')?.touched && formUpdateProduct
+                                    .get('sku')?.errors?.['required']">
+                                    SKU obligatorio
+                                </mat-error>
+                            </mat-form-field>
+
+                            <!-- tallas y stock -->
+                            <div class="row align-items-center">
+                                <!-- tallas -->
+                                <div class="col">
+
+                                    <mat-form-field class="w-100" appearance="outline">
+                                        <mat-label>Talla</mat-label>
+                                        <input matInput formControlName="talla" type="number" min="36" max="55">
+                                        <mat-error *ngIf="formUpdateProduct
+                                            .get('talla')?.touched && formUpdateProduct
+                                            .get('talla')?.errors?.['required']">
+                                            Talla obligatorio
+                                        </mat-error>
+                                        <mat-error *ngIf="formUpdateProduct
+                                            .get('talla')?.touched && formUpdateProduct
+                                            .get('talla')?.errors?.['min']">
+                                            Recuerda el valor minimo es 36
+                                        </mat-error>
+                                        <mat-error *ngIf="formUpdateProduct
+                                            .get('talla')?.touched && formUpdateProduct
+                                            .get('talla')?.errors?.['max']">
+                                            Recuerda el valor maximo es 55
+                                        </mat-error>
+                                    </mat-form-field>
+                                </div>
+
+                                <!-- stock -->
+                                <div class="col">
+
+                                    <mat-form-field class="w-100" appearance="outline">
+                                        <mat-label>Stock</mat-label>
+                                        <input matInput formControlName="stock" type="number" min="1" max="100"
+                                            [ngModel]="1">
+                                        <mat-error *ngIf="formUpdateProduct
+                                            .get('stock')?.touched && formUpdateProduct
+                                            .get('stock')?.errors?.['required']">
+                                            Stock obligatorio
+                                        </mat-error>
+                                        <mat-error *ngIf="formUpdateProduct
+                                            .get('stock')?.touched && formUpdateProduct
+                                            .get('stock')?.errors?.['min']">
+                                            Recuerda el valor minimo es 1
+                                        </mat-error>
+                                        <mat-error *ngIf="formUpdateProduct
+                                            .get('stock')?.touched && formUpdateProduct
+                                            .get('stock')?.errors?.['max']">
+                                            Recuerda el valor maximo es 100
+                                        </mat-error>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+
+                            <!-- Precio compra -->
+                            <mat-form-field class="w-100" appearance="outline" floatLabel="always">
+                                <mat-label>Precio Compra</mat-label>
+                                <input matInput type="number" placeholder="0" formControlName="precioCompra" min="1">
+                                <mat-error *ngIf="formUpdateProduct
+                                            .get('precioCompra')?.touched && formUpdateProduct
+                                            .get('precioCompra')?.errors?.['required']">
+                                    Precio Compra obligatorio
+                                </mat-error>
+                                <mat-error *ngIf="formUpdateProduct
+                                            .get('precioCompra')?.touched && formUpdateProduct
+                                            .get('precioCompra')?.errors?.['min']">
+                                    Recuerda el valor minimo es 1€
+                                </mat-error>
+                            </mat-form-field>
+
+                            <!-- Precio Venta -->
+                            <mat-form-field class="w-100" appearance="outline" floatLabel="always">
+                                <mat-label>Precio Venta</mat-label>
+                                <input matInput type="number" placeholder="0" formControlName="precioVenta" min="1">
+                                <mat-error *ngIf="formUpdateProduct
+                                            .get('precioVenta')?.touched && formUpdateProduct
+                                            .get('precioVenta')?.errors?.['required']">
+                                    Precio Venta obligatorio
+                                </mat-error>
+                                <mat-error *ngIf="formUpdateProduct
+                                            .get('precioVenta')?.touched && formUpdateProduct
+                                            .get('precioVenta')?.errors?.['min']">
+                                    Recuerda el valor minimo es 1€
+                                </mat-error>
+                            </mat-form-field>
+
+                            <!-- Imagen de producto -->
+                            <mat-card class="image-card mb-2">
+                                <mat-card-header>
+                                    <mat-card-subtitle>Selecciona una imagen</mat-card-subtitle>
+                                </mat-card-header>
+                                <img mat-card-image [src]="imgSelect">
+                                <mat-card-actions>
+                                    <input type="file" (change)="fileChangeEvent($event)" formControlName="portada">
+                                </mat-card-actions>
+                            </mat-card>
+
+                            <mat-checkbox class="text-uppercase " formControlName="tienda">Publicar en Tienda</mat-checkbox>
+
+                            <!-- Boton que hace la petición -->
+                            <div class="mt-2">
+
+                                <button mat-button type="submit" [disabled]="formUpdateProduct
+                            .invalid">Actualizar producto</button>
+                            </div>
+
+                        </form>
+
+                    </div>
+                    <!-- ------------------------ -->
 
 
-            <mat-form-field appearance="outline">
-                <mat-label>Talla</mat-label>
-                <input matInput formControlName="talla" type="number" min="36" max="55">
-                <mat-error *ngIf="formUpdateProduct
-                        .get('talla')?.touched && formUpdateProduct
-                        .get('talla')?.errors?.['required']">
-                        Talla obligatorio
-                </mat-error>
-                <mat-error *ngIf="formUpdateProduct
-                        .get('talla')?.touched && formUpdateProduct
-                        .get('talla')?.errors?.['min']">
-                        Recuerda el valor minimo es 36
-                </mat-error>
-                <mat-error *ngIf="formUpdateProduct
-                        .get('talla')?.touched && formUpdateProduct
-                        .get('talla')?.errors?.['max']">
-                        Recuerda el valor maximo es 55
-                </mat-error>
-            </mat-form-field>
-
-            <!-- stock -->
-            <mat-form-field appearance="outline">
-                <mat-label>Stock</mat-label>
-                <input matInput formControlName="stock" type="number" min="1" max="100" [ngModel]="1">
-                <mat-error *ngIf="formUpdateProduct
-                        .get('stock')?.touched && formUpdateProduct
-                        .get('stock')?.errors?.['required']">
-                        Stock obligatorio
-                </mat-error>
-                <mat-error *ngIf="formUpdateProduct
-                        .get('stock')?.touched && formUpdateProduct
-                        .get('stock')?.errors?.['min']">
-                        Recuerda el valor minimo es 1
-                </mat-error>
-                <mat-error *ngIf="formUpdateProduct
-                        .get('stock')?.touched && formUpdateProduct
-                        .get('stock')?.errors?.['max']">
-                        Recuerda el valor maximo es 100
-                </mat-error>
-            </mat-form-field>
-
-             <!-- Imagen de producto -->
-            <div>
-                <mat-card class="image-card">
-                    <mat-card-header>
-                        <mat-card-subtitle>Selecciona una imagen</mat-card-subtitle>
-                    </mat-card-header>
-                    <img mat-card-image [src]="imgSelect">
-                    <mat-card-actions>
-                        <input type="file" (change)="fileChangeEvent($event)" formControlName="portada">
-                    </mat-card-actions>
-                </mat-card>
-
+                </div>
             </div>
-            
         </div>
-        
+    </div>
 
-        <!-- Precio compra -->
-        <div>
-            <mat-form-field appearance="outline" floatLabel="always">
-                <mat-label>Precio Compra</mat-label>
-                <input matInput type="number" placeholder="0" formControlName="precioCompra" min="1">
-                <mat-error *ngIf="formUpdateProduct
-                        .get('precioCompra')?.touched && formUpdateProduct
-                        .get('precioCompra')?.errors?.['required']">
-                        Precio Compra obligatorio
-                </mat-error>
-                <mat-error *ngIf="formUpdateProduct
-                        .get('precioCompra')?.touched && formUpdateProduct
-                        .get('precioCompra')?.errors?.['min']">
-                        Recuerda el valor minimo es 1€
-                </mat-error>
-            </mat-form-field>
-        </div>
-        
-            
-        
-
-        <!-- Precio Venta -->
-        <div>
-            <mat-form-field appearance="outline" floatLabel="always">
-                <mat-label>Precio Venta</mat-label>
-                <input matInput type="number" placeholder="0" formControlName="precioVenta" min="1">
-                <mat-error *ngIf="formUpdateProduct
-                        .get('precioVenta')?.touched && formUpdateProduct
-                        .get('precioVenta')?.errors?.['required']">
-                        Precio Venta obligatorio
-                </mat-error>
-                <mat-error *ngIf="formUpdateProduct
-                        .get('precioVenta')?.touched && formUpdateProduct
-                        .get('precioVenta')?.errors?.['min']">
-                        Recuerda el valor minimo es 1€
-                </mat-error>
-            </mat-form-field>
-        </div>
-
-
-        <div>
-            <mat-checkbox formControlName="tienda">Publicar en Tienda</mat-checkbox>
-        </div>
-
-
-       
-
-
-       
-        
-        
-       
-
-        
-       
-        <!-- Boton que hace la petición -->
-        <button mat-button type="submit" [disabled]="formUpdateProduct
-        .invalid">Actualizar producto</button>
-        
-
-    </form>
-
-   
-    
-
-
-</div>
+</section>

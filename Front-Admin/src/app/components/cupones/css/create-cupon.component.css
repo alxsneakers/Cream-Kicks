@@ -1,0 +1,16 @@
+mat-form-field {
+  width: 100%;
+}
+
+::ng-deep .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick {
+  color: var(--primerColor) !important;
+}
+
+::ng-deep .mat-input-element {
+  caret-color: var(--primerColor) !important;
+}
+
+::ng-deep .mat-form-field.mat-focused .mat-form-field-label {
+  color: var(--black) !important;
+}
+/*# sourceMappingURL=create-cupon.component.css.map */

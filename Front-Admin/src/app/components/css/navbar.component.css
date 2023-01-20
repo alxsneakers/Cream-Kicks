@@ -1,0 +1,36 @@
+h4 {
+  color: var(--black);
+  font-size: x-large;
+  font-weight: 500;
+}
+
+.bi {
+  -webkit-text-stroke: .5px;
+}
+
+.search {
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  border-bottom: 2px solid #999;
+  -webkit-transition: all .4s ease;
+  transition: all .4s ease;
+}
+
+.search:focus {
+  background: transparent;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  border-bottom: 2px solid var(--primerColor);
+}
+
+.search-btn {
+  padding: 10px 16px;
+  -webkit-transition: all .4s ease;
+  transition: all .4s ease;
+}
+
+.sing-out-btn:hover, .search-btn:hover {
+  color: var(--grey);
+}
+/*# sourceMappingURL=navbar.component.css.map */

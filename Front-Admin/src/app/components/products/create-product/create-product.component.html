@@ -7,150 +7,151 @@
   <div class="container-fluid pt-4 px-4">
     <div class="row my-5 ">
       <div class=" col-xl-10 col-lg-9 col-md-8 ml-auto ">
-        <div>
 
-          <!-- ------------------------ -->
-          <mat-stepper class="card" linear #stepper>
-            <!-- 1 -->
 
-            <mat-step [stepControl]="form1" [editable]="true">
+        <!-- ------------------------ -->
+        <mat-stepper class="card" linear #stepper>
+          <!-- 1 -->
 
-              <form [formGroup]="form1">
-                <ng-template matStepLabel>Registro producto</ng-template>
-          
-                <!-- Nombre -->
-                <mat-form-field class="w-100" appearance="outline">
-                  <mat-label>Nombre</mat-label>
-                  <input matInput formControlName="nombre">
-                  <mat-error *ngIf="form1
+          <mat-step [stepControl]="form1" [editable]="true">
+
+            <form [formGroup]="form1">
+              <ng-template matStepLabel>Registro producto</ng-template>
+
+              <!-- Nombre -->
+              <mat-form-field class="w-100" appearance="outline">
+                <mat-label>Nombre</mat-label>
+                <input matInput formControlName="nombre">
+                <mat-error *ngIf="form1
                     .get('nombre')?.touched && form1
                     .get('nombre')?.errors?.['required']">
-                  </mat-error>
-                </mat-form-field>
-          
-                <!-- Marcas --->
-                <mat-form-field class="w-100" appearance="outline">
-                  <mat-label>Marca</mat-label>
-                  <mat-select formControlName="marca">
-                    <mat-option *ngFor="let marca of listaMarcas" [value]="marca">{{marca}}</mat-option>
-                  </mat-select>
-                  <mat-error *ngIf="form1
+                </mat-error>
+              </mat-form-field>
+
+              <!-- Marcas --->
+              <mat-form-field class="w-100" appearance="outline">
+                <mat-label>Marca</mat-label>
+                <mat-select formControlName="marca">
+                  <mat-option *ngFor="let marca of listaMarcas" [value]="marca">{{marca}}</mat-option>
+                </mat-select>
+                <mat-error *ngIf="form1
                 .get('marca')?.touched && form1
                 .get('marca')?.errors?.['required']">
-                  </mat-error>
-                </mat-form-field>
-          
-                <!-- Sku -->
-                <mat-form-field class="w-100" appearance="outline">
-                  <mat-label>SKU</mat-label>
-                  <input matInput formControlName="sku">
-                  <mat-error *ngIf="form1
+                </mat-error>
+              </mat-form-field>
+
+              <!-- Sku -->
+              <mat-form-field class="w-100" appearance="outline">
+                <mat-label>SKU</mat-label>
+                <input matInput formControlName="sku">
+                <mat-error *ngIf="form1
                 .get('sku')?.touched && form1
                 .get('sku')?.errors?.['required']">
-                  </mat-error>
-                </mat-form-field>
-          
-                <!-- Precio compra -->
-                <mat-form-field class="w-100" appearance="outline" floatLabel="always">
-                  <mat-label>Precio Compra</mat-label>
-                  <input matInput type="number" step="any" placeholder="0" formControlName="precioCompra" min="1"
-                    (keypress)="onlyNumbers($event)">
-          
-                  <mat-error *ngIf="form1
+                </mat-error>
+              </mat-form-field>
+
+              <!-- Precio compra -->
+              <mat-form-field class="w-100" appearance="outline" floatLabel="always">
+                <mat-label>Precio Compra</mat-label>
+                <input matInput type="number" step="any" placeholder="0" formControlName="precioCompra" min="1"
+                  (keypress)="onlyNumbers($event)">
+
+                <mat-error *ngIf="form1
                         .get('precioCompra')?.touched && form1
                         .get('precioCompra')?.errors?.['required']">
-                  </mat-error>
-                  <mat-error *ngIf="form1
+                </mat-error>
+                <mat-error *ngIf="form1
                         .get('precioCompra')?.touched && form1
                         .get('precioCompra')?.errors?.['min']">
-                  </mat-error>
-                </mat-form-field>
-          
-                <!-- Precio venta -->
-                <mat-form-field class="w-100" appearance="outline" floatLabel="always">
-                  <mat-label>Precio Venta</mat-label>
-                  <input matInput type="number" step="any" placeholder="0" formControlName="precioVenta" min="1"
-                    (keypress)="onlyNumbers($event)">
-                  <mat-error *ngIf="form1
+                </mat-error>
+              </mat-form-field>
+
+              <!-- Precio venta -->
+              <mat-form-field class="w-100" appearance="outline" floatLabel="always">
+                <mat-label>Precio Venta</mat-label>
+                <input matInput type="number" step="any" placeholder="0" formControlName="precioVenta" min="1"
+                  (keypress)="onlyNumbers($event)">
+                <mat-error *ngIf="form1
                         .get('precioVenta')?.touched && form1
                         .get('precioVenta')?.errors?.['required']">
-                  </mat-error>
-                  <mat-error *ngIf="form1
+                </mat-error>
+                <mat-error *ngIf="form1
                         .get('precioVenta')?.touched && form1
                         .get('precioVenta')?.errors?.['min']">
-                  </mat-error>
-                </mat-form-field>
+                </mat-error>
+              </mat-form-field>
 
 
-                <!-- Drop zone -->
-                <mat-card class="card" >    
-                  <mat-card-content class="dropzone">
-                      <ngx-dropzone (change)="onSelect($event)">
-                          <ngx-dropzone-label>Arrastre y suelte su imagen</ngx-dropzone-label>
-                          <ngx-dropzone-preview *ngFor="let i of images" [removable]="true" (removed)="onRemove(i)">
-                            <ngx-dropzone-label>{{ i.name }}</ngx-dropzone-label>
-                        </ngx-dropzone-preview>
-                          </ngx-dropzone>
-                  </mat-card-content>
+              <!-- Drop zone -->
+              <mat-card class="card mb-3">
+                <mat-card-content class="dropzone">
+                  <ngx-dropzone (change)="onSelect($event)">
+                    <ngx-dropzone-label>Arrastre y suelte su imagen</ngx-dropzone-label>
+                    <ngx-dropzone-preview *ngFor="let i of images" [removable]="true" (removed)="onRemove(i)">
+                      <ngx-dropzone-label>{{ i.name }}</ngx-dropzone-label>
+                    </ngx-dropzone-preview>
+                  </ngx-dropzone>
+                </mat-card-content>
               </mat-card>
-          
-          
-                
-          
-          
-                <!-- Publicar en tienda -->
-                <mat-checkbox class="text-uppercase " formControlName="publicado">Publicar en Tienda</mat-checkbox>
-          
+
+
+
+
+
+              <!-- Publicar en tienda -->
+              <mat-checkbox class="text-uppercase " formControlName="publicado">Publicar en Tienda</mat-checkbox>
+
+              <div class="mt-2">
+                <button mat-button matStepperNext>Siguiente</button>
+              </div>
+            </form>
+          </mat-step>
+
+
+          <!-- 2 -->
+          <mat-step [stepControl]="form1" [editable]="false">
+            <div class="container">
+              <form [formGroup]="form1" (ngSubmit)="onSubmit()">
+                <ng-template matStepLabel>Stock por tallas</ng-template>
+
+
+                <button class="btnAdd mb-4" type="button" mat-raised-button (click)="addProducto()">Agregar tallas y
+                  stock</button>
+
+                <div *ngFor="let u of tallaStockArray.controls; index as i">
+
+                  <span class="mr-4">Talla {{ i + 1 }}</span>
+                  <app-product-form class="mr-4" [inputFormGroup]="$any(u)"></app-product-form>
+                  <button class="btnDelete mr-4" mat-raised-button (click)="removeUser(i)">borrar</button>
+
+                </div>
+
+
                 <div>
-                  <button mat-button matStepperNext>Siguiente</button>
+                  <button mat-button matStepperPrevious>Volver</button>
+                  <button mat-button matStepperNext [disabled]="form1.invalid">Siguiente</button>
                 </div>
               </form>
-            </mat-step>
+            </div>
 
 
-            <!-- 2 -->
-            <mat-step [stepControl]="form1" [editable]="false">
-              <div class="container">
-                <form [formGroup]="form1" (ngSubmit)="onSubmit()">
-                  <ng-template matStepLabel>Stock por tallas</ng-template>
-  
+          </mat-step>
 
-                  <button class="btnAdd mb-4" type="button" mat-raised-button (click)="addProducto()">Agregar tallas y stock</button>
-  
-                  <div *ngFor="let u of tallaStockArray.controls; index as i">
-  
-                    <span class="mr-4">Talla {{ i + 1 }}</span> 
-                    <app-product-form class="mr-4"[inputFormGroup]="$any(u)"></app-product-form>
-                    <button class="btnDelete mr-4" mat-raised-button (click)="removeUser(i)">borrar</button>
-  
-                  </div>
-  
-  
-                  <div>
-                    <button mat-button matStepperPrevious>Volver</button>
-                    <button mat-button matStepperNext [disabled]="form1.invalid">Siguiente</button>
-                  </div>
-                </form>
-              </div>
-              
-
-            </mat-step>
-
-            <!-- 3 -->
-            <mat-step>
-              <ng-template matStepLabel>Finalizar</ng-template>
-              <p>You are now done.</p>
-              <div>
-                <button mat-button (click)="createProduct()">Crear</button>
-              </div>
-            </mat-step>
-          </mat-stepper>
+          <!-- 3 -->
+          <mat-step>
+            <ng-template matStepLabel>Finalizar</ng-template>
+            <p>You are now done.</p>
+            <div>
+              <button mat-button (click)="createProduct()">Crear</button>
+            </div>
+          </mat-step>
+        </mat-stepper>
 
 
-          <!-- ------------------------ -->
+        <!-- ------------------------ -->
 
 
-        </div>
+
       </div>
     </div>
   </div>
