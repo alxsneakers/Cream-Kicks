@@ -80,53 +80,22 @@
                         .get('precioVenta')?.errors?.['min']">
                   </mat-error>
                 </mat-form-field>
+
+
+                <!-- Drop zone -->
+                <mat-card class="card" >    
+                  <mat-card-content class="dropzone">
+                      <ngx-dropzone (change)="onSelect($event)">
+                          <ngx-dropzone-label>Arrastre y suelte su imagen</ngx-dropzone-label>
+                          <ngx-dropzone-preview *ngFor="let i of images" [removable]="true" (removed)="onRemove(i)">
+                            <ngx-dropzone-label>{{ i.name }}</ngx-dropzone-label>
+                        </ngx-dropzone-preview>
+                          </ngx-dropzone>
+                  </mat-card-content>
+              </mat-card>
           
           
-                <!-- Imagen principal de producto -->
-                <div class="container-fluid mb-4">
-                  <div class="row align-items-center">
-                    <div class="col-xl-3 col-sm-6">
-          
-                      <!-- cambiar el tipo de subir img -->
-          
-                      <mat-card class="image-card">
-                        <mat-card-header>
-                          <mat-card-subtitle>Selecciona una imagen</mat-card-subtitle>
-                        </mat-card-header>
-                        <img mat-card-image [src]="imgSelect">
-                        <mat-card-actions>
-                          <input type="file" (change)="fileChangeEvent($event)" formControlName="portada">
-                        </mat-card-actions>
-                      </mat-card>
-                      <!-- fin -->
-                    </div>
-          
-                    <!-- imagenes secundarias -->
-                    <div class="col-xl-9 col-sm-6">
-                      <mat-card>
-                        <ngx-dropzone (change)="onSelect($event)">
-                          <ngx-dropzone-label>Imagenes secundarias</ngx-dropzone-label>
-                          <ngx-dropzone-preview *ngFor="let f of files" [removable]="true" (removed)="onRemove(f)">
-                            <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
-                          </ngx-dropzone-preview>
-                        </ngx-dropzone>
-                      </mat-card>
-                    </div>
-          
-                  </div>
-          
-          
-          
-          
-          
-          
-                </div>
-          
-                <!-- ----------------------------- -->
-          
-          
-          
-                <!-- ----------------------------- -->
+                
           
           
                 <!-- Publicar en tienda -->

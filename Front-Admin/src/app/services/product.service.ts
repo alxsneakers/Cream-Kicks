@@ -21,7 +21,7 @@ export class ProductService {
 
 
   // crea un producto
-  createProduct(data, file): Observable<any>{
+  createProduct(data, file, galeria): Observable<any>{
     // agrego a los datos del formulario la img.
     const fd= new FormData();
     fd.append('nombre', data.nombre);
@@ -32,6 +32,11 @@ export class ProductService {
     fd.append('tallaStockArray',  JSON.stringify(data.tallaStockArray));
     fd.append('publicado', data.publicado);
     fd.append('portada', file); // añado el archivo de la img al campo portada.
+    // aniado las images de lam galeria
+    galeria.shift(); // elimino el primer elemento, que es la portada para que ns duplique
+    for(let img of galeria){
+      fd.append('galeria[]', img);
+    }
     return this.http.post('http://localhost:4201/api/products/createProduct', fd);
   };
 
