@@ -1,9 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CuponService } from 'src/app/services/cupon.service';
 import { NotificationService } from 'src/app/services/notification.service';
 import { v4 as uuidv4 } from 'uuid';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog'; 
+
 
 @Component({
   selector: 'app-create-cupon',
@@ -18,7 +20,11 @@ export class CreateCuponComponent implements OnInit {
 
 
 
-  constructor(private fb: FormBuilder, private cuponSvc: CuponService, private router: Router, private notificationSvc: NotificationService) { }
+  constructor(
+    public dialogRef: MatDialogRef<CreateCuponComponent>,
+    @Inject(MAT_DIALOG_DATA) 
+    public data: DialogData, 
+    private fb: FormBuilder, private cuponSvc: CuponService, private router: Router, private notificationSvc: NotificationService) { }
 
 
   // inicia la validacion
@@ -41,6 +47,8 @@ export class CreateCuponComponent implements OnInit {
       next: data =>{
         this.notificationSvc.openSnackBar(data.message, 'cerrar');
         this.router.navigate(['/cupones']);
+        this.onClickCancelar();
+        
       },
       error: error =>{
         this.notificationSvc.openSnackBar(error.error.message, 'cerrar');        
@@ -62,6 +70,15 @@ export class CreateCuponComponent implements OnInit {
   }
 
 
-  
+    // cierra el dialog (modal)
+  onClickCancelar(): void{
+    this.dialogRef.close();
+  }
 
+}
+
+
+// informacion del dialog
+export interface DialogData{
+  titulo: string,
 }

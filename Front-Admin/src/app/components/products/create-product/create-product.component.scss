@@ -1,44 +1,85 @@
 
-
-.form-container{
-    height: calc(100vh - 75px);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+// Tarjeta
+.card{
+    border-radius: 10px;
 }
 
+// .form-container{
+//     height: calc(100vh - 75px);
+//     display: flex;
+//     flex-direction: column;
+//     align-items: center;
+//     justify-content: center;
+// }
 
-button{
-    color: black;
-    background: white;
-    border: 1px solid black;
-}
 
-.firstGroup{
-    display: flex;
-    flex-direction: row;
-}
+// button{
+//     color: black;
+//     background: white;
+//     border: 1px solid black;
+// }
 
-.secondGroup{
-    display: flex;
-    flex-direction: row;
-}
+// .firstGroup{
+//     display: flex;
+//     flex-direction: row;
+// }
+
+// .secondGroup{
+//     display: flex;
+//     flex-direction: row;
+// }
 
 // tamaño de la imagen.
-.image-card{
-    max-width: 200px;
+.image-card img{
+    max-width: 50px;
 }
 
-.prueba{
-    text-align: right;
+// .prueba{
+//     text-align: right;
+// }
+
+// // espacio entre inputs
+// mat-form-field{
+//     margin-right: 12px;
+//     margin-bottom: 12px;
+//     text-decoration: none;
+// }
+
+// botones
+.btnAdd{
+    background-color:var(--segundoColor) ;
+    color: var(--white);
+}
+.btnDelete{
+    background-color: var(--red) ;
+    color: var(--white);
 }
 
-// espacio entre inputs
-mat-form-field{
-    margin-right: 12px;
-    margin-bottom: 12px;
-    text-decoration: none;
+// estilos para el mat stepper
+::ng-deep .mat-step-header .mat-step-icon-selected {
+    background-color: var(--primerColor); 
 }
 
 
+//mat-input focused color
+::ng-deep .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick {
+    color: var(--primerColor)!important;
+}
+
+// mat-input carent color
+::ng-deep .mat-input-element {
+    caret-color: var(--primerColor) !important;
+}
+
+// mat-label focused style
+::ng-deep .mat-form-field.mat-focused .mat-form-field-label {
+    color: var(--black)!important;
+}
+
+// Colores del checkbox
+::ng-deep .mat-checkbox-checked.mat-accent .mat-checkbox-background {
+    background-color:var(--primerColor) !important;
+}
+::ng-deep .mat-checkbox-indeterminate.mat-accent .mat-checkbox-background {
+    background-color:var(--primerColor) !important;
+}

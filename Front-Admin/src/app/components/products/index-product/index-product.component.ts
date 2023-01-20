@@ -91,10 +91,6 @@ export class IndexProductComponent implements OnInit {
 
 
 
-
-
-
-
   // abre el modal, para eliminar un producto.
   openDialog(nombre, id): void{
     const dialogRef= this.dialog.open(ConfirmDialogComponent, {

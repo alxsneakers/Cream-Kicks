@@ -1,127 +1,316 @@
-<!-- Barra superior -->
-<app-navbar></app-navbar>
-<!-- Barra navegacion lateral -->
-<app-sidenav></app-sidenav>
+<!-- MENU NAV -->
+<app-nav></app-nav>
+
+<!-- Tabla de productos -->
+
+<section>
+    <div class="container-fluid pt-4 px-4">
+        <div class="row my-5 ">
+            <div class=" col-xl-10 col-lg-9 col-md-8 ml-auto ">
+                <div class="card">
+
+                    <!-- ------------------------ -->
+
+                    <!-- spinner -->
+                    <div class="container-" *ngIf="loading$ | async">
+                        <span class=""></span>
+                    </div>
+
+                    <!-- botones -->
+                    <div class="col-md-12 pt-4">
+                        <div class="text-right justify-content-between">
+                            <!-- boton eliminar masivamente -->
+                            <button class="btn btn-eliminar mr-2 btn-exportar" *ngIf="this.selection.selected.length != 0"
+                                (click)="deleteManyProducto()">
+                                <i class="bi bi-trash3"></i>
+                                Eliminar
+                            </button>
+
+                            <!-- Agregar productos -->
+                            <button class="btn mr-2" [routerLink]="['/productos/registro']">
+                                <i class="bi bi-plus-circle"></i>
+                                Agregar producto
+                            </button>
+
+                            <!-- boton de descargar fichero -->
+                            <button class="btn mr-2" (click)="donwload_excel()">
+                                <i class="bi bi-download"></i>
+                                Exportar
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Input Filtrar Cupones -->
+                    <div class="col-md-12 pt-4">
+                        <div class="input-group">
+                            <mat-form-field appearance="outline">
+                                <mat-label> <i class="bi bi-search"></i> Filtrar productos</mat-label>
+                                <input matInput formControlName="nombre" (keyup)="applyFilter($event)" #input>
+                            </mat-form-field>
+                        </div>
+                    </div>
 
 
-<mat-toolbar>
-    <a>Todo</a>
-    <a>Almacen</a>
-    <a>Tienda</a>
-</mat-toolbar>
 
-<!-- spinner -->
-<div class="container-loader" *ngIf="loading$ | async">
-    <span class="loader"></span>
-</div>
+                    <div class="col-md-12 " tabindex="0" *ngIf="!(loading$ | async)">
+
+                        <!-- Tabla -->
+                        <table class="table" mat-table [dataSource]="data">
 
 
-<div class="table-container" tabindex="0" *ngIf="!(loading$ | async)">
+                            <!-- Checkbox Column -->
+                            <ng-container matColumnDef="select">
+                                <th class="pb-3" mat-header-cell *matHeaderCellDef>
+                                    <mat-checkbox class="pt-4"(change)="$event ? toggleAllRows() : null"
+                                        [checked]="selection.hasValue() && isAllSelected()"
+                                        [indeterminate]="selection.hasValue() && !isAllSelected()"
+                                        [aria-label]="checkboxLabel()"
+                                        >
+                                    </mat-checkbox>
+                                </th>
+                                <td class="py-3"  mat-cell *matCellDef="let row">
+                                    <mat-checkbox class="pt-4" (click)="$event.stopPropagation()"
+                                        (change)="$event ? selection.toggle(row) : null"
+                                        [checked]="selection.isSelected(row)" [aria-label]="checkboxLabel(row)">
+                                    </mat-checkbox>
+                                </td>
+                            </ng-container>
 
-    <!-- Buscador -->
-    <div class="barraSuperior">
-            <ion-icon name="search-outline" class="iconSearch"></ion-icon>
-            <input class="input" matInput (keyup)="applyFilter($event)" placeholder="Filtrar Productos" #input>
-        <!-- boton de exportar -->
-        <button class="btn-exportar" (click)="donwload_excel()">
-            <ion-icon name="download-outline"></ion-icon>
-            Exportar
-        </button>
-        <!-- boton elimnar masivamente -->
-        <button class="btn-exportar" *ngIf="this.selection.selected.length > 1 && this.productos$ != null" (click)="openDialogMany()">
-            <ion-icon name="trash-outline"></ion-icon>
-            Seleccionados
-        </button>
+
+
+                            <!-- Img Product -->
+                            <ng-container matColumnDef="portada">
+                                <th class="pb-3" mat-header-cell *matHeaderCellDef>Portada</th>
+                                <td class="py-3"  mat-cell *matCellDef="let element">
+                                    <img style="max-width: 59px; max-height: 59px;"
+                                        [src]="url + 'obtenerPortada/' + element.portada">
+                                </td>
+                            </ng-container>
+
+                            <!-- Modelo Column -->
+                            <ng-container matColumnDef="nombre">
+                                <th class="pb-3" mat-header-cell *matHeaderCellDef>Producto</th>
+                                <td class="py-3"  mat-cell *matCellDef="let element">{{element.nombre}}
+                                    <br><strong>{{element.sku}}</strong>
+                                </td>
+                            </ng-container>
+
+                            <!-- Marca Column -->
+                            <ng-container matColumnDef="marca">
+                                <th class="pb-3" mat-header-cell *matHeaderCellDef>Marca</th>
+                                <td class="py-3"  mat-cell *matCellDef="let element">{{element.marca}}</td>
+                            </ng-container>
+
+                            <!-- Publicado Column -->
+                            <ng-container matColumnDef="stock">
+                                <th class="pb-3" mat-header-cell *matHeaderCellDef>Publicado</th>
+
+                                <td class="py-3"  mat-cell *matCellDef="let element">
+                                    <ng-container *ngIf="element.publicado">
+                                        <ion-icon class="SiPublicado" name="checkmark-outline"></ion-icon>
+                                    </ng-container>
+                                    <ng-container *ngIf="element.publicado == false">
+                                        <ion-icon class="NoPublicado" name="close-outline"></ion-icon>
+                                    </ng-container>
+                                </td>
+                            </ng-container>
+
+                            <!-- Function Column -->
+                            <ng-container matColumnDef="funciones" class="funciones">
+                                <th class="pb-3" mat-header-cell *matHeaderCellDef>Funciones</th>
+                                <td class="py-3"  mat-cell *matCellDef="let element">
+                                    <ion-icon name="create-outline" [routerLink]="['/productos', element._id]"
+                                        routerLinkActive="router-link-active"></ion-icon>
+                                    <ion-icon name="trash-outline"
+                                        (click)="openDialog(element.nombre, element._id)"></ion-icon>
+                                    <ion-icon name="images-outline" [routerLink]="['/productos/galeria', element._id]"
+                                        routerLinkActive="router-link-active"></ion-icon>
+                                </td>
+                            </ng-container>
+
+
+                            <tr mat-header-row *matHeaderRowDef="columnsDisplay"></tr>
+                            <tr mat-row *matRowDef="let row; columns: columnsDisplay;" (click)="selection.toggle(row)">
+
+
+                                <!-- Cuando no hay ningun resultado, agrega una fifla con ese mensaje -->
+                            <tr *matNoDataRow>
+                                <td class="py-3"  class="mat-cell" colspan="4">No se ha encontrado ningún producto "{{input.value}}"
+                                </td>
+                            </tr>
+
+                        </table>
+
+
+                        <!-- Paginator -->
+                        <mat-paginator [pageSize]="9" aria-label="Select page of user"
+                            class="paginator"></mat-paginator>
+                    </div>
+
+                    <!-- ------------------------ -->
+
+
+                </div>
+            </div>
+        </div>
     </div>
+    <div>
 
-
-    <div class="container">
-         <!-- Tabla -->
-        <table mat-table [dataSource]="data">
-
-
-            <!-- Checkbox Column -->
-            <ng-container matColumnDef="select">
-                <th mat-header-cell *matHeaderCellDef>
-                <mat-checkbox (change)="$event ? toggleAllRows() : null"
-                                [checked]="selection.hasValue() && isAllSelected()"
-                                [indeterminate]="selection.hasValue() && !isAllSelected()"
-                                [aria-label]="checkboxLabel()">
-                </mat-checkbox>
-                </th>
-                <td mat-cell *matCellDef="let row">
-                <mat-checkbox (click)="$event.stopPropagation()"
-                                (change)="$event ? selection.toggle(row) : null"
-                                [checked]="selection.isSelected(row)"
-                                [aria-label]="checkboxLabel(row)">
-                </mat-checkbox>
-                </td>
-            </ng-container>
-
-
-        
-            <!-- Img Product -->
-            <ng-container matColumnDef="portada">
-                <th mat-header-cell *matHeaderCellDef>Portada</th>
-                <td mat-cell *matCellDef="let element">
-                    <img style="max-width: 59px; max-height: 59px;" [src]="url + 'obtenerPortada/' + element.portada">
-                </td>
-            </ng-container>
-
-            <!-- Modelo Column -->
-            <ng-container matColumnDef="nombre">
-                <th mat-header-cell *matHeaderCellDef>Producto</th>
-                <td mat-cell *matCellDef="let element">{{element.nombre}} <br><strong>{{element.sku}}</strong></td>
-            </ng-container>
-        
-            <!-- Marca Column -->
-            <ng-container matColumnDef="marca">
-                <th mat-header-cell *matHeaderCellDef>Marca</th>
-                <td mat-cell *matCellDef="let element">{{element.marca}}</td>
-            </ng-container>
-
-            <!-- Publicado Column -->
-            <ng-container matColumnDef="stock">
-                <th mat-header-cell *matHeaderCellDef>Publicado</th>
-                
-                <td mat-cell *matCellDef="let element">
-                    <ng-container *ngIf="element.publicado">
-                        <ion-icon name="checkmark-outline"></ion-icon>
-                    </ng-container>
-                    <ng-container *ngIf="element.publicado == false">
-                        <ion-icon name="close-outline"></ion-icon>
-                    </ng-container>
-                </td>
-            </ng-container>
-
-            <!-- Function Column -->
-            <ng-container matColumnDef="funciones" class="funciones">
-                <th mat-header-cell *matHeaderCellDef>Funciones</th>
-                <td mat-cell *matCellDef="let element" >
-                    <ion-icon name="create-outline" [routerLink]="['/productos', element._id]" routerLinkActive="router-link-active"></ion-icon>
-                    <ion-icon name="trash-outline" (click)="openDialog(element.nombre, element._id)"></ion-icon>
-                    <ion-icon name="images-outline" [routerLink]="['/productos/galeria', element._id]" routerLinkActive="router-link-active"></ion-icon>
-                </td>
-            </ng-container>
-        
-            
-            <tr mat-header-row *matHeaderRowDef="columnsDisplay"></tr>
-            <tr mat-row *matRowDef="let row; columns: columnsDisplay;" (click)="selection.toggle(row)">
-        
-            
-            <!-- Cuando no hay ningun resultado, agrega una fifla con ese mensaje -->
-            <tr *matNoDataRow>
-                <td class="mat-cell" colspan="4">No se ha encontrado ningún producto "{{input.value}}"</td>
-            </tr>
-            
-        </table>
     </div>
+</section>
 
-   
+<section>
+    <div class="container-fluid pt-4 px-4">
+        <div class="row my-5 ">
+            <div class=" col-xl-10 col-lg-9 col-md-8 ml-auto ">
+                <div class="card">
 
-    <!-- Paginator -->
-    <mat-paginator [pageSize]="9" aria-label="Select page of user" class="paginator"></mat-paginator>  
-</div>
+                    <!-- ------------------------ -->
+
+                    <!-- spinner -->
+                    <div class="container-" *ngIf="loading$ | async">
+                        <span class=""></span>
+                    </div>
+
+                    <!-- botones -->
+                    <div class="col-md-12 pt-4">
+                        <div class="text-right justify-content-between">
+                            <!-- boton eliminar masivamente -->
+                            <button class="btn btn-eliminar mr-2 btn-exportar" *ngIf="this.selection.selected.length != 0"
+                                (click)="deleteManyProducto()">
+                                <i class="bi bi-trash3"></i>
+                                Eliminar
+                            </button>
+
+                            <!-- Agregar productos -->
+                            <button class="btn mr-2" [routerLink]="['/productos/registro']">
+                                <i class="bi bi-plus-circle"></i>
+                                Agregar producto
+                            </button>
+
+                            <!-- boton de descargar fichero -->
+                            <button class="btn mr-2" (click)="donwload_excel()">
+                                <i class="bi bi-download"></i>
+                                Exportar
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Input Filtrar Cupones -->
+                    <div class="col-md-12 pt-4">
+                        <div class="input-group">
+                            <mat-form-field appearance="outline">
+                                <mat-label> <i class="bi bi-search"></i> Filtrar productos</mat-label>
+                                <input matInput formControlName="nombre" (keyup)="applyFilter($event)" #input>
+                            </mat-form-field>
+                        </div>
+                    </div>
 
 
-    
+
+                    <div class="col-md-12 " tabindex="0" *ngIf="!(loading$ | async)">
+
+                        <!-- Tabla -->
+                        <table class="table" mat-table [dataSource]="data">
+
+
+                            <!-- Checkbox Column -->
+                            <ng-container matColumnDef="select">
+                                <th class="pb-3" mat-header-cell *matHeaderCellDef>
+                                    <mat-checkbox class="pt-4"(change)="$event ? toggleAllRows() : null"
+                                        [checked]="selection.hasValue() && isAllSelected()"
+                                        [indeterminate]="selection.hasValue() && !isAllSelected()"
+                                        [aria-label]="checkboxLabel()"
+                                        >
+                                    </mat-checkbox>
+                                </th>
+                                <td class="py-3"  mat-cell *matCellDef="let row">
+                                    <mat-checkbox class="pt-4" (click)="$event.stopPropagation()"
+                                        (change)="$event ? selection.toggle(row) : null"
+                                        [checked]="selection.isSelected(row)" [aria-label]="checkboxLabel(row)">
+                                    </mat-checkbox>
+                                </td>
+                            </ng-container>
+
+
+
+                            <!-- Img Product -->
+                            <ng-container matColumnDef="portada">
+                                <th class="pb-3" mat-header-cell *matHeaderCellDef>Portada</th>
+                                <td class="py-3"  mat-cell *matCellDef="let element">
+                                    <img style="max-width: 59px; max-height: 59px;"
+                                        [src]="url + 'obtenerPortada/' + element.portada">
+                                </td>
+                            </ng-container>
+
+                            <!-- Modelo Column -->
+                            <ng-container matColumnDef="nombre">
+                                <th class="pb-3" mat-header-cell *matHeaderCellDef>Producto</th>
+                                <td class="py-3"  mat-cell *matCellDef="let element">{{element.nombre}}
+                                    <br><strong>{{element.sku}}</strong>
+                                </td>
+                            </ng-container>
+
+                            <!-- Marca Column -->
+                            <ng-container matColumnDef="marca">
+                                <th class="pb-3" mat-header-cell *matHeaderCellDef>Marca</th>
+                                <td class="py-3"  mat-cell *matCellDef="let element">{{element.marca}}</td>
+                            </ng-container>
+
+                            <!-- Publicado Column -->
+                            <ng-container matColumnDef="stock">
+                                <th class="pb-3" mat-header-cell *matHeaderCellDef>Publicado</th>
+
+                                <td class="py-3"  mat-cell *matCellDef="let element">
+                                    <ng-container *ngIf="element.publicado">
+                                        <ion-icon class="SiPublicado" name="checkmark-outline"></ion-icon>
+                                    </ng-container>
+                                    <ng-container *ngIf="element.publicado == false">
+                                        <ion-icon class="NoPublicado" name="close-outline"></ion-icon>
+                                    </ng-container>
+                                </td>
+                            </ng-container>
+
+                            <!-- Function Column -->
+                            <ng-container matColumnDef="funciones" class="funciones">
+                                <th class="pb-3" mat-header-cell *matHeaderCellDef>Funciones</th>
+                                <td class="py-3"  mat-cell *matCellDef="let element">
+                                    <ion-icon name="create-outline" [routerLink]="['/productos', element._id]"
+                                        routerLinkActive="router-link-active"></ion-icon>
+                                    <ion-icon name="trash-outline"
+                                        (click)="openDialog(element.nombre, element._id)"></ion-icon>
+                                    <ion-icon name="images-outline" [routerLink]="['/productos/galeria', element._id]"
+                                        routerLinkActive="router-link-active"></ion-icon>
+                                </td>
+                            </ng-container>
+
+
+                            <tr mat-header-row *matHeaderRowDef="columnsDisplay"></tr>
+                            <tr mat-row *matRowDef="let row; columns: columnsDisplay;" (click)="selection.toggle(row)">
+
+
+                                <!-- Cuando no hay ningun resultado, agrega una fifla con ese mensaje -->
+                            <tr *matNoDataRow>
+                                <td class="py-3"  class="mat-cell" colspan="4">No se ha encontrado ningún producto "{{input.value}}"
+                                </td>
+                            </tr>
+
+                        </table>
+
+
+                        <!-- Paginator -->
+                        <mat-paginator [pageSize]="9" aria-label="Select page of user"
+                            class="paginator"></mat-paginator>
+                    </div>
+
+                    <!-- ------------------------ -->
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div>
+
+    </div>
+</section>
