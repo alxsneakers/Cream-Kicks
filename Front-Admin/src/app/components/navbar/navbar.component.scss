@@ -1,32 +1,6 @@
-// *{
-//     font-size: 14px;
-// }
-
-// mat-toolbar{
-//     background: white;
-//     border-bottom: 1px solid #C6C6C6;
-//     min-height: 75px;
-// }
-
-
-// img{
-//     width: 30px;
-//     height: 30px;
-//     border-radius: 50%;
-// }
-
-// .menu-container{
-//     width: 100%;
-//     display: flex;
-//     justify-content: right;
-//     align-items: right;
-// }
-
-// // cambia el tamaño de los iconos
-// ion-icon{
-//     font-size: 20px;
-// }
-
+*{
+    font-size: 14px;
+}
 
 
 h4{
@@ -39,29 +13,15 @@ h4{
   -webkit-text-stroke: .5px;
 
 }
-.search {
-  background: transparent;
-  border: none;
-  border-radius: 0;
-  border-bottom: 2px solid #999;
-  transition: all .4s ease;
-}
-  
-.search:focus {
-  background: transparent;
-  box-shadow: none;
-  border-bottom: 2px solid var(--primerColor);
-}
 
-.search-btn {
-  // border-radius: 60%;
-  padding: 10px 16px;
-  transition: all .4s ease;
-  // background-color: #eee;
-
+ion-icon{
+  font-size: 25px;
 }
 
 .sing-out-btn:hover, .search-btn:hover {
   color: var(--grey);
 }
 
+.imagenPerfil{
+  width: 35px;
+}

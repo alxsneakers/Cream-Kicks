@@ -11,24 +11,32 @@
         <div class="card">
 
           <!-- Buscador -->
-          <div class="col-md-12 py-4">
-            <ion-icon name="search-outline" class="iconSearch"></ion-icon>
-            <input mat-input class="input" name="mensajesFiltrados" [(ngModel)]="mensajesFiltrados"
-              placeholder="Buscar por email">
+          <div class="col-md-12 py-4 w-100">
+
+            <div class="input-group">
+              <input type="text" class="form-control search" [(ngModel)]="mensajesFiltrados"
+                placeholder="Buscar por email">
+              <button class="btn btn-white search-btn"> <i class="fa fa-search"></i></button>
+            </div>
+
           </div>
 
-
-        
           <!-- mensaje card -->
           <div class="col-md-12 pb-4">
-            <div *ngFor="let item of (contactos$ | async) | filterMensajes: mensajesFiltrados; index as i;">
-              <div>
+            <div class="panel-default "
+              *ngFor="let item of (contactos$ | async) | filterMensajes: mensajesFiltrados; index as i;">
+              <div class="panel-heading">
 
-                <button class="btn btn-block text-left mensaje" data-toggle="collapse" [attr.data-target]="'#test' + i">
-                  <i class="bi bi-envelope fa-lg mr-3"></i>
+                <button class="btn w-100 mb-2 text-left mensaje" data-toggle="collapse" [attr.data-target]="'#test' + i"
+                  (click)="this.cerrarMensaje(item._id)">
+
+                  <i *ngIf="item.estado == 'Abierto'" class="bi bi-envelope-fill fa-lg mr-3 mensajeActivo"></i>
+
+                  <i *ngIf="item.estado == 'Cerrado'" class="bi bi-envelope fa-lg mr-3 mensajeActivo"></i>
                   <a href="mailto:{{item.email}}">{{item.email}}</a>
                   <p>Asunto: {{item.asunto}}</p>
-                  
+                  <!-- <p>{{item.estado}}</p> -->
+
 
                   <!-- <p>Nombre: {{item.nombre}}</p> -->
                   <p>Fecha: {{item.creado | date }}</p>
@@ -37,12 +45,60 @@
                 </button>
               </div>
 
-              <div class="collapse" id="test{{i}}">
-                <div class="card-body">{{item.mensaje}}</div>
+              <div class="panel-collapse collapse" id="test{{i}}">
+
+                <div class="card-body">
+                  <p>mensaje: <br></p>
+                  {{item.mensaje}}
+                </div>
               </div>
-              <hr>
             </div>
           </div>
+
+
+          <!-- .................................. -->
+          <div class="col-md-12 pb-4">
+
+
+            <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+              
+              <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="headingTwo">
+                  <h4 class="panel-title">
+                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" >
+                      Collapsible Group Item #2
+                    </a>
+                  </h4>
+                </div>
+                <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel">
+                  <div class="panel-body">
+                    text2             
+                  </div>
+                </div>
+              </div>
+              <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="headingThree">
+                  <h4 class="panel-title">
+                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" >
+                      Collapsible Group Item #3
+                    </a>
+                  </h4>
+                </div>
+                <div id="collapseThree" class="panel-collapse collapse" role="tabpanel">
+                  <div class="panel-body">
+                    text3
+                  </div>
+                </div>
+              </div>
+
+
+            </div>
+
+            
+
+          </div>
+
+          <!-- .................................. -->
 
 
 
