@@ -121,6 +121,7 @@ descuentoRouter.put('/actualizar_descuento/:id', [userExtractor,PATH], descuento
 
 
 descuentoRouter.delete('/eliminar_descuento/:id', userExtractor, descuentoController.eliminar_descuento);
+descuentoRouter.delete('/borrarSeleccionadosDescuento/:idDescuentos', userExtractor, descuentoController.eliminar_seleccionados_descuentos);
 
 
 
@@ -147,6 +148,8 @@ descuentoRouter.delete('/eliminar_descuento/:id', userExtractor, descuentoContro
  *          - bearerAuth: []
  */
 descuentoRouter.get('/obtener_descuento_activo', descuentoController.obtener_descuento_activo);
+
+
 
 
 

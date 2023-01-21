@@ -1,0 +1,25 @@
+<div *ngIf="images of images.lenght > 0" class="carousel-container">
+    <img *ngFor="let img of images; let i=index" [src]="'http://localhost:4201/api/products/obtenerPortada/' + img" 
+    [ngClass]="{'image-active': selectedIndex === i}"
+    >
+
+
+    <div *ngIf="indicators" class="carousel-dot-container">
+        <span *ngFor="let dot of images; let i=index" 
+            class="dot"
+            [ngClass]="{'active': selectedIndex === i}"
+            (click)="selectImage(i)">
+        </span>
+    </div>
+
+
+    <button *ngIf="controls" class="btn-carousel btn-prev">
+        <i class="fas fa-arrow-circle-left icon-carousel icon-prev"
+            (click)="onPrevClick()"></i>
+    </button>
+    
+    <button *ngIf="controls" class="btn-carousel btn-next">
+        <i class="fas fa-arrow-circle-right icon-carousel icon-next"
+            (click)="onNextClick()"></i>
+    </button>
+</div>

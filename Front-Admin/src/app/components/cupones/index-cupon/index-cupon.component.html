@@ -14,8 +14,13 @@
                         <div class="text-right justify-content-between">
                             <button type="button" class="btn" (click)="DialogAgregarCupon()">
                                 <i class="bi bi-plus-circle"></i>
-
                                 Agregar cupón
+                            </button>
+                            <!-- boton eliminar masivamente -->
+                            <button class="btn btn-eliminar mr-2 btn-exportar" *ngIf="this.selection.selected.length > 1"
+                                (click)="openDialogMany()">
+                                <i class="bi bi-trash3"></i>
+                                Eliminar
                             </button>
 
                         </div>
@@ -35,6 +40,27 @@
                     <!-- Tabla -->
                     <div class="col-md-12 ">
                         <table class="table " mat-table [dataSource]="data">
+
+                            <!-- Checkbox Column -->
+                            <ng-container matColumnDef="select">
+                                <th class="pb-3" mat-header-cell *matHeaderCellDef>
+                                    <mat-checkbox class="pt-4"(change)="$event ? toggleAllRows() : null"
+                                        [checked]="selection.hasValue() && isAllSelected()"
+                                        [indeterminate]="selection.hasValue() && !isAllSelected()"
+                                        [aria-label]="checkboxLabel()"
+                                        >
+                                    </mat-checkbox>
+                                </th>
+                                <td class="py-3"  mat-cell *matCellDef="let row">
+                                    <mat-checkbox class="pt-4" (click)="$event.stopPropagation()"
+                                        (change)="$event ? selection.toggle(row) : null"
+                                        [checked]="selection.isSelected(row)" [aria-label]="checkboxLabel(row)">
+                                    </mat-checkbox>
+                                </td>
+                            </ng-container>
+                            
+
+
                             <!-- Codigo -->
                             <ng-container matColumnDef="codigo">
                                 <th class="pb-3" mat-header-cell *matHeaderCellDef>Código</th>
@@ -67,7 +93,7 @@
                             <ng-container matColumnDef="funciones" class="funciones">
                                 <th class="pb-3" mat-header-cell *matHeaderCellDef>Funciones</th>
                                 <td class="py-3" mat-cell *matCellDef="let element">
-                                    <ion-icon name="create-outline" [routerLink]="['/cupones', element._id]"
+                                    <ion-icon name="create-outline" [routerLink]="['/dashboard/cupones', element._id]"
                                         routerLinkActive="router-link-active">
                                     </ion-icon>
                                     <ion-icon name="trash-outline"
@@ -78,7 +104,7 @@
                             </ng-container>
 
                             <tr mat-header-row *matHeaderRowDef="columnsDisplay"></tr>
-                            <tr mat-row *matRowDef="let row; columns: columnsDisplay;">
+                            <tr mat-row *matRowDef="let row; columns: columnsDisplay;" (click)="selection.toggle(row)">
 
                             <!-- Cuando no hay ningun resultado, agrega una fifla con ese mensaje -->
                             <tr *matNoDataRow>

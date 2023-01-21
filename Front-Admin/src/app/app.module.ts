@@ -79,6 +79,8 @@ import { ClienteEffects } from './state/effects/cliente.effects';
 import { ComprasComponent } from './components/clientes/compras/compras.component';
 import { DetalleCompraComponent } from './components/clientes/detalle-compra/detalle-compra.component';
 import { GraficoVentasComponent } from './components/dashboard/graficos/grafico-ventas/grafico-ventas.component';
+import { IndexPedidoComponent } from './components/pedidos/index-pedido/index-pedido.component';
+import { CarouselModule } from './components/products/carousel/carousel.module';
 
 
 @NgModule({
@@ -115,8 +117,8 @@ import { GraficoVentasComponent } from './components/dashboard/graficos/grafico-
     IndexClientesComponent,
     ComprasComponent,
     DetalleCompraComponent,
-    GraficoVentasComponent
-
+    GraficoVentasComponent,
+    IndexPedidoComponent
   ],
   imports: [
     BrowserModule,
@@ -150,7 +152,8 @@ import { GraficoVentasComponent } from './components/dashboard/graficos/grafico-
     MatNativeDateModule,
     MatBadgeModule,
     MatExpansionModule,
-    NgxChartsModule
+    NgxChartsModule,
+    CarouselModule
   
   ],
   entryComponents: [ConfirmDialogComponent],

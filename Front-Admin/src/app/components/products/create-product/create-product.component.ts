@@ -131,7 +131,7 @@ export class CreateProductComponent implements OnInit {
       },
       error: (error) => {
         this.notificationSvc.openSnackBar(error.error.message, 'cerrar');
-      },
+      }
     });
   }
 
@@ -152,7 +152,7 @@ export class CreateProductComponent implements OnInit {
           this.images.push(...event.addedFiles);
           const formData= new FormData();
           for(var i=0; i < this.images.length; i++){
-            formData.append('',this.images[i]);
+            formData.append('',this.images[i]);            
           }
       }else{
         this.notificationSvc.openSnackBar('El formato '+ event.addedFiles.type +' no es compatible.', 'cerrar');
@@ -166,6 +166,9 @@ export class CreateProductComponent implements OnInit {
   onRemove(event) {
     this.images.splice(this.images.indexOf(event), 1);
   }
+
+  
+  
 
  
 }

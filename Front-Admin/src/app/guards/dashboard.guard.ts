@@ -13,7 +13,7 @@ export class DashboardGuard implements CanActivateChild {
   
   canActivateChild(childRoute: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
     if(!this.loginSvc.verifyToken()){
-      this.router.navigateByUrl('http://localhost:4200/');
+      this.router.navigate(['/']);
       return false;
     }
     return true;

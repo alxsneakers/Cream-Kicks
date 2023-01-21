@@ -141,10 +141,7 @@ const agregar_img_galeria= (async (req, res)=>{
     const imagen_name= imgPath.split('/')[2];
 
     const producto= await Product.findByIdAndUpdate({_id: idProducto}, {
-        $push: { galeria: {
-            imagen: imagen_name,
-            _id: req.body._id // identificador unico para la img
-        }}
+        $push: { galeria: imagen_name }
     });
     res.status(200).send({addGalery: 'OK'});
 });

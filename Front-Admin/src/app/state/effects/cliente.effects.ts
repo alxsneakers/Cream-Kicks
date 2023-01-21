@@ -40,6 +40,14 @@ export class ClienteEffects {
         ))
     ))
 
+    loadPedidos$= createEffect(() => this.actions$.pipe(
+        ofType('[Pedido] Load pedidos'),
+        mergeMap(() => this._clienteService.obtener_todos_pedidos().pipe(
+            map(pedidos => ({type: '[Pedido] Loaded success', pedidos})),
+            catchError(() => EMPTY)
+        ))
+    ));
+
 
     deleteCliente$= createEffect(() => this.actions$.pipe(
         ofType(clienteActions.deleteCliente),

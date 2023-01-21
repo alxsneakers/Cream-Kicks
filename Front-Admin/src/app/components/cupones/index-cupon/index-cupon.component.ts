@@ -6,8 +6,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Store } from '@ngrx/store'; // ngrx (redux)
 import { Observable } from 'rxjs';
 import { CuponModel } from 'src/app/models/cupon.interface';
-import { CuponTable } from 'src/app/models/cupon.state';
-import { CuponService } from 'src/app/services/cupon.service';
+import { CuponService } from '../../../services/cupon.service';
 import { NotificationService } from 'src/app/services/notification.service';
 import { loadCoupons, deleteCupon, deleteManyCupon } from 'src/app/state/actions/cupon.actions';
 import {
@@ -17,7 +16,14 @@ import {
 import { ConfirmDialogComponent } from '../../shared/confirm-dialog/confirm-dialog.component';
 import { CreateCuponComponent } from '../create-cupon/create-cupon.component';
 
-
+export interface CuponTable {
+  codigo: string;
+  tipo: string;
+  valor: number;
+  limite: number;
+  index: number;
+  _id: string;
+}
 
 @Component({
   selector: 'app-index-cupon',
@@ -28,7 +34,7 @@ export class IndexCuponComponent implements OnInit {
   // Variables
   loading$: Observable<boolean> = new Observable();
   coupons$: Observable<any> = new Observable();
-  columnsDisplay: string[] = ['codigo', 'tipo', 'valor', 'limite', 'funciones']; // nombre de las columnas
+  columnsDisplay: string[] = ['select', 'codigo', 'tipo', 'valor', 'limite', 'funciones']; // nombre de las columnas
   data: any;
   selection= new SelectionModel<CuponTable>(true, []);
   searchValue: string; // guarda el valor del input.
@@ -61,6 +67,15 @@ export class IndexCuponComponent implements OnInit {
     this.store.dispatch(deleteCupon({id}))
   }
 
+
+  createCupon(data){
+    this.cuponSvc.createCupon(data).subscribe(
+      response => {
+        this.store.dispatch(loadCoupons());
+      }
+    )
+  }
+
   deleteManyCupon(){
     let idCupones: string[]= []; // guardo los id de los cupones seleccionados.
     this.selection.selected.map(cupon => idCupones.push(cupon._id))
@@ -91,7 +106,7 @@ export class IndexCuponComponent implements OnInit {
     dialogRef.afterClosed().subscribe((res) => {
       console.log(res);
       if (res) {
-        //this.borrarCupon(id);
+        this.borrarCupon(id);
       }
     });
   }
@@ -101,13 +116,53 @@ export class IndexCuponComponent implements OnInit {
       width: '512px',
     });
 
-    // dialogRef.afterClosed().subscribe((res) => {
-    //   console.log(res);
-    //   if (res) {
-    //     this.cuponSvc.createCupon();
-    //   }
-    // });
+    dialogRef.afterClosed().subscribe((res) => {
+       if (res) {
+        this.createCupon(res.data);
+        
+      }
+    });
     
+  }
+
+  // abre el modal, para borrar varios cupones.
+  openDialogMany(): void{
+    const dialogRef= this.dialog.open(ConfirmDialogComponent, {
+      width: '512px',
+      data: { // envio los datos al dialog
+        titulo: 'cupones',
+        genero: 'los',
+      }
+    });
+    dialogRef.afterClosed().subscribe(res =>{
+      console.log(res);
+      if(res){
+        this.deleteManyCupon();
+      }
+    });
+  }
+
+  // si el numero de marcas seleccionadas es igual al numero de filas.
+  isAllSelected(){
+    const numSelected= this.selection.selected.length;
+    const numRows= this.data.data.length;
+    return numSelected === numRows;
+  }
+
+  // selecciona todas las marcas o las deselecciona
+  toggleAllRows(){
+    if(this.isAllSelected()){
+      this.selection.clear();
+      return;
+    }
+    this.selection.select(...this.data.data);
+  }
+
+  checkboxLabel(row?: CuponTable): string{
+    if(!row){
+      return `${this.isAllSelected() ? 'deselect': 'select'} all`;
+    }
+    return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.index + 1}`
   }
   
 

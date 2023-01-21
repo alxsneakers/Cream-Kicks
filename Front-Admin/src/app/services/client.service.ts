@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { ClienteModel } from '../models/cliente.interface';
+import { ClienteModel, PedidoModel } from '../models/cliente.interface';
 
 export interface client{
   nombre: string,
@@ -29,7 +29,6 @@ export class ClientService {
     return this.http.get<ClienteModel[]>('http://localhost:4201/api/allClient_admin');
   }
 
-
   borrar_cliente_admin(id): Observable<any>{
     return this.http.delete('http://localhost:4201/api/borrar_cliente_admin/'+id);
   }
@@ -40,6 +39,10 @@ export class ClientService {
 
   obtener_detalle_compra_cliente(idVenta): Observable<any>{
     return this.http.get('http://localhost:4201/api/obtener_detalle_pedido_cliente/'+idVenta);
+  }
+
+  obtener_todos_pedidos(): Observable<PedidoModel[]>{
+    return this.http.get<PedidoModel[]>('http://localhost:4201/api/obtener_todos_pedidos');
   }
 
   

@@ -108,9 +108,7 @@ export class IndexMarcaComponent implements OnInit {
       data: { // envio los datos al dialog
         titulo: 'marca',
         nombre: nombre,
-        validacion: 'ok',
         genero: 'la',
-        cuerpo: 'escriba ok para confirmar'
       }
     });
     dialogRef.afterClosed().subscribe(res =>{

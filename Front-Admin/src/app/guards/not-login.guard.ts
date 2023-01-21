@@ -22,7 +22,7 @@ export class NotLoginGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     if(this.loginSvc.verifyToken()){
-      this.router.navigateByUrl('http://localhost:4200/dashboard');
+      this.router.navigate(['/dashboard']);
       return false;
     }
     return true;

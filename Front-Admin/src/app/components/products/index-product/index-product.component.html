@@ -20,8 +20,8 @@
                     <div class="col-md-12 pt-4">
                         <div class="text-right justify-content-between">
                             <!-- boton eliminar masivamente -->
-                            <button class="btn btn-eliminar mr-2 btn-exportar" *ngIf="this.selection.selected.length != 0"
-                                (click)="deleteManyProducto()">
+                            <button class="btn btn-eliminar mr-2 btn-exportar" *ngIf="this.selection.selected.length > 1"
+                                (click)="openDialogMany()">
                                 <i class="bi bi-trash3"></i>
                                 Eliminar
                             </button>
@@ -119,11 +119,11 @@
                             <ng-container matColumnDef="funciones" class="funciones">
                                 <th class="pb-3" mat-header-cell *matHeaderCellDef>Funciones</th>
                                 <td class="py-3"  mat-cell *matCellDef="let element">
-                                    <ion-icon name="create-outline" [routerLink]="['/productos', element._id]"
+                                    <ion-icon name="create-outline" [routerLink]="['/productos/', element._id]"
                                         routerLinkActive="router-link-active"></ion-icon>
                                     <ion-icon name="trash-outline"
                                         (click)="openDialog(element.nombre, element._id)"></ion-icon>
-                                    <ion-icon name="images-outline" [routerLink]="['/productos/galeria', element._id]"
+                                    <ion-icon name="images-outline" [routerLink]="['/productos/galeria/', element._id]"
                                         routerLinkActive="router-link-active"></ion-icon>
                                 </td>
                             </ng-container>

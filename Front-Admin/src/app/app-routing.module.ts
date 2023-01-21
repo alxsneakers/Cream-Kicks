@@ -27,79 +27,30 @@ import { IndexClientesComponent } from './components/clientes/index-clientes/ind
 import { ComprasComponent } from './components/clientes/compras/compras.component';
 import { DetalleCompraComponent } from './components/clientes/detalle-compra/detalle-compra.component';
 import { NotLoginGuard } from './guards/not-login.guard';
+import { IndexPedidoComponent } from './components/pedidos/index-pedido/index-pedido.component';
 
 
 
 const routes: Routes = [
-  { path: 'dashboard', component: DashboardComponent, 
-    canActivate: [UserGuard], // protege la propia ruta (/dashboard)
-    canActivateChild: [DashboardGuard], // protege las rutas que cuelgan de ella (rutas hijas)
-    children: [],
-  },
-  {
-    path: 'productos',component: IndexProductComponent
-  },
-  {
-    path: 'cupones',component: IndexCuponComponent
-  },
-  {
-    path: 'descuentos',
-    component: IndexDescuentoComponent
-  },
-  {
-    path: 'contactos',
-    component: IndexContactoComponent
-  },
-  
-  {
-    path: 'cuenta',
-    component: ConfiguracionComponent
-  },
-  {
-    path: 'clientes',
-    component: IndexClientesComponent
-  },
-  {
-    path: 'clientes/compras/:id',
-    component: ComprasComponent
-  },
-  {
-    path: 'clientes/detalleCompra/:id',
-    component: DetalleCompraComponent
-  },
-  {
-    path: 'productos/registro',
-    component: CreateProductComponent
-  },
-  {
-    path: 'cupones/registro',
-    component: CreateCuponComponent
-  },
-  {
-    path: 'marcas/registro',
-    component: CreateMarcaComponent
-  },
-  {
-    path: 'descuentos/registro',
-    component: CreateDescuentoComponent
-  },
-  {
-    path: 'productos/galeria/:id',
-    component: GaleriaProductComponent
-  },
-  {
-    path: 'cupones/:id',
-    component: UpdateCuponComponent
-  },
-  {
-    path: 'productos/:id',
-    component: UpdateProductComponent
-  },
-  {
-    path: 'descuentos/:id',
-    component: UpdateDescuentoComponent
-  },
-  { path: '', component: LoginComponent },
+  { path: 'dashboard', component: DashboardComponent, canActivate: [UserGuard]},
+  { path: 'productos',component: IndexProductComponent, canActivate: [UserGuard]},
+  { path: 'cupones',component: IndexCuponComponent, canActivate: [UserGuard]},
+  { path: 'descuentos', component: IndexDescuentoComponent, canActivate: [UserGuard]},
+  { path: 'contactos', component: IndexContactoComponent, canActivate: [UserGuard]},
+  { path: 'cuenta', component: ConfiguracionComponent,  canActivate: [UserGuard]},
+  { path: 'clientes', component: IndexClientesComponent, canActivate: [UserGuard]},
+  { path: 'pedidos', component: IndexPedidoComponent, canActivate: [UserGuard]},
+  { path: 'clientes/compras/:id', component: ComprasComponent, canActivate: [UserGuard]},
+  { path: 'clientes/detalleCompra/:id', component: DetalleCompraComponent, canActivate: [UserGuard]},
+  { path: 'productos/registro', component: CreateProductComponent, canActivate: [UserGuard]},
+  { path: 'cupones/registro', component: CreateCuponComponent, canActivate: [UserGuard]},
+  { path: 'marcas/registro',component: CreateMarcaComponent, canActivate: [UserGuard] },
+  { path: 'descuentos/registro', component: CreateDescuentoComponent, canActivate: [UserGuard] },
+  { path: 'productos/galeria/:id', component: GaleriaProductComponent, canActivate: [UserGuard] },
+  { path: 'cupones/:id', component: UpdateCuponComponent, canActivate: [UserGuard] },
+  { path: 'productos/:id',component: UpdateProductComponent, canActivate: [UserGuard] },
+  { path: 'descuentos/:id', component: UpdateDescuentoComponent, canActivate: [UserGuard] },
+  { path: '', component: LoginComponent, canActivate: [NotLoginGuard]},
   { path: '**', component: NotFoundComponent },
 ];
 

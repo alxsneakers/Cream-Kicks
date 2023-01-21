@@ -1,6 +1,6 @@
 import { createReducer, on } from "@ngrx/store";
 import { DescuentoState } from "src/app/models/descuento.state";
-import { loadDescuentos, loadedDescuentos } from "../actions/descuento.actions";
+import { deleteDescuento, deleteManyDescuento, loadDescuentos, loadedDescuentos } from "../actions/descuento.actions";
 
 
 
@@ -15,5 +15,11 @@ export const descuentoReducer= createReducer(
     }),
     on(loadedDescuentos, (state, {descuentos}) => { // acciones
         return {...state, loading: false, descuentos};
-    })
+    }),
+    on(deleteDescuento, (state, {id}) => {
+        return {...state, id: id};
+    }),
+    on(deleteManyDescuento, (state, {idDescuentos}) => {
+        return {...state, idDescuentos: idDescuentos };
+    }),
 )

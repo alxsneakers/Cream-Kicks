@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, Input, Optional } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CuponService } from 'src/app/services/cupon.service';
@@ -17,15 +17,18 @@ export class CreateCuponComponent implements OnInit {
   // variables
   formCreateCupon!: FormGroup;
   value = 'Clear me';
+  dataFomr1: any; 
 
 
 
   constructor(
     public dialogRef: MatDialogRef<CreateCuponComponent>,
-    @Inject(MAT_DIALOG_DATA) 
-    public data: DialogData, 
+    @Optional() @Inject(MAT_DIALOG_DATA) 
+    public data: DialogData,
     private fb: FormBuilder, private cuponSvc: CuponService, private router: Router, private notificationSvc: NotificationService) { }
 
+
+ 
 
   // inicia la validacion
   ngOnInit(): void {
@@ -46,9 +49,7 @@ export class CreateCuponComponent implements OnInit {
     this.cuponSvc.createCupon(this.formCreateCupon.value).subscribe({
       next: data =>{
         this.notificationSvc.openSnackBar(data.message, 'cerrar');
-        this.router.navigate(['/cupones']);
-        this.onClickCancelar();
-        
+        this.router.navigate(['/cupones']);        
       },
       error: error =>{
         this.notificationSvc.openSnackBar(error.error.message, 'cerrar');        
@@ -70,10 +71,16 @@ export class CreateCuponComponent implements OnInit {
   }
 
 
-    // cierra el dialog (modal)
+  // cierra el dialog (modal)
   onClickCancelar(): void{
     this.dialogRef.close();
   }
+
+  doAction(){
+    this.dialogRef.close({data:this.formCreateCupon.value});
+  }
+
+
 
 }
 
