@@ -120,6 +120,12 @@ const obtener_pedidos_cliente= (async (req, res)=>{
     res.status(200).json(pedidos);
 });
 
+
+const obtener_todos_pedidos= (async (req, res) => {
+    const ventas= await Venta.find(null, {nventa: 1, subtotal: 1, estado: 1, creado: 1}).populate('cliente');
+    res.status(200).json(ventas);
+});
+
 const obtener_detalle_pedido_cliente= (async (req, res)=>{
     const id= req.params['id'];
     const venta= await Venta.findById({_id: id}).populate('direccion').populate('envio');
@@ -139,4 +145,5 @@ module.exports ={
     enviar_mensaje_contacto,
     obtener_pedidos_cliente,
     obtener_detalle_pedido_cliente,
+    obtener_todos_pedidos
 };      

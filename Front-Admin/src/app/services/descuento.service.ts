@@ -32,6 +32,16 @@ export class DescuentoService {
     return this.http.get<DescuentoModel>('http://localhost:4201/api/descuentos/obtener_descuento/' + id)
   };
 
+  // borra un descuento.
+  deleteDescuento(id): Observable<any>{
+    return this.http.delete('http://localhost:4201/api/descuentos/eliminar_descuento/'+id)
+  };
+
+  
+  borrarSeleccionadosDescuento(idDescuentos): Observable<any>{
+    return this.http.delete('http://localhost:4201/api/descuentos/borrarSeleccionadosDescuento/' + idDescuentos);
+  }
+
   actualizar_descuento(data, file, id): Observable<any>{
     if(data.banner){ // cambio de img
       const fd= new FormData();

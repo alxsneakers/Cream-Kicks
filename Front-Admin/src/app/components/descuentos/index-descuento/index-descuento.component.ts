@@ -4,10 +4,14 @@ import { MatPaginator } from '@angular/material/paginator';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { selectListDescuentos, selectLoadingDescuentos } from 'src/app/state/selectors/descuento.selectors';
-import { loadDescuentos } from 'src/app/state/actions/descuento.actions';
+import { deleteDescuento, loadDescuentos, deleteManyDescuento } from 'src/app/state/actions/descuento.actions';
 import { MatTableDataSource } from '@angular/material/table';
-import { DescuentoModel } from 'src/app/models/descuento.interface';
+import { DescuentoModel, DescuentoTable } from 'src/app/models/descuento.interface';
 import { DescuentoService } from 'src/app/services/descuento.service';
+import { SelectionModel } from '@angular/cdk/collections';
+import { deleteManyCupon } from 'src/app/state/actions/cupon.actions';
+import { ConfirmDialogComponent } from '../../shared/confirm-dialog/confirm-dialog.component';
+
 
 
 @Component({
@@ -21,8 +25,9 @@ export class IndexDescuentoComponent implements OnInit {
   // variables
   loading$: Observable<boolean>= new Observable()
   descuentos$: Observable<any>= new Observable()
-  columnsDisplay: string[]= ['banner', 'titulo', 'descuento', 'estado' ,'duracion', 'funciones']; // nombre de las columnas
+  columnsDisplay: string[]= ['select', 'banner', 'titulo', 'descuento', 'estado' ,'duracion', 'funciones']; // nombre de las columnas
   data: any;
+  selection= new SelectionModel<DescuentoModel>(true, []);
   searchValue: string; // guarda el valor del input
   @ViewChild(MatPaginator) paginator: MatPaginator;
   url: string;
@@ -72,6 +77,51 @@ export class IndexDescuentoComponent implements OnInit {
   }
 
 
+  deleteDescuento(id){
+    this.store.dispatch(deleteDescuento({id}));
+  }
+
+  deleteManyDescuento(){
+    let idDescuentos: string[]= []; // guardo los id de las marcas seleccionadas.
+    this.selection.selected.map(descuento => idDescuentos.push(descuento._id))
+    this.store.dispatch(deleteManyDescuento({idDescuentos}));
+  }
+
+
+  openDialog(nombre, id): void{
+    const dialogRef= this.dialog.open(ConfirmDialogComponent, {
+      width: '512px',
+      data: { // envio los datos al dialog
+        titulo: 'descuento',
+        nombre: nombre,
+        genero: 'el',
+      }
+    });
+    dialogRef.afterClosed().subscribe(res =>{
+      console.log(res);
+      if(res){
+        this.deleteDescuento(id);
+      }
+    });
+  }
+
+  openDialogMany(): void{
+    const dialogRef= this.dialog.open(ConfirmDialogComponent, {
+      width: '512px',
+      data: { // envio los datos al dialog
+        titulo: 'descuentos',
+        genero: 'los',
+      }
+    });
+    dialogRef.afterClosed().subscribe(res =>{
+      console.log(res);
+      if(res){
+        this.deleteManyDescuento();
+      }
+    });
+  }
+
+
   convertir_fecha(fecha){
     let newDate;
     const date= new Date(fecha);
@@ -89,9 +139,7 @@ export class IndexDescuentoComponent implements OnInit {
         newDate= `${year}-${month}-${day}`;
     }
     return newDate;
-}
-
-  
+  }
 
   // filtra la informacion de la tabla.
   applyFilter(event: Event){
@@ -102,4 +150,29 @@ export class IndexDescuentoComponent implements OnInit {
     }
   }
 
+
+  // --------- METODOS DE COLUMNA SELECT ----------------------
+
+  // si el numero de marcas seleccionadas es igual al numero de filas.
+  isAllSelected(){
+    const numSelected= this.selection.selected.length;
+    const numRows= this.data.data.length;
+    return numSelected === numRows;
+  }
+
+  // selecciona todas las marcas o las deselecciona
+  toggleAllRows(){
+    if(this.isAllSelected()){
+      this.selection.clear();
+      return;
+    }
+    this.selection.select(...this.data.data);
+  }
+
+  checkboxLabel(row?: DescuentoTable): string{
+    if(!row){
+      return `${this.isAllSelected() ? 'deselect': 'select'} all`;
+    }
+    return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.index + 1}`
+  }
 }

@@ -104,7 +104,6 @@ const obtener_descuento_activo= (async (req, res)=>{
     let descuentos_activos=[];
     let today= Date.parse(new Date().toString())/1000;
 
-
     descuentos.forEach(descuento =>{
         let tt_inicio= Date.parse(convertir_fecha(descuento.fecha_inicio) + 'T00:00:00')/1000;
         let tt_fin= Date.parse(convertir_fecha(descuento.fecha_fin) + 'T23:59:59')/1000;
@@ -140,6 +139,12 @@ function convertir_fecha(fecha){
     return newDate;
 }
 
+const eliminar_seleccionados_descuentos= (async (req, res) => {
+    const ids= req.params['idDescuentos'].split(',');
+    const descuentos= await Descuento.deleteMany({_id: { $in: ids}});
+    res.status(200).json({message: 'OK'});
+});
+
 
 
 
@@ -151,5 +156,7 @@ module.exports= {
     obtener_descuento,
     actualizar_descuento,
     eliminar_descuento,
-    obtener_descuento_activo
+    eliminar_seleccionados_descuentos,
+    obtener_descuento_activo,
+    
 };

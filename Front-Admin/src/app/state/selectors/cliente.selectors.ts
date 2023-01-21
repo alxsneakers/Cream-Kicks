@@ -19,6 +19,17 @@ export const selectClienteFeature= (state: AppState) => state.clientes;
   );
 
 
+  export const selectListPedidos= createSelector(
+    selectClienteFeature,
+    (state: ClienteState) => state.pedidos //hijo
+  );
+  
+  export const selectLoadingPedidos= createSelector(
+    selectClienteFeature,
+    (state: ClienteState) => state.loadingPedidos // hijo
+  );
+
+
   export const selectListCompras= createSelector(
     selectClienteFeature,
     (state: ClienteState) => state.compras //hijo

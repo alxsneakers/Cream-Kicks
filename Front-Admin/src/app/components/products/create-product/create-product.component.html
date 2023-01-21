@@ -78,20 +78,24 @@
                 <mat-error *ngIf="form1
                         .get('precioVenta')?.touched && form1
                         .get('precioVenta')?.errors?.['min']">
+                  </mat-error>
+                </mat-form-field>
+
+
+                <!-- Drop zone -->
+                <mat-card class="card" >    
+                  <mat-card-content class="dropzone" >
+                    <div ngx-dropzone (change)="onSelect($event)" [accept]="'image/*'">
+                      <ngx-dropzone-label>Arrastre y suelte su imagen</ngx-dropzone-label>
+                      <ngx-dropzone-image-preview ngProjectAs="ngx-dropzone-preview" *ngFor="let i of images" [file]="i" [removable]="true" (removed)="onRemove(i)">
+                      </ngx-dropzone-image-preview>
+                    </div>
+                  </mat-card-content>
                 </mat-error>
               </mat-form-field>
 
 
-              <!-- Drop zone -->
-              <mat-card class="card mb-3">
-                <mat-card-content class="dropzone">
-                  <ngx-dropzone (change)="onSelect($event)">
-                    <ngx-dropzone-label>Arrastre y suelte su imagen</ngx-dropzone-label>
-                    <ngx-dropzone-preview *ngFor="let i of images" [removable]="true" (removed)="onRemove(i)">
-                      <ngx-dropzone-label>{{ i.name }}</ngx-dropzone-label>
-                    </ngx-dropzone-preview>
-                  </ngx-dropzone>
-                </mat-card-content>
+       
               </mat-card>
 
 
@@ -135,17 +139,36 @@
             </div>
 
 
-          </mat-step>
+            <!-- 3 -->
+            <mat-step>
+              <ng-template matStepLabel>Finalizar</ng-template>
+              <div>
+                <h3>Caracteristicas</h3>
+                <p>Nombre: {{form1.value.nombre}}</p>
+                <p>Marca: {{form1.value.marca}}</p>
+                <p>SKU: {{form1.value.sku}}</p>
+                <p>precioCompra: {{form1.value.precioCompra}}</p>
+                <p>precioVenta: {{form1.value.precioVenta}}</p>
+                <p>Pulbicado en tienda: {{form1.value.publicado}}</p>
+                <hr>
+                <h3>Tallas</h3>
+                <p *ngFor="let talla of form1.value.tallaStockArray">
+                  {{'Talla: ' + talla.talla + ' | Stock: ' + talla.stock}}
+                </p>
+                
 
-          <!-- 3 -->
-          <mat-step>
-            <ng-template matStepLabel>Finalizar</ng-template>
-            <p>You are now done.</p>
-            <div>
-              <button mat-button (click)="createProduct()">Crear</button>
-            </div>
-          </mat-step>
-        </mat-stepper>
+                
+                
+                
+
+
+              </div>
+              
+              <div>
+                <button mat-button (click)="createProduct()">Crear</button>
+              </div>
+            </mat-step>
+          </mat-stepper>
 
 
         <!-- ------------------------ -->

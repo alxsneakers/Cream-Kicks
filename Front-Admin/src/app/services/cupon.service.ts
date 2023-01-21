@@ -21,6 +21,8 @@ export class CuponService {
     return this.http.post<any>('http://localhost:4201/api/cupones/createCupon', data);
   }
 
+  
+
   // devuelve todos los productos
   allCupones(): Observable<cupon[]>{
     return this.http.get<cupon[]>('http://localhost:4201/api/cupones/allCupones');

@@ -149,6 +149,7 @@ clienteRouter.get('/obtener_pedidos_cliente/:id', userExtractor, clienteControll
  */
 clienteRouter.get('/obtener_detalle_pedido_cliente/:id', userExtractor, clienteController.obtener_detalle_pedido_cliente);
 
+clienteRouter.get('/obtener_todos_pedidos', userExtractor, clienteController.obtener_todos_pedidos);
 
 
 /**
