@@ -1,81 +1,83 @@
-<!-- Barra superior -->
-<app-navbar></app-navbar>
-<!-- Barra navegacion lateral -->
-<app-sidenav></app-sidenav>
+<!-- MENU NAV -->
+<app-nav></app-nav>
+
+
+<section>
+    <div class="container-fluid pt-4 px-4">
+        <div class="row my-5 ">
+            <div class=" col-xl-10 col-lg-9 col-md-8 ml-auto ">
+                <div class="card">
+                    <!-- Si hay producto lo enseño -->
+                    <div class="col-md-12 pt-4">
+
+                        <!-- ------------------------ -->
+
+                        <form (ngSubmit)="update_descuento()" [formGroup]="formUpdateDescuento">
+
+                            <div class="firstGroup">
+                                <!-- titulo -->
+                                <mat-form-field class="w-100" appearance="outline">
+                                    <mat-label>Titulo</mat-label>
+                                    <input type="text" matInput formControlName="titulo">
+                                    <mat-error *ngIf="formUpdateDescuento
+                                        .get('titulo')?.errors?.['required']">
+                                        Titulo obligatario
+                                    </mat-error>
+                                </mat-form-field>
+
+                                <!-- descuento -->
+                                <mat-form-field class="w-100" appearance="outline">
+                                    <mat-label>Descuento</mat-label>
+                                    <input matInput formControlName="descuento" type="number" min="1" max="100">
+                                    <mat-error *ngIf="formUpdateDescuento
+                                        .get('descuento')?.errors?.['required']">
+                                        Descuento obligatorio
+                                    </mat-error>
+                                    <mat-error *ngIf="formUpdateDescuento
+                                        .get('descuento')?.errors?.['max']">
+                                        Recuerda que el descuento maximo es 100%
+                                    </mat-error>
+                                    <mat-error *ngIf="formUpdateDescuento
+                                        .get('descuento')?.errors?.['min']">
+                                        Recuerda que el descuento minimo es 1%
+                                    </mat-error>
+                                </mat-form-field>
+
+                                <!-- Fecha inicio -->
+                                <mat-form-field class="w-100" appearance="outline">
+                                    <mat-label>Selecciona un rango de duracion</mat-label>
+                                    <mat-date-range-input [rangePicker]="picker">
+                                        <input matStartDate placeholder="Start date" formControlName="fecha_inicio">
+                                        <input matEndDate placeholder="End date" formControlName="fecha_fin">
+                                    </mat-date-range-input>
+                                    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                                    <mat-date-range-picker #picker></mat-date-range-picker>
+                                </mat-form-field>
 
 
 
+                                <!-- banner -->
+                                <mat-card class="image-card mb-2">
+                                    <mat-card-header>
+                                        <mat-card-subtitle>Selecciona una imagen</mat-card-subtitle>
+                                    </mat-card-header>
+                                    <img mat-card-image [src]="imgSelect">
+                                    <mat-card-actions>
+                                        <input type="file" (change)="fileChangeEvent($event)" formControlName="banner">
+                                    </mat-card-actions>
+                                </mat-card>
 
-<div class="form-container">
+                            </div>
 
- 
-    <form (ngSubmit)="update_descuento()" [formGroup]="formUpdateDescuento">
 
-        <div class="firstGroup">
-            <!-- titulo -->
-            <mat-form-field appearance="outline">
-                <mat-label>Titulo</mat-label>
-                <input type="text" matInput formControlName="titulo">
-                <mat-error *ngIf="formUpdateDescuento
-                    .get('titulo')?.errors?.['required']">
-                    Titulo obligatario
-                </mat-error>
-            </mat-form-field>
-         
-            <!-- descuento -->
-            <mat-form-field appearance="outline">
-                <mat-label>Descuento</mat-label>
-                <input matInput formControlName="descuento" type="number" min="1" max="100">
-                <mat-error *ngIf="formUpdateDescuento
-                    .get('descuento')?.errors?.['required']">
-                    Descuento obligatorio
-                </mat-error>
-                <mat-error *ngIf="formUpdateDescuento
-                    .get('descuento')?.errors?.['max']">
-                    Recuerda que el descuento maximo es 100%
-                </mat-error>
-                <mat-error *ngIf="formUpdateDescuento
-                    .get('descuento')?.errors?.['min']">
-                    Recuerda que el descuento minimo es 1%
-                </mat-error>
-            </mat-form-field>
-
-            <!-- Fecha inicio -->
-            <mat-form-field appearance="outline">
-                <mat-label>Selecciona un rango de duracion</mat-label>
-                <mat-date-range-input [rangePicker]="picker" >
-                  <input matStartDate placeholder="Start date" formControlName="fecha_inicio">
-                  <input matEndDate placeholder="End date" formControlName="fecha_fin">
-                </mat-date-range-input>
-                <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
-                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-                <mat-date-range-picker #picker></mat-date-range-picker>
-            </mat-form-field>
-              
-            
-              
-            <!-- banner -->
-            <mat-card class="image-card">
-                <mat-card-header>
-                    <mat-card-subtitle>Selecciona una imagen</mat-card-subtitle>
-                </mat-card-header>
-                <img mat-card-image [src]="imgSelect">
-                <mat-card-actions>
-                    <input type="file" (change)="fileChangeEvent($event)" formControlName="banner">
-                </mat-card-actions>
-            </mat-card>
-            
-        </div>
-
-   
-        <!-- Boton que hace la petición -->
-        <button mat-button type="submit" [disabled]="formUpdateDescuento
+                            <!-- Boton que hace la petición -->
+                            <button class="mb-3" mat-button type="submit" [disabled]="formUpdateDescuento
             .invalid">Actualizar descuento</button>
-    </form>
-</div>
+                        </form>
+                    </div>
 
-
-  
-  
-
-
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,39 +1,69 @@
 
 
-.form-container{
-    height: calc(100vh - 75px);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
+// .form-container{
+//     height: calc(100vh - 75px);
+//     display: flex;
+//     flex-direction: column;
+//     align-items: center;
+//     justify-content: center;
+// }
 
 
-button{
-    color: black;
-    background: white;
-    border: 1px solid black;
-}
+// button{
+//     color: black;
+//     background: white;
+//     border: 1px solid black;
+// }
 
-.firstGroup{
-    display: flex;
-    flex-direction: row;
-}
+// .firstGroup{
+//     display: flex;
+//     flex-direction: row;
+// }
 
-.secondGroup{
-    display: flex;
-    flex-direction: row;
-}
+// .secondGroup{
+//     display: flex;
+//     flex-direction: row;
+// }
 
 // tamaño de la imagen.
 .image-card{
     max-width: 250px;
 }
 
-// espacio entre inputs
-mat-form-field{
-    margin-right: 12px;
-    margin-bottom: 12px;
-    text-decoration: none;
+// // espacio entre inputs
+// mat-form-field{
+//     margin-right: 12px;
+//     margin-bottom: 12px;
+//     text-decoration: none;
+// }
+
+// Tarjeta
+.card{
+    border-radius: 10px;
 }
 
+
+
+
+//mat-input focused color
+::ng-deep .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick {
+    color: var(--primerColor)!important;
+}
+
+// mat-input carent color
+::ng-deep .mat-input-element {
+    caret-color: var(--primerColor) !important;
+}
+
+// mat-label focused style
+::ng-deep .mat-form-field.mat-focused .mat-form-field-label {
+    color: var(--black)!important;
+}
+
+// Colores del checkbox
+::ng-deep .mat-checkbox-checked.mat-accent .mat-checkbox-background {
+    background-color:var(--primerColor) !important;
+}
+::ng-deep .mat-checkbox-indeterminate.mat-accent .mat-checkbox-background {
+    background-color:var(--primerColor) !important;
+}

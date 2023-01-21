@@ -3,6 +3,7 @@
 
 
 
+
 <section>
 
 
@@ -42,12 +43,14 @@
                             </mat-card-content>
                             <mat-card-actions class="accion">
                                 <button class="btn-subir" mat-button (click)="subir_images()" [disabled]="this.images.length == 0">
+
                                     <ion-icon name="cloud-upload-outline"></ion-icon>
                                     Subir
                                 </button>
                             </mat-card-actions>
                         </mat-card>
                     </div>
+
 
 
                     <div class="container-table">
@@ -85,6 +88,13 @@
 </section>
 
 
+                            <tr mat-header-row *matHeaderRowDef="columnsDisplay"></tr>
+                            <tr mat-row *matRowDef="let row; columns: columnsDisplay;">
+                        </table>
+                        <!-- Paginator
+                        <mat-paginator [pageSize]="4" aria-label="Select page of user"
+                            class="paginator"></mat-paginator> -->
+                    </div>
 
 
 
@@ -96,6 +106,11 @@
 
 
 
+                </div>
+                <!-- ------------------------ -->
 
 
-
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,28 +1,38 @@
-<!-- Barra superior -->
-<app-navbar></app-navbar>
-<!-- Barra navegacion lateral -->
-<app-sidenav></app-sidenav>
+<!-- MENU NAV -->
+<app-nav></app-nav>
 
-<!-- loader mientras cargar los datos de la api -->
-<div class="container-loader" *ngIf="loading$ | async">
-    <span class="loader"></span>
-</div>
+<!-- Tabla de productos -->
 
+<section>
+    <div class="container-fluid pt-4 px-4">
+        <div class="row my-5 ">
+            <div class=" col-xl-10 col-lg-9 col-md-8 ml-auto ">
+                <div class="card">
+                    
+                    <!-- loader mientras cargar los datos de la api -->
+                    <div class="container-loader" *ngIf="loading$ | async">
+                        <span class="loader"></span>
+                    </div>
 
-<div class="table-container" tabindex="0" *ngIf="!(loading$ | async)">
-
-    <!-- Buscador -->
-    <div class="barraSuperior">
-        <ion-icon name="search-outline" class="iconSearch"></ion-icon>
-        <input class="input" matInput (keyup)="applyFilter($event)" placeholder="Filtrar Descuentos" #input>
-        <!-- boton elimnar masivamente -->
-        <button class="btn-eliminar" *ngIf="this.selection.selected.length > 1 && this.descuentos$ != null" (click)="openDialogMany()">
-            <ion-icon name="trash-outline"></ion-icon>
-            Seleccionados
-        </button>
-    </div>
+                    <!-- Botones -->
+                    <div class="col-md-12 pt-4">
+                        <div class="text-right justify-content-between">
+                            <button type="button" class="btn" [routerLink]="['/descuentos/registro']">
+                                <i class="bi bi-plus-circle"></i>
 
 
+                    <!-- Buscador -->
+                    <div class="barraSuperior">
+                        <ion-icon name="search-outline" class="iconSearch"></ion-icon>
+                        <input class="input" matInput (keyup)="applyFilter($event)" placeholder="Filtrar Descuentos" #input>
+                        <!-- boton elimnar masivamente -->
+                        <button class="btn-eliminar" *ngIf="this.selection.selected.length > 1 && this.descuentos$ != null" (click)="openDialogMany()">
+                            <ion-icon name="trash-outline"></ion-icon>
+                            Seleccionados
+                        </button>
+                    </div>
+
+               
     <!-- Tabla -->
     <table mat-table [dataSource]="data">
 
@@ -103,4 +113,4 @@
 </div>
 
 
-    
+</section>

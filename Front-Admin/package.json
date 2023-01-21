@@ -26,6 +26,7 @@
     "@ngrx/effects": "^13.2.0",
     "@ngrx/store": "^13.2.0",
     "@ngrx/store-devtools": "^13.2.0",
+    "@popperjs/core": "^2.11.6",
     "@swimlane/ngx-charts": "^20.1.2",
     "angular-material": "^1.2.5",
     "angular-material-mentions": "^0.8.0",
