@@ -23,15 +23,7 @@
                     <div class="container" *ngIf="!(loading$ | async)">
                     <!-- Single product -->
 
-                        
                     
-                        <!-- Imagen portada producto -->
-                        <div class="image-portada">
-                            <mat-card>
-                                <img mat-card-image [src]="url + 'obtenerPortada/' + this.id" class="image-card">
-                            </mat-card>
-                        </div>
-
                         <!-- Drop zone -->
                         <mat-card class="card">    
                             <mat-card-content class="dropzone">

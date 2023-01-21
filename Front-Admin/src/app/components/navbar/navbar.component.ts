@@ -24,27 +24,18 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit(): void {
     this.isLoading$= this.store.select(authSelectors.selectLoadingUserInfo);
-    this.store.dispatch(authActions.loadUserInfo({id: '63809edcc95dfc191babb3fa'}));
+    this.store.dispatch(authActions.loadUserInfo({id: localStorage.getItem('id')}));
     this.getInfoAdmin();
     
   }
 
 
   getInfoAdmin(){
-    this._loginSvc.getInfoAdmin(localStorage.getItem('id')).subscribe(
-      response => {
-        this.userInfo= response;
-        this.imgSelect= 'http://localhost:4201/api/obtenerImgPerfil/'+this.userInfo.imgPerfil;
-      },
-      error =>{
-        console.log(error);
-      }
-    )
-    /*this.userInfo$= this.store.select(authSelectors.selectListUserInfo);
+    this.userInfo$= this.store.select(authSelectors.selectListUserInfo);
     this.userInfo$.subscribe(info => {
       console.log(info);
       
-    })*/
+    })
   
   }
     
