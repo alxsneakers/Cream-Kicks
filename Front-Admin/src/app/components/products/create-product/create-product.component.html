@@ -79,11 +79,11 @@
                         .get('precioVenta')?.touched && form1
                         .get('precioVenta')?.errors?.['min']">
                   </mat-error>
-                </mat-form-field>
+              </mat-form-field>
 
-
-                <!-- Drop zone -->
-                <mat-card class="card" >    
+              <!-- Drop zone -->
+              <mat-card class="card" > 
+                <mat-form-field class="w-100" appearance="outline" floatLabel="always">   
                   <mat-card-content class="dropzone" >
                     <div ngx-dropzone (change)="onSelect($event)" [accept]="'image/*'">
                       <ngx-dropzone-label>Arrastre y suelte su imagen</ngx-dropzone-label>
@@ -91,15 +91,11 @@
                       </ngx-dropzone-image-preview>
                     </div>
                   </mat-card-content>
-                </mat-error>
               </mat-form-field>
 
 
        
               </mat-card>
-
-
-
 
 
               <!-- Publicar en tienda -->
@@ -137,7 +133,7 @@
                 </div>
               </form>
             </div>
-
+          </mat-step>
 
             <!-- 3 -->
             <mat-step>
