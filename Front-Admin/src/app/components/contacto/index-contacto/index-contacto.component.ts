@@ -8,9 +8,7 @@ import { NotificationService } from 'src/app/services/notification.service';
 import { loadContactos } from 'src/app/state/actions/contacto.actions';
 import { selectListContactos, selectLoadingContactos } from 'src/app/state/selectors/contacto.selectors';
 import { ConfirmDialogComponent } from '../../shared/confirm-dialog/confirm-dialog.component';
-      
-      
-
+declare const $: any; // jquery
     
 
 @Component({
@@ -30,6 +28,15 @@ export class IndexContactoComponent implements OnInit {
     this.loading$= this.store.select(selectLoadingContactos);
     this.store.dispatch(loadContactos()); // llama a la accion
     this.contactos$= this.store.select(selectListContactos);
+    setTimeout(() => {
+      $(".panel-heading").parent('.panel').hover(
+        function() {
+          $(this).children('.collapse').collapse('show');
+        }, function() {
+          $(this).children('.collapse').collapse('hide');
+        }
+      );
+    })
   }
 
 

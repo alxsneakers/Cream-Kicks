@@ -4,9 +4,81 @@
     font-size: 14px;
 }
 
+// Tarjeta
+.card{
+    border-radius: 10px;
+}
+
+
 a{
     outline: none;
     text-decoration: underline;
     color: #000000;
+
+}
+a:hover{
+    color: var(--primerColor);
+
+}
+
+.mensaje{
+    border: 1px solid var(--segundoColor);
+    
+}
+
+.mensaje:hover{
+    background-color: var(--quintoColor);
+
+}
+
+.mensajeActivo{
+    font-size: 22px;
+
+}
+
+
+// centra la carta
+.container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.card-hijo{
+    background-color: #585858;
+}
+
+// alinea los botones a la derecha
+mat-card-actions{
+    display: flex;
+    justify-content: right;
+    padding-right: 24px;
+}
+
+
+// buscador
+
+
+.search {
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    border-bottom: 2px solid #999;
+    transition: all .4s ease;
+}
+
+.search:focus {
+    background: transparent;
+    box-shadow: none;
+    border-bottom: 2px solid var(--primerColor);
+}
+
+.search-btn {
+    // border-radius: 60%;
+    padding: 10px 16px;
+    transition: all .4s ease;
+    // background-color: #eee;
 
 }
