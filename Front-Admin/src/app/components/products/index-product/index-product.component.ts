@@ -1,7 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
-import { product, ProductService } from 'src/app/services/product.service';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmDialogComponent } from '../../shared/confirm-dialog/confirm-dialog.component';
 import { Workbook } from 'exceljs';
@@ -45,7 +44,7 @@ export class IndexProductComponent implements OnInit {
   url: any;
   productos_excel: Array<any>= [];
 
-  constructor(private productSvc: ProductService, public dialog: MatDialog, private store: Store<any>) {
+  constructor(public dialog: MatDialog, private store: Store<any>) {
     this.url= 'http://localhost:4201/api/products/';
    }
 

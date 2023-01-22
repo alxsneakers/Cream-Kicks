@@ -210,7 +210,7 @@ export class CarritoComponent implements OnInit {
   prueba(){
     this.venta.detalles= this.dventa;
     this.venta.cliente= this.id;
-    this.venta.transaccion='test';
+    this.venta.transaccion='tarjetaCredito';
 
     console.log(this.venta)
 
@@ -219,11 +219,11 @@ export class CarritoComponent implements OnInit {
       response =>{
 
         // enviar correo del compra
-        /*this._clienteService.enviar_correo_compra(response.idVenta,this.token).subscribe(
+        this._clienteService.enviar_correo_compra(response.idVenta,this.token).subscribe(
           next =>{ // correo enviado
             this._router.navigate(['/']);
           }
-        )*/
+        )
       })
   }
 

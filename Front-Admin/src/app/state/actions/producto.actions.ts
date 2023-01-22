@@ -1,5 +1,5 @@
 import { createAction, props } from "@ngrx/store";
-import { ProductoModel, GaleriaModel } from "src/app/models/producto.interface";
+import { ProductoModel, GaleriaModel, BestProductoModel } from "src/app/models/producto.interface";
 
 
 // accion para cargar los productos
@@ -26,6 +26,18 @@ export const loadedGaleria= createAction(
     props<{galeria: GaleriaModel[]}>()
 )
 //-----------------------------------
+// accion para cargar los productos
+export const loadBestProductos= createAction(
+    '[Producto] Load BestProductos'
+)
+
+// acccion para cuando los cupones se ha cargado
+export const loadedBestProductos= createAction(
+    '[Producto] LoadedBestProductos success',
+    props<{bestProductos: BestProductoModel[]}>()
+)
+
+//-----------------------------------
 
 export const deleteProducto= createAction(
     '[Producto] DeleteProducto',
@@ -34,7 +46,6 @@ export const deleteProducto= createAction(
 
 export const deleteProductoSuccess= createAction('[Marca] DeleteProductoSuccess')
 //-----------------------------------
-
 
 export const deleteImgGaleria= createAction(
     '[Galeria] DeleteImgGaleria',

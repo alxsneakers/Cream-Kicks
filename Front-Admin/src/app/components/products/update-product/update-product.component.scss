@@ -42,7 +42,11 @@
     border-radius: 10px;
 }
 
-
+// botones
+.btn{
+    background-color:var(--segundoColor) ;
+    color: var(--white);
+}
 
 
 //mat-input focused color

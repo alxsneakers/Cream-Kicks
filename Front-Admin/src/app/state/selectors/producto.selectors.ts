@@ -17,7 +17,6 @@ export const selectLoadingProductos= createSelector(
 )
 
 //------------------------------
-
 export const selectListGaleria= createSelector(
   selectProductoFeature,
   (state: ProductoState) => state.galeria //hijo
@@ -27,6 +26,20 @@ export const selectLoadingGaleria= createSelector(
   selectProductoFeature,
   (state: ProductoState) => state.laodingGaleria // hijo
 )
+
+//------------------------------
+
+export const selectListBestProductos= createSelector(
+  selectProductoFeature,
+  (state: ProductoState) => state.bestProductos //hijo
+);
+
+export const selectLoadingBestProductos= createSelector(
+  selectProductoFeature,
+  (state: ProductoState) => state.loadingBestProductos // hijo
+)
+
+
 
 // -----------------------------
 export const selectIsLoadingDeleteManyProducto= createSelector(

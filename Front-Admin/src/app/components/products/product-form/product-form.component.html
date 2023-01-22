@@ -1,10 +1,10 @@
-<mat-form-field class="pr-4">
+<mat-form-field class="pr-4" appearance="outline">
     <mat-label>Talla</mat-label>
     <input type="number" matInput [formControl]="$any(inputFormGroup.controls['talla'])" (keypress)="onlyNumbers($event)">
 </mat-form-field>
 
 
-<mat-form-field class="pr-4">
+<mat-form-field class="pr-4" appearance="outline">
     <mat-label>Stock</mat-label>
     <input type="number" matInput [formControl]="$any(inputFormGroup.controls['stock'])" min="1" max="100" (keypress)="onlyNumbers($event)">
 </mat-form-field>

@@ -14,7 +14,11 @@ export class FormTallaStockService {
       talla: ['', [Validators.required]],
       stock: ['', [Validators.required]]
     });
+    
+
   }
+
+
 
 
 }

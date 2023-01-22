@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { BestProductoModel } from '../models/producto.interface';
 
 
 export interface product{
@@ -40,6 +41,32 @@ export class ProductService {
     return this.http.post('http://localhost:4201/api/products/createProduct', fd);
   };
 
+   // Actualiza el producto.
+   actualizarProducto(data, file, id): Observable<any>{
+    if(data.portada){ // si hay nueva img
+      const fd= new FormData();
+      fd.append('nombre', data.nombre);
+      fd.append('marca', data.marca);
+      fd.append('sku', data.sku);
+      fd.append('tallaStockArray',  JSON.stringify(data.tallaStockArray));
+      fd.append('precioCompra', data.precioCompra);
+      fd.append('precioVenta', data.precioVenta);
+      fd.append('publicado', data.tienda);
+      fd.append('portada', file); // añado el archivo de la img al campo portada.
+      return this.http.put('http://localhost:4201/api/products/actualizarProducto/' + id, fd);
+    }else{ // img actual (no ha cambiado la img)
+      const fd2= new FormData();
+      fd2.append('nombre', data.nombre);
+      fd2.append('marca', data.marca);
+      fd2.append('sku', data.sku);
+      fd2.append('tallaStockArray',  JSON.stringify(data.tallaStockArray));
+      fd2.append('precioCompra', data.precioCompra);
+      fd2.append('precioVenta', data.precioVenta);
+      fd2.append('publicado', data.tienda);
+      return this.http.put('http://localhost:4201/api/products/actualizarProducto/' + id, fd2);
+    }
+  };
+
   // Obtiene un producto por el id.
   obtenerProducto(id): Observable<any>{
     return this.http.get('http://localhost:4201/api/products/obtenerProducto/'+ id);
@@ -65,25 +92,14 @@ export class ProductService {
   }
 
 
+  obtener_populares_productos(): Observable<BestProductoModel[]>{
+    return this.http.get<BestProductoModel[]>('http://localhost:4201/api/products/obtener_populares_productos_dash');
+  }
 
-  // Actualiza el producto.
-  actualizarProducto(data, file, id): Observable<any>{
-    if(data.portada){ // si hay nueva img
-      const fd= new FormData();
-      fd.append('nombre', data.nombre);
-      fd.append('marca', data.marca);
-      fd.append('sku', data.sku);
-      fd.append('tallas', data.tallas);
-      fd.append('stock', data.stock);
-      fd.append('precioCompra', data.precioCompra);
-      fd.append('precioVenta', data.precioVenta);
-      fd.append('tienda', data.tienda);
-      fd.append('portada', file); // añado el archivo de la img al campo portada.
-      return this.http.put('http://localhost:4201/api/products/actualizarProducto/' + id, fd);
-    }else{ // img actual (no ha cambiado la img)
-      return this.http.put('http://localhost:4201/api/products/actualizarProducto/' + id, data);
-    }
-  };
+
+
+
+ 
 
   agregarImgGaleria(data, file, id): Observable<any>{
     const fd= new FormData();

@@ -29,15 +29,18 @@
                             </mat-form-field>
 
                             <!-- Marca -->
-                            <mat-form-field class="w-100" appearance="outline">
+                            <mat-form-field appearance="outline">
                                 <mat-label>Marca</mat-label>
-                                <input matInput formControlName="marca">
+                                <mat-select formControlName="marca">
+                                    <mat-option *ngFor="let marca of listaMarcas" [value]="marca">{{marca}}</mat-option>
+                                </mat-select>
                                 <mat-error *ngIf="formUpdateProduct
-                                    .get('marca')?.touched && formUpdateProduct
-                                    .get('marca')?.errors?.['required']">
-                                    Marca obligatorio
+                                .get('marca')?.touched && formUpdateProduct
+                                .get('marca')?.errors?.['required']">
+                                Marca obligatorio
                                 </mat-error>
                             </mat-form-field>
+                
 
                             <!-- Sku -->
                             <mat-form-field class="w-100" appearance="outline">
@@ -52,53 +55,24 @@
 
                             <!-- tallas y stock -->
                             <div class="row align-items-center">
-                                <!-- tallas -->
-                                <div class="col">
-
-                                    <mat-form-field class="w-100" appearance="outline">
-                                        <mat-label>Talla</mat-label>
-                                        <input matInput formControlName="talla" type="number" min="36" max="55">
-                                        <mat-error *ngIf="formUpdateProduct
-                                            .get('talla')?.touched && formUpdateProduct
-                                            .get('talla')?.errors?.['required']">
-                                            Talla obligatorio
-                                        </mat-error>
-                                        <mat-error *ngIf="formUpdateProduct
-                                            .get('talla')?.touched && formUpdateProduct
-                                            .get('talla')?.errors?.['min']">
-                                            Recuerda el valor minimo es 36
-                                        </mat-error>
-                                        <mat-error *ngIf="formUpdateProduct
-                                            .get('talla')?.touched && formUpdateProduct
-                                            .get('talla')?.errors?.['max']">
-                                            Recuerda el valor maximo es 55
-                                        </mat-error>
-                                    </mat-form-field>
-                                </div>
-
+                            
                                 <!-- stock -->
                                 <div class="col">
-
-                                    <mat-form-field class="w-100" appearance="outline">
-                                        <mat-label>Stock</mat-label>
-                                        <input matInput formControlName="stock" type="number" min="1" max="100"
-                                            [ngModel]="1">
-                                        <mat-error *ngIf="formUpdateProduct
-                                            .get('stock')?.touched && formUpdateProduct
-                                            .get('stock')?.errors?.['required']">
-                                            Stock obligatorio
-                                        </mat-error>
-                                        <mat-error *ngIf="formUpdateProduct
-                                            .get('stock')?.touched && formUpdateProduct
-                                            .get('stock')?.errors?.['min']">
-                                            Recuerda el valor minimo es 1
-                                        </mat-error>
-                                        <mat-error *ngIf="formUpdateProduct
-                                            .get('stock')?.touched && formUpdateProduct
-                                            .get('stock')?.errors?.['max']">
-                                            Recuerda el valor maximo es 100
-                                        </mat-error>
-                                    </mat-form-field>
+                                        
+                                <button class="btnAdd mb-4 btn" type="button" mat-raised-button (click)="addProducto()">Agregar tallas y
+                                    stock</button>
+                
+                                <div *ngFor="let u of tallaStockArray.controls; index as i">
+                
+                                    <span class="mr-4">Talla {{ i + 1 }}</span>
+                                    <app-product-form class="mr-4" [inputFormGroup]="$any(u)"></app-product-form>
+                                    <button class="btnDelete mr-4" mat-raised-button (click)="removeUser(i)">borrar</button>
+                
+                                </div>
+                        
+                        
+                                       
+                                  
                                 </div>
                             </div>
 
@@ -145,12 +119,11 @@
                                 </mat-card-actions>
                             </mat-card>
 
-                            <mat-checkbox class="text-uppercase " formControlName="tienda">Publicar en Tienda</mat-checkbox>
-
+                            <mat-checkbox [ngModel]="publicado" formControlName="tienda">Publicar en Tienda</mat-checkbox>
                             <!-- Boton que hace la petición -->
                             <div class="mt-2">
 
-                                <button mat-button type="submit" [disabled]="formUpdateProduct
+                                <button mat-button class="btn" type="submit" [disabled]="formUpdateProduct
                             .invalid">Actualizar producto</button>
                             </div>
 

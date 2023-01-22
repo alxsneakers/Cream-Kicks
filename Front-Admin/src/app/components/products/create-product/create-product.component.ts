@@ -3,15 +3,11 @@ import {
   FormArray,
   FormBuilder,
   FormGroup,
-  MinLengthValidator,
-  MinValidator,
   Validators,
 } from '@angular/forms';
-import { MatChipInputEvent } from '@angular/material/chips';
 import { Router } from '@angular/router';
 import { ProductService } from '../../../services/product.service';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
-import { timeStamp } from 'console';
 import { NotificationService } from 'src/app/services/notification.service';
 import { MarcaService } from 'src/app/services/marca.service';
 import { FormTallaStockService } from 'src/app/services/form-talla-stock.service';
@@ -26,12 +22,11 @@ export interface Talla {
   styleUrls: ['./create-product.component.scss'],
 })
 export class CreateProductComponent implements OnInit {
-  form1 = new FormGroup({});
+  form1= new FormGroup({});
 
   // variables
   checked: boolean = false;
   displayedColumns: string[] = ['talla', 'stock'];
-  separatorKeysCodes = [ENTER, COMMA] as const;
   listaMarcas: Array<any> = [];
   tallasSelect: string[] = [];
   stockSelect: number[] = [];
@@ -51,7 +46,6 @@ export class CreateProductComponent implements OnInit {
     '42',
   ];
   formCreateProduct!: FormGroup;
-  imgSelect: any | ArrayBuffer = ''; // img por defecto.
   images: File[]=[];
 
 
@@ -68,17 +62,16 @@ export class CreateProductComponent implements OnInit {
   ngOnInit(): void {
     this.getMarcas(); // recupera las marcas
     // validacion del formulario
-    this.form1 = this._formBuilder.group({
+    this.form1= this._formBuilder.group({
       nombre: ['', [Validators.required]],
       marca: ['', [Validators.required]],
       sku: ['', [Validators.required]],
       precioVenta: ['', [Validators.required]],
       precioCompra: ['', [Validators.required]],
       publicado: ['', []],
-      tallaStockArray: new FormArray([]),
+      tallaStockArray: new FormArray([])
     });
-
-    this.form1.patchValue({ publicado: false });
+    this.form1.patchValue({publicado: false})
   }
 
   get tallaStockArray() {
