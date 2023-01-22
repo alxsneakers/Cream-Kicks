@@ -1,253 +1,237 @@
 <app-nav></app-nav>
 
 
-<main class="cs-page-wrapper">
-    <section class="cs-carousel cs-controls-onhover">
-        <div class="cs-carousel-inner" data-carousel-options=''>
-    
-          <!-- Slide 1 -->
-          <div class="bg-size-cover py-xl-6 banner1" [routerLink]="['/productos/63c59a8fbae88fd2b5ff5c33']">
-            <div class="container pt-5 pb-6">
-              <div class="row pb-lg-6">
-              </div>
-            </div>
-          </div>
-    
-          <!-- Slide 2 -->
-          <div class="bg-size-cover py-xl-6 banner2" [routerLink]="['/productos/63c596a3bae88fd2b5ff5c07']">
-            <div class="container pt-5 pb-6">
-              <div class="row pb-lg-6"></div>
-            </div>
-          </div>
-    
-          <!-- Slide 3 -->
-          <div class="bg-size-cover py-xl-6 banner3" >
-            <div class="container pt-5 pb-6">
-              <div class="row pb-lg-6"></div>
-            </div>
-          </div>
-    
-          <!-- Slide 4 -->
-          <div class="bg-size-cover py-xl-6" style="background-image: url(../../assets/img/ecommerce/home/hero-slider/04.jpg);">
-            <div class="container pt-5 pb-6">
-              <div class="row pb-lg-6">
-                <div class="col-lg-6 offset-lg-1 offset-xl-0 pb-4 pb-md-6">
-                  <h3 class="font-size-lg text-uppercase cs-from-top cs-delay-1">Hottest Prices</h3>
-                  <h2 class="display-2 mb-lg-5 pb-3 cs-scale-down">Kidswear Sales</h2>
-                  <div class="mb-4 cs-scale-down cs-delay-2">
-                    <a href="shop-catalog.html" class="btn btn-outline-primary btn-lg">Shop sale now</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-    
-        <!-- Pager -->
-        <div class="container position-relative">
-          <div class="row mt-lg-n5">
-            <div class="col-lg-7 col-md-8 col-sm-10 offset-lg-1 offset-xl-0">
-              <div class="position-relative">
-                <div id="pager" class="cs-pager cs-pager-inverse mb-xl-5 pb-5 pb-md-6">
-                  <button type="button" style="color: white;" data-nav="0">01</button>
-                  <button type="button" style="color: white;" data-nav="1">02</button>
-                  <button type="button" style="color: white;" data-nav="2">03</button>
-                  <button type="button" style="color: white;" data-nav="3">04</button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-    </section>
+<main>
 
-    <section class="container pt-5 pt-lg-0">
-        <div class="cs-carousel cs-nav-outside">
-          <div class="cs-carousel-inner cs-carousel-inner-two" data-carousel-options=''>
-            <!-- Category -->
-            <a  class="d-block cs-image-scale cs-heading-highlight text-center">
-              <div class="cs-image-inner mb-3 rounded">
-                <img src="../../assets/img/ecommerce/home/categories/01.jpg" alt="Women’s">
-              </div>
-              <h3 class="h5 mb-1">Women’s</h3>
-            </a>
-            <!-- Category -->
-            <a  class="d-block cs-image-scale cs-heading-highlight text-center">
-              <div class="cs-image-inner mb-3 rounded">
-                <img src="../../assets/img/ecommerce/home/categories/02.jpg" alt="Men’s">
-              </div>
-              <h3 class="h5 mb-1">Men’s</h3>
-            </a>
-            <!-- Category -->
-            <a class="d-block cs-image-scale cs-heading-highlight text-center">
-              <div class="cs-image-inner mb-3 rounded">
-                <img src="../../assets/img/ecommerce/home/categories/03.jpg" alt="Kids'">
-              </div>
-              <h3 class="h5 mb-1">Kids'</h3>
-            </a>
+
+  <section class="pb-5 cs-carousel-wrapper cs-controls-onhover">
+    <div class="cs-carousel-inner" data-carousel-options='{}'>
+      <!-- Default Bootstrap carousel -->
+      <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+          <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+          <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+          <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+        </ol>
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img class="d-block w-100" src="../../../assets/img/banners/banner1.webp" alt="First slide">
+          </div>
+          <div class="carousel-item">
+            <img class="d-block w-100" src="../../../assets/img/banners/banner2.webp" alt="Second slide">
+          </div>
+          <div class="carousel-item">
+            <img class="d-block w-100" src="../../../assets/img/banners/banner3.gif" alt="Third slide">
           </div>
         </div>
-    </section>
-    
+        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
+      </div>
+    </div>
+  </section>
 
-    <!-- New arrivals -->
-    <section class="container-fluid px-xl-grid-gutter mt-5 mb-3 mb-sm-4 mt-md-0 mb-lg-5 py-5 py-lg-6">
-        <div class="text-center mb-5 pb-2">
-          <h2 class="h1">Sneakers más populares</h2>
-        </div>
+  <section class="container pt-5 pt-lg-0">
+    <div class="cs-carousel cs-nav-outside">
+      <div class="cs-carousel-inner cs-carousel-inner-two" data-carousel-options=''>
+        <!-- Carrousel -->
+        <a class="d-block cs-image-scale cs-heading-highlight text-center">
+          <div class="cs-image-inner mb-3 rounded">
+            <img src="../../assets/img/banners2/imagen1.jpg" alt="imagen1">
+          </div>
+          <h3 class="h5 mb-1">Nike Air Force 1 Low Drake NOCTA Certified Lover Boy</h3>
+        </a>
+        <!-- Carrousel -->
+        <a class="d-block cs-image-scale cs-heading-highlight text-center">
+          <div class="cs-image-inner mb-3 rounded">
+            <img src="../../assets/img/banners2/imagen2.jpg" alt="imagen2">
+          </div>
+          <h3 class="h5 mb-1">Nike Dunk Low LX Banana</h3>
+        </a>
+        <!-- Carrousel -->
+        <a class="d-block cs-image-scale cs-heading-highlight text-center">
+          <div class="cs-image-inner mb-3 rounded">
+            <img src="../../assets/img/banners2/imagen3.jpg" alt="imagen3">
+          </div>
+          <h3 class="h5 mb-1">Nike Air Max 1 PRM Dirty Denim</h3>
+        </a>
+        <a class="d-block cs-image-scale cs-heading-highlight text-center">
+          <div class="cs-image-inner mb-3 rounded">
+            <img src="../../assets/img/banners2/imagen4.png" alt="imagen3">
+          </div>
+          <h3 class="h5 mb-1">Nike Air Max 1 PRM Dirty Denim</h3>
+        </a>
+      </div>
+    </div>
+  </section>
 
-        <!-- Product carousel -->
-        <div class="cs-carousel cs-nav-outside">
-          <div class="cs-carousel-inner cs-carousel-inner-three" data-carousel-options='{
+
+  <!-- New arrivals -->
+  <section class="container-fluid px-xl-grid-gutter mt-5 mb-3 mb-sm-4 mt-md-0 mb-lg-5 py-5 py-lg-6">
+    <div class="text-center mb-5 pb-2">
+      <h2 class="h1">Sneakers más populares</h2>
+    </div>
+
+    <!-- Product carousel -->
+    <div class="cs-carousel cs-nav-outside">
+      <div class="cs-carousel-inner cs-carousel-inner-three" data-carousel-options='{
             
           }'>
 
-            <!-- Item -->
-            <div *ngFor="let item of populares">
-              <div class="card card-product">
-                <div class="card-product-img">
-                  <a [routerLink]="['/productos/', item._id]" class="card-img-top">
-                    <img [src]="url + 'products/obtenerPortada/'+item.portada" alt="Product image">
-                  </a>
+        <!-- Item -->
+        <div *ngFor="let item of populares">
+          <div class="card card-product">
+            <div class="card-product-img">
+              <a [routerLink]="['/productos/', item._id]" class="card-img-top">
+                <img [src]="url + 'products/obtenerPortada/'+item.portada" alt="Product image">
+              </a>
 
 
-                </div>
-                <div class="card-body">
-                  <h3 class="card-product-title text-truncate mb-2">
-                    <a [routerLink]="['/productos/', item._id]" class="nav-link">{{item.nombre}}</a>
-                  </h3>
-                  <div class="d-flex align-items-center">
-                    <span class="h5 d-inline-block mb-0">{{item.precioVenta}}€</span>
-                  </div>
-                </div>
+            </div>
+            <div class="card-body">
+              <h3 class="card-product-title text-truncate mb-2">
+                <a [routerLink]="['/productos/', item._id]" class="nav-link">{{item.nombre}}</a>
+              </h3>
+              <div class="d-flex align-items-center">
+                <span class="h5 d-inline-block mb-0">{{item.precioVenta}}€</span>
               </div>
             </div>
-
-       
-
           </div>
         </div>
-    </section>
 
-     <!-- Trending products (carousel) -->
-    <section class="py-5" style="background-color: #e5e8ed;">
-        <div class="container my-lg-2 py-2 py-md-4">
-          <div class="d-flex align-items-center justify-content-between pb-sm-1 mb-5">
-            <h2 class="h1 mb-0">Recien llegados</h2>
-            <div class="tns-custom-controls cs-controls-inverse" id="custom-controls-trending" tabindex="0">
-              <button type="button" data-controls="prev" tabindex="-1">
-                <i class="cxi-arrow-left"></i>
-              </button>
-              <button type="button" data-controls="next" tabindex="-1">
-                <i class="cxi-arrow-right"></i>
-              </button>
-            </div>
-          </div>
-          <div class="cs-carousel pb-2">
-            <div class="cs-carousel-inner cs-carousel-inner-four" data-carousel-options='{
+
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Trending products (carousel) -->
+  <section class="py-5" style="background-color: #e5e8ed;">
+    <div class="container my-lg-2 py-2 py-md-4">
+      <div class="d-flex align-items-center justify-content-between pb-sm-1 mb-5">
+        <h2 class="h1 mb-0">Recien llegados</h2>
+        <div class="tns-custom-controls cs-controls-inverse" id="custom-controls-trending" tabindex="0">
+          <button type="button" data-controls="prev" tabindex="-1">
+            <i class="cxi-arrow-left"></i>
+          </button>
+          <button type="button" data-controls="next" tabindex="-1">
+            <i class="cxi-arrow-right"></i>
+          </button>
+        </div>
+      </div>
+      <div class="cs-carousel pb-2">
+        <div class="cs-carousel-inner cs-carousel-inner-four" data-carousel-options='{
               
             }'>
 
-              <!-- Item -->
-              <div *ngFor="let item of recienLLegados">
-                <div class="card card-product mx-auto" >
-                  <div class="card-product-img">
-                    <a [routerLink]="['/productos/', item._id]" class="card-img-top">
-                      <img [src]="url + 'products/obtenerPortada/'+item.portada" alt="Product image">
-                    </a>
+          <!-- Item -->
+          <div *ngFor="let item of recienLLegados">
+            <div class="card card-product mx-auto">
+              <div class="card-product-img">
+                <a [routerLink]="['/productos/', item._id]" class="card-img-top">
+                  <img [src]="url + 'products/obtenerPortada/'+item.portada" alt="Product image">
+                </a>
 
-                  </div>
-                  <div class="card-body bg-0 pb-2">
-                    <h3 class="card-product-title text-truncate mb-2">
-                      <a [routerLink]="['/productos/', item._id]" class="nav-link">{{item.nombre}}</a>
-                    </h3>
-                    <div class="d-flex align-items-center">
-                      <span class="h5 d-inline-block mb-0">{{item.precioVenta}}€</span>
-                    </div>
-                  </div>
+              </div>
+              <div class="card-body bg-0 pb-2">
+                <h3 class="card-product-title text-truncate mb-2">
+                  <a [routerLink]="['/productos/', item._id]" class="nav-link">{{item.nombre}}</a>
+                </h3>
+                <div class="d-flex align-items-center">
+                  <span class="h5 d-inline-block mb-0">{{item.precioVenta}}€</span>
                 </div>
               </div>
-
             </div>
           </div>
-        </div>
-    </section>
 
-    <!-- Popular categories -->
-    <section class="container mt-1 mb-3 my-sm-4 py-5 py-lg-6">
-        <h2 class="h1 mb-5 pb-3 text-center">Marcas Populares</h2>
-        <div class="cs-carousel cs-nav-outside">
-          <div class="cs-carousel-inner cs-carousel-inner-five" data-carousel-options='{
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Popular categories -->
+  <section class="container mt-1 mb-3 my-sm-4 py-5 py-lg-6">
+    <h2 class="h1 mb-5 pb-3 text-center">Marcas Populares</h2>
+    <div class="cs-carousel cs-nav-outside">
+      <div class="cs-carousel-inner cs-carousel-inner-five" data-carousel-options='{
             
           }'>
 
-            <!-- Category -->
-            <div class="pb-2">
-              <a [routerLink]="['/productos/marca/nike']" class="d-block cs-image-scale cs-heading-highlight text-center">
-                <div class="cs-image-inner rounded-circle mx-auto mb-4" style="max-width: 180px;">
-                  <img src="../../assets/img/marcas/nike.svg" alt="imagen marca">
-                </div>
-                <h3 class="h5 mb-3">Nike</h3>
-              </a>
+        <!-- Category -->
+        <div class="pb-2">
+          <a [routerLink]="['/productos/marca/nike']" class="d-block cs-image-scale cs-heading-highlight text-center">
+            <div class="cs-image-inner rounded-circle mx-auto mb-4" style="max-width: 180px;">
+              <img src="../../assets/img/marcas/nike.png" alt="imagen marca">
             </div>
-
-            <!-- Category -->
-            <div class="pb-2">
-              <a [routerLink]="['/productos/marca/air jordan']" class="d-block cs-image-scale cs-heading-highlight text-center">
-                <div class="cs-image-inner rounded-circle mx-auto mb-4" style="max-width: 180px;">
-                  <img src="../../assets/img/marcas/jordan.svg" alt="imagen marca">
-                </div>
-                <h3 class="h5 mb-3">Air Jordan</h3>
-              </a>
-            </div>
-
-            <!-- Category -->
-            <div class="pb-2">
-              <a [routerLink]="['/productos/marca/adidas']" class="d-block cs-image-scale cs-heading-highlight text-center">
-                <div class="cs-image-inner rounded-circle mx-auto mb-4" style="max-width: 180px;">
-                  <img src="../../assets/img/marcas/adidas.svg" alt="imagen marca">
-                </div>
-                <h3 class="h5 mb-3">Adidas</h3>
-              </a>
-            </div>
-
-            <!-- Category -->
-            <div class="pb-2">
-              <a [routerLink]="['/productos/marca/adidas']" class="d-block cs-image-scale cs-heading-highlight text-center">
-                <div class="cs-image-inner rounded-circle mx-auto mb-4" style="max-width: 180px;">
-                  <img src="../../assets/img/marcas/asics.svg" alt="imagen marca">
-                </div>
-                <h3 class="h5 mb-3">Asics</h3>
-              </a>
-            </div>
-
-            <!-- Category -->
-            <div class="pb-2">
-              <a [routerLink]="['/productos/marca/new balance']" class="d-block cs-image-scale cs-heading-highlight text-center">
-                <div class="cs-image-inner rounded-circle mx-auto mb-4" style="max-width: 180px;">
-                  <img src="../../assets/img/marcas/new-balance.svg" alt="imagen marca">
-                </div>
-                <h3 class="h5 mb-3">New Balance</h3>
-              </a>
-            </div>
-
-            <!-- Category -->
-            <div class="pb-2">
-              <a [routerLink]="['/productos/marca/dior']" class="d-block cs-image-scale cs-heading-highlight text-center">
-                <div class="cs-image-inner rounded-circle mx-auto mb-4" style="max-width: 180px;">
-                  <img src="../../assets/img/marcas/dior.svg" alt="imagen marca" style="width: 160px;">
-                </div>
-                <h3 class="h5 mb-3">Dior</h3>
-              </a>
-            </div>
-          </div>
+            <h3 class="h5 mb-3">Nike</h3>
+          </a>
         </div>
-    </section>
+
+        <!-- Category -->
+        <div class="pb-2">
+          <a [routerLink]="['/productos/marca/air jordan']"
+            class="d-block cs-image-scale cs-heading-highlight text-center">
+            <div class="cs-image-inner rounded-circle mx-auto mb-4" style="max-width: 180px;">
+              <img src="../../assets/img/marcas/air-jordan.png" alt="imagen marca">
+            </div>
+            <h3 class="h5 mb-3">Air Jordan</h3>
+          </a>
+        </div>
+
+        <!-- Category -->
+        <div class="pb-2">
+          <a [routerLink]="['/productos/marca/adidas']" class="d-block cs-image-scale cs-heading-highlight text-center">
+            <div class="cs-image-inner rounded-circle mx-auto mb-4" style="max-width: 180px;">
+              <img src="../../assets/img/marcas/adidas.png" alt="imagen marca">
+            </div>
+            <h3 class="h5 mb-3">Adidas</h3>
+          </a>
+        </div>
+
+        <!-- Category -->
+        <div class="pb-2">
+          <a [routerLink]="['/productos/marca/adidas']" class="d-block cs-image-scale cs-heading-highlight text-center">
+            <div class="cs-image-inner rounded-circle mx-auto mb-4" style="max-width: 180px;">
+              <img src="../../assets/img/marcas/off-white.png" alt="imagen marca">
+            </div>
+            <h3 class="h5 mb-3">Off White</h3>
+          </a>
+        </div>
+
+        <!-- Category -->
+        <div class="pb-2">
+          <a [routerLink]="['/productos/marca/new balance']"
+            class="d-block cs-image-scale cs-heading-highlight text-center">
+            <div class="cs-image-inner rounded-circle mx-auto mb-4" style="max-width: 180px;">
+              <img src="../../assets/img/marcas/new-balance.png" alt="imagen marca">
+            </div>
+            <h3 class="h5 mb-3">New Balance</h3>
+          </a>
+        </div>
+
+        <!-- Category -->
+        <div class="pb-2">
+          <a [routerLink]="['/productos/marca/yeezy']" class="d-block cs-image-scale cs-heading-highlight text-center">
+            <div class="cs-image-inner rounded-circle mx-auto mb-4" style="max-width: 180px;">
+              <img src="../../assets/img/marcas/yeezy.png" alt="imagen marca">
+            </div>
+            <h3 class="h5 mb-3">yeezy</h3>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
 
 
 
-  
 
-    
+
+
 </main>
 
 

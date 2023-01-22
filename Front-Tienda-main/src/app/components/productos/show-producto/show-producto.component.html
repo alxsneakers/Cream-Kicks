@@ -2,12 +2,12 @@
 
 
 <main class="cs-page-wrapper">
-    <!-- Breadcrumb -->
-    <nav class="bg-secondary mb-3" aria-label="breadcrumb">
+    <!-- Rutas -->
+    <nav class="text-danger mt-3" aria-label="breadcrumb">
         <div class="container">
           <ol class="breadcrumb breadcrumb-alt mb-0">
             <li class="breadcrumb-item">
-              <a [routerLink]="['/']"><i class="cxi-home"></i></a>
+              <a [routerLink]="['/']">Home</a>
             </li>
             <li class="breadcrumb-item">
               <a *ngIf="producto.marca" [routerLink]="['/productos/marca/', producto.marca.toLowerCase()]">{{producto.marca}}</a>
@@ -20,7 +20,7 @@
       <!-- Page title -->
       <section class="container d-md-flex align-items-center justify-content-between py-3 py-md-4 mb-3">
         <h1 class="mb-2 mb-md-0">{{producto.nombre}}</h1>
-        <span *ngIf="producto.sku" class="text-muted"><strong>Art. </strong>{{producto.sku}}</span>
+        <span *ngIf="producto.sku" class="text-muted"><strong>Style Code: </strong>{{producto.sku}}</span>
       </section>
 
       <!-- Single product -->
@@ -54,12 +54,17 @@
             </div>
           </div>
           <div class="col-md-6 pl-xl-5">
+            <div class="d-sm-flex align-items-center justify-content-between mb-2">
+              <!-- titulo -->
+              <div class="d-flex align-items-center mb-sm-0 mb-4" *ngIf="descuento_activo == null || !(producto.nombre.toLowerCase().includes(descuento_activo.palabraClave))">
+                <span class="h3 d-inline-block mb-0">{{producto.nombre}}</span>
+              </div>
+            </div>
+
             <div class="d-sm-flex align-items-center justify-content-between mb-4">
-
-
               <!-- Price normal -->
               <div class="d-flex align-items-center mb-sm-0 mb-4" *ngIf="descuento_activo == null || !(producto.nombre.toLowerCase().includes(descuento_activo.palabraClave))">
-                <span class="h3 d-inline-block mb-0">{{producto.precioVenta}}€</span>
+                <span class="h4 d-inline-block mb-0">{{producto.precioVenta}},00€</span>
               </div>
 
               <!-- Price descuento -->
@@ -69,8 +74,6 @@
                 <span class="ml-4 p-2 badge badge-danger font-size-base font-weight-bold" style="background: black;">-{{descuento_activo.descuento}}%</span>
               </div>
 
-              
-  
 
 
             </div>
@@ -90,32 +93,25 @@
               <div class="col-sm-4 order-sm-2 order-1 text-sm-right">
                 <a href="#modal-sizing" data-toggle="modal" class="d-inline-block mt-sm-4 mb-sm-0 mb-4 pt-sm-3 font-weight-bold text-decoration-0 text-dark">
                   <i class="cxi-hanger mr-2"></i>
-                  Guia de tallas
+                  Guía de tallas
                 </a>
-              </div>
-              <div class="col-lg-2 col-4 order-lg-3 order-3">
-                <div class="form-group">
-                  <select class="form-control custom-select" id="select-input" disabled>
-                    <option value='1'>1</option>
-                  </select>
-                </div>
               </div>
               <div class="col-lg-6 order-lg-4 order-4">
 
                 
                 <!-- Producto no disponible -->
-                <button *ngIf="stock <= 0" class="btn btn-block btn-primary" disabled style="background: black; border-color: black;">
+                <button *ngIf="stock <= 0" class="btn btn-block" disabled style="background: black; border-color: black; color: white;">
                   PRODUCTO NO DISPONIBLE
                 </button>
 
 
-                <button *ngIf="!loader_carrito && stock >0" class="btn btn-block btn-primary" (click)="agregar_producto()" style="background: black; border-color: black;">
+                <button *ngIf="!loader_carrito && stock >0" class="btn btn-block" (click)="agregar_producto()" style="background: black; border-color: black; color: white;">
                   <i class="cxi-cart mr-2"></i>
                   Añadir al carrito
                 </button>
 
                 <!-- mientras se realiza la peticion al back -->
-                <button *ngIf="loader_carrito" type="button" class="btn btn-primary" disabled>
+                <button *ngIf="loader_carrito" type="button" class="btn btn-color" disabled>
                   <span class="spinner-grow spinner-grow-sm mr-2" role="status" aria-hidden="true"></span>
                   Agregando...
                 </button>
@@ -141,7 +137,7 @@
                 <div class="collapse" id="delivery" aria-labelledby="delivery-card" data-parent="#productTerms">
                   <div class="card-body">
                     <p class="font-size-sm">
-                      Envio gratuito a partir de <strong>50€</strong>.
+                      Envio gratuito a partir de <strong>70€</strong>.
                     </p>
                     <!-- Delivery table -->
                     <div class="table-responsive px-md-3">
@@ -157,7 +153,7 @@
                           <tr>
                             <th class="font-weight-normal">{{item.tipo}}</th>
                             <td>{{item.tiempo}}</td>
-                            <td>{{item.precio}}</td>
+                            <td>{{item.precio}}€</td>
                           </tr>
                         </tbody>
                       </table>
@@ -199,69 +195,8 @@
   
       </section>
 
-      <!-- Product Details -->
-      <div class="py-5" style="background-color: #e5e8ed;">
-        <section  class="container my-lg-2 py-2 py-md-4" >
-          <div class="row">
-            <div class="col-lg-7 col-md-8 mb-md-0 mb-4">
-              <h3 class="h5 mb-3">Detalles</h3>
-              <p>Id habitant tempor aliquam vulputate enim velit tincidunt sed. Urna sed facilisis nulla feugiat amet venenatis. Id suspendisse ut quis tellus aliquam pellentesque neque, semper donec.</p>
-              <ul class="pl-3">
-                <li>Brand: Jordan</li>
-                <li>Color: gray / red / yellow</li>
-                <li>Mid-cut design</li>
-                <li>Lace-up fastening</li>
-                <li>Rubber outsole pods for durability and traction</li>
-                <li>Moulded grooves in forefoot offer added flexibility</li>
-                <li>Padded cuff with inner nodes designed to offer comfort and support around the Achilles tendon</li>
-              </ul>
-              <hr class="my-4">
-              <h3 class="h5 mb-3">Fabric</h3>
-              <ul class="pl-3">
-                <li>Upper: 50% real leather, 50% textile</li>
-                <li>Lining: 100% textile</li>
-                <li>Sole: 100% other materials</li>
-              </ul>
-              <hr class="my-4">
-              <h3 class="h5 mb-3">Care</h3>
-              <ul class="pl-0">
-                <li class="media">
-                  <img src="../../assets/img/ecommerce/shop/single/care/hand-wash.svg" alt="Icon" class="d-block mr-3">
-                  <div class="media-body pl-1">
-                    Hand wash only (30°)
-                  </div>
-                </li>
-                <li class="media">
-                  <img src="../../assets/img/ecommerce/shop/single/care/no-ironing.svg" alt="Icon" class="d-block mr-3">
-                  <div class="media-body pl-1">
-                    No ironing
-                  </div>
-                </li>
-                <li class="media">
-                  <img src="../../assets/img/ecommerce/shop/single/care/no-bleach.svg" alt="Icon" class="d-block mr-3">
-                  <div class="media-body pl-1">
-                    Do not use any bleach
-                  </div>
-                </li>
-                <li class="media">
-                  <img src="../../assets/img/ecommerce/shop/single/care/no-tumble-dry.svg" alt="Icon" class="d-block mr-3">
-                  <div class="media-body pl-1">
-                    Do not tumble dry
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div class="col-md-4 offset-lg-1">
-  
-            
-            </div>
-          </div>
-        </section>
-      </div>
-
-   
       <!-- Recomended Products  -->
-      <section class="py-5" style="background-color: #e5e8ed;">
+      <section class="py-5" style="background-color: #f6f7f7;">
         <div class="container my-lg-2 py-2 py-md-4">
           <div class="d-flex align-items-center justify-content-between pb-sm-1 mb-5">
             <h2 class="h1 pr-3 mb-0">Productos recomendados</h2>
@@ -278,7 +213,7 @@
             <div class="cs-carousel-inner-two" data-carousel-options=''>
 
               <!-- Item -->
-              <div *ngFor="let item of productos_rec">
+              <div *ngFor="let item of recomendados">
                 <div class="card card-product mx-auto">
                   <div class="card-product-img">
                     <a [routerLink]="['/productos/',item._id]" target="_blank" class="card-img-top">
@@ -305,137 +240,168 @@
         <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
           <div class="modal-content border-0">
             <div class="modal-header border-0 pb-0 px-md-5 px-4 d-block position-relative">
-              <h3 class="modal-title mt-4 mb-0 text-center">Size chart</h3>
+              <h3 class="modal-title mt-4 mb-0 text-center">Guía de tallas</h3>
               <button type="button" class="close position-absolute" style="top: 1.5rem; right: 1.5rem;" data-dismiss="modal" aria-label="Close">
                 <i class="cxi-cross" aria-hidden="true"></i>
               </button>
             </div>
             <div class="modal-body px-md-5 px-4">
-              <ul class="nav nav-tabs justify-content-center">
-                <li class="nav-item">
-                  <a href="#" class="nav-link active">Women</a>
+              <ul class="nav  justify-content-center">
+                <li class="pb-3 nav-item">
+                  <a href="#" class="nav-link active">- Sneakers -</a>
                 </li>
-                <li class="nav-item">
+                <!-- <li class="nav-item">
                   <a href="#" class="nav-link">Men</a>
                 </li>
                 <li class="nav-item">
                   <a href="#" class="nav-link">Kids</a>
-                </li>
+                </li> -->
               </ul>
               <div class="table-responsive border rounded">
-                <h4 class="mb-0 py-3 font-size-lg text-center">Footwear</h4>
-                <table class="table table-striped mb-0">
+                <table class="table table-striped  mb-0">
                   <tbody>
                     <tr>
-                      <th scope="row" class="font-weight-normal">Europe</th>
-                      <td>35</td>
+                      <th scope="row" class="font-weight-normal">EU</th>
                       <td>36</td>
-                      <td>37</td>
+                      <td>36.5</td>
+                      <td>37.5</td>
                       <td>38</td>
+                      <td>38.5</td>
                       <td>39</td>
                       <td>40</td>
+                      <td>40.5</td>
                       <td>41</td>
                       <td>42</td>
+                      <td>42.5</td>
+                      <td>43</td>
+                      <td>44</td>
+                      <td>44.5</td>
+                      <td>45</td>
+                      <td>45.5</td>
+                      <td>46</td>
+                      <td>47</td>
+                      <td>47.5</td>
+                      <td>48</td>
+                      <td>48.5</td>
+                      <td>49.5</td>
+                      <td>50.5</td>
+                      <td>51.5</td>
                     </tr>
                     <tr>
-                      <th scope="row" class="font-weight-normal">USA</th>
+                      <th scope="row" class="font-weight-normal">US-M</th>
+                      <td>4.5	</td>
                       <td>5</td>
+                      <td>5.5	</td>
                       <td>6</td>
-                      <td>6.5</td>
-                      <td>7.5</td>
-                      <td>8</td>
-                      <td>9</td>
-                      <td>10</td>
-                      <td>11</td>
-                    </tr>
-                    <tr>
-                      <th scope="row" class="font-weight-normal">United Kingdom</th>
-                      <td>2</td>
-                      <td>3</td>
-                      <td>4</td>
-                      <td>5</td>
-                      <td>6</td>
+                      <td>6.5	</td>
                       <td>7</td>
+                      <td>7.5	</td>
                       <td>8</td>
+                      <td>8.5	</td>
                       <td>9</td>
+                      <td>9.5	</td>
+                      <td>10</td>
+                      <td>10.5</td>
+                      <td>11</td>
+                      <td>11.5</td>
+                      <td>12</td>
+                      <td>12.5</td>
+                      <td>13</td>
+                      <td>13.5</td>
+                      <td>14</td>
+                      <td>15</td>
+                      <td>16</td>
+                      <td>17</td>
+                      <td>18</td>
                     </tr>
                     <tr>
-                      <th scope="row" class="font-weight-normal">China</th>
-                      <td>230/83</td>
-                      <td>235/84</td>
-                      <td>240/85</td>
-                      <td>245/86</td>
-                      <td>255/87</td>
-                      <td>260/88</td>
-                      <td>265/89</td>
-                      <td>275/90</td>
+                      <th scope="row" class="font-weight-normal">UK</th>
+
+                      <td>3.5 </td>
+                      <td>4</td>
+                      <td>4.5 </td>
+                      <td>5</td>
+                      <td>5.5 </td>
+                      <td>6</td>
+                      <td>6.5 </td>
+                      <td>7</td>
+                      <td>7.5 </td>
+                      <td>8</td>
+                      <td>8.5 </td>
+                      <td>9</td>
+                      <td>9.5 </td>
+                      <td>10</td>
+                      <td>10.5</td>
+                      <td>11</td>
+                      <td>11.5</td>
+                      <td>12</td>
+                      <td>12.5</td>
+                      <td>13</td>
+                      <td>14</td>
+                      <td>15</td>
+                      <td>16</td>
+                      <td>17</td>
                     </tr>
                     <tr>
-                      <th scope="row" class="font-weight-normal">Russia</th>
+                      <th scope="row" class="font-weight-normal">CM</th>
+
+                      <td>23.5</td>
+                      <td>23.5</td>
+                      <td>24</td>
+                      <td>24</td>
+                      <td>24.5</td>
+                      <td>25</td>
+                      <td>25.5</td>
+                      <td>26</td>
+                      <td>26.5</td>
+                      <td>27</td>
+                      <td>27.5</td>
+                      <td>28</td>
+                      <td>28.5</td>
+                      <td>29</td>
+                      <td>29.5</td>
+                      <td>30</td>
+                      <td>30.5</td>
+                      <td>31</td>
+                      <td>31.5</td>
+                      <td>32</td>
+                      <td>33</td>
+                      <td>34</td>
                       <td>35</td>
                       <td>36</td>
-                      <td>37</td>
-                      <td>38</td>
-                      <td>39</td>
-                      <td>40</td>
-                      <td>41</td>
-                      <td>42</td>
                     </tr>
                     <tr>
-                      <th scope="row" class="font-weight-normal">Italy</th>
-                      <td>35</td>
-                      <td>36</td>
-                      <td>37</td>
-                      <td>38</td>
-                      <td>39</td>
-                      <td>40</td>
-                      <td>41</td>
-                      <td>42</td>
+                      <th scope="row" class="font-weight-normal">US-W</th>
+                      <td>6</td>
+                      <td>6.5	</td>
+                      <td>7</td>
+                      <td>7.5	</td>
+                      <td>8</td>
+                      <td>8.5	</td>
+                      <td>9</td>
+                      <td>9.5	</td>
+                      <td>10</td>
+                      <td>10.5</td>
+                      <td>11</td>
+                      <td>11.5</td>
+                      <td>12</td>
+                      <td>12.5</td>
+                      <td>13</td>
+                      <td>13.5</td>
+                      <td>14</td>
+                      <td>14.5</td>
+                      <td>15</td>
+                      <td>15.5</td>
+                      <td>16</td>
+                      <td>16.5</td>
+                      <td>17</td>
+                      <td>17.5</td>
                     </tr>
-                    <tr>
-                      <th scope="row" class="font-weight-normal">Italy</th>
-                      <td>230</td>
-                      <td>235</td>
-                      <td>240</td>
-                      <td>245</td>
-                      <td>255</td>
-                      <td>260</td>
-                      <td>265</td>
-                      <td>275</td>
-                    </tr>
+
                   </tbody>
                 </table>
               </div>
-              <hr class="my-4 mx-md-n5 mx-n4">
-              <div class="d-flex flex-lg-row flex-column align-items-center justify-content-center mb-4">
-                <h6 class="mb-lg-0">I want to see size equivalence in: </h6>
-                <ul class="nav nav-tabs mb-0 ml-lg-4">
-                  <li class="nav-item">
-                    <a href="#" class="nav-link active">cm</a>
-                  </li>
-                  <li class="nav-item">
-                    <a href="#" class="nav-link">Inches</a>
-                  </li>
-                </ul>
-              </div>
-              <div class="table-responsive border rounded mb-4">
-                <h4 class="mb-0 py-3 font-size-lg text-center">Equivalence in centimeters</h4>
-                <table class="table table-striped mb-0">
-                  <tbody>
-                    <tr>
-                      <th scope="row" class="font-weight-normal">Foot length</th>
-                      <td>22.4 cm</td>
-                      <td>23 cm</td>
-                      <td>23.6 cm</td>
-                      <td>24.3 cm</td>
-                      <td>24.9 cm</td>
-                      <td>25.5 cm</td>
-                      <td>26.2 cm</td>
-                      <td>26.8 cm</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
+
             </div>
           </div>
         </div>

@@ -30,7 +30,7 @@ export class InicioComponent implements OnInit {
         container: '.cs-carousel-inner',
         controlsText: ['<i class="cxi-arrow-left"></i>', '<i class="cxi-arrow-right"></i>'],
         mode: 'gallery',
-        navContainer: '#pager',
+        // navContainer: '#pager',
         responsive: {
           0: { controls: false },
           991: { controls: true }

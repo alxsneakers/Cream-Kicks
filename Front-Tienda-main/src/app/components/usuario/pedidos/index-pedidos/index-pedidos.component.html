@@ -2,18 +2,19 @@
 
 
 <main class="cs-page-wrapper">
-    <!-- Breadcrumb -->
-    <nav class="bg-secondary mb-3" aria-label="breadcrumb">
-        <div class="container">
-            <ol class="breadcrumb breadcrumb-alt mb-0">
-                <li class="breadcrumb-item">
-                    <a [routerLink]="['/']"><i class="cxi-home"></i></a>
-                </li>
+    <!-- Rutas -->
+    <!-- Rutas -->
+    <nav class="text-danger mt-3" aria-label="breadcrumb">
+      <div class="container">
+        <ol class="breadcrumb breadcrumb-alt mb-0">
+          <li class="breadcrumb-item">
+            <a [routerLink]="['/']" >Home</a>
+          </li>
+          <li class="breadcrumb-item active" aria-current="page">Mis pedidos</li>
+        </ol>
+      </div>
+  </nav>
 
-                <li class="breadcrumb-item active" aria-current="page">Mi perfil</li>
-            </ol>
-        </div>
-    </nav>
 
     <!-- Page container -->
     <section class="container pt-3 pt-lg-4 pb-5 pb-lg-6">

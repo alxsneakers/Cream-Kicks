@@ -1,20 +1,21 @@
 <app-nav></app-nav>
 
 <main class="cs-page-wrapper">
-    <nav class="bg-secondary mb-3" aria-label="breadcrumb">
+    <nav class="text-danger mt-3" aria-label="breadcrumb">
         <div class="container">
           <ol class="breadcrumb breadcrumb-alt mb-0">
             <li class="breadcrumb-item">
-              <a [routerLink]="['/']" ><i class="cxi-home"></i></a>
+              <a [routerLink]="['/']" >Home</a>
             </li>
             <li class="breadcrumb-item active" aria-current="page">Todos los productos</li>
           </ol>
         </div>
     </nav>
 
-    <section class="container pt-3 pb-5 pb-md-6 mb-2 mb-lg-0">
+    <section class="container pt-5 pb-5 pb-md-6 mb-2 mb-lg-0">
 
-        <div class="row mb-5" *ngIf="descuento_activo != null">
+
+        <!-- <div class="row mb-5" *ngIf="descuento_activo != null">
           <div class="col-12">
             <div class="py-5 px-md-5 px-4 bg-size-cover bg-position-center-y" style="background-image: url({{url}}descuentos/obtenerBanner/{{descuento_activo.banner}});">
               <div class="mt-md-3 mb-5 pb-5 p-md-2" style="max-width: 10rem;">
@@ -29,7 +30,7 @@
             </div>
 
           </div>
-        </div>
+        </div> -->
         
         <div class="row mb-4 pb-2">
           <div class="col-md-3 pr-lg-4 mb-3 mb-md-0">
@@ -46,6 +47,7 @@
             </button>
           </div>
 
+          <!-- campo superior - ordenar ver - paginator -->
           <div class="col-md-9">
             <div class="d-flex align-items-center">
               <div class="form-inline flex-nowrap mr-3 mr-xl-5">
@@ -92,7 +94,7 @@
               <div class="cs-offcanvas-body accordion-alt pb-4">
 
                 <!--Busqueda -->
-                <div class="card border-bottom">
+                <div class="card border-bottom mb-3">
                   <div class="card-header py-3" id="filter-panel">
                     <h6 class="accordion-heading">
                       <a href="#filter" role="button" data-toggle="collapse" aria-expanded="true" aria-controls="filter">
@@ -104,8 +106,8 @@
 
                   <div class="collapse show" id="filter" aria-labelledby="filter-panel">
                     <div class="cs-widget pl-1 pb-4 mt-n3">
-                      <div class="input-group-overlay d-lg-block d-none order-lg-3 mt-3">
-                        <input class="form-control appended-form-control" [value]="valueSearch" [(ngModel)]="valueSearch" type="text" placeholder="Buscar productos....." name="filter_producto" (keyup)="sendData($event)">
+                      <div class="input-group-overlay d-lg-block d-none order-lg-3 mt-3 pr-2">
+                        <input class="form-control appended-form-control " [value]="valueSearch" [(ngModel)]="valueSearch" type="text" placeholder="Buscar productos." name="filter_producto" (keyup)="sendData($event)">
                         <div class="input-group-append-overlay" >
                           <span class="input-group-text" style="color: white;">
                             <i class="cxi-search lead align-middle"></i>
@@ -128,7 +130,7 @@
                       </a>
                     </h6>
                   </div>
-                  <div class="collapse show" id="category" aria-labelledby="category-panel">
+                  <div class="collapse show pb-4" id="category" aria-labelledby="category-panel">
                     <div class="cs-widget-data-list cs-filter">
 
                       <ul class="cs-filter-list list-unstyled pr-3" style="height: 12rem;" data-simplebar data-simplebar-auto-hide="false">
@@ -157,7 +159,7 @@
                 </div>
 
                 <!-- Price -->
-                <div class="card border-bottom">
+                <div class="card border-bottom ">
                   <div class="card-header py-3" id="price-panel">
                     <h6 class="accordion-heading">
                       <a href="#price" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="price">
@@ -167,25 +169,25 @@
                     </h6>
                   </div>
                   <div class="collapse show" id="price" aria-labelledby="price-panel">
-                    <div class="cs-widget pl-1 pr-3 pb-4 mt-n3">
+                    <div class="cs-widget pl-1 pr-3 pb-4 mt-3">
                       <div class="cs-range-slider" data-start-min="250" data-start-max="680" data-min="0" data-max="1000" data-step="1">
-                        <div class="cs-range-slider-ui" id="slider"></div>
+                        <div class="mx-4 cs-range-slider-ui" id="slider"></div>
                         <div class="d-flex align-items-center mt-3">
                           <div class="w-50">
                             <div class="form-group position-relative mb-0">
-                              <input type="number" class="form-control form-control-sm cs-range-slider-value-min">
+                              <input type="number" class="form-control form-control-sm cs-range-slider-value-min" min="1">
                             </div>
                           </div>
                           <div class="mx-1 px-2 font-size-xs">—</div>
                           <div class="w-50">
                             <div class="form-group position-relative mb-0">
-                              <input type="number" class="form-control form-control-sm cs-range-slider-value-max">
+                              <input type="number" class="form-control form-control-sm cs-range-slider-value-max" min="1">
                             </div>
                           </div>
                         </div>
                         <div class="row mt-3">
                           <div class="col-12">
-                            <button class="btn btn-primary btn-sm btn-block" (click)="buscar_precios()">Filtrar</button>
+                            <button class="btn btn-color btn-sm btn-block" (click)="buscar_precios()">Filtrar</button>
                           </div>
                         </div>
                       </div>
@@ -223,7 +225,7 @@
                 <div class="col-lg-12 col-md-5">
                     <h3 class="h6 mb-2 text-uppercase">No se encontraron productos</h3>
                     <h2 class="h1 pb-lg-3">Es posible que sea un error</h2>
-                    <a style="cursor: pointer;" class="btn btn-gradient btn-hover-shadow" (click)="reset_productos()">Mostrar todos los productos</a>
+                    <a style="cursor: pointer;" class="btn btn-color btn-hover-shadow" (click)="reset_productos()">Mostrar todos los productos</a>
                 </div>
               </ng-container>
               
