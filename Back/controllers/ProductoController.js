@@ -11,36 +11,56 @@ const registro_producto= (async (req, res)=>{
     let stockTotal=0;
     let nameGaleria= [];
 
-
     // recupero el nombre de la img.
     const imgPath= req.files.portada.path; // uploads/productos/dpdnk12DXeyVz_TdpW2eiCF_.webp
     const portada= imgPath.split('/')[2]; // dpdnk12DXeyVz_TdpW2eiCF_.webp
-
-    for(let img of req.files.galeria){
-        const imgGaleria= img.path;
-        const galeria= imgGaleria.split('/')[2];
-        nameGaleria.push(galeria);
-    }
 
     //calculo el stock total
     tallas.forEach(element =>{
         stockTotal= stockTotal + parseInt(element.stock);
     });
 
-    // creo el prducto
-    const product= new Product({
-        nombre: dataProducto.nombre,
-        marca: dataProducto.marca,
-        tallas: tallas,
-        sku: dataProducto.sku,
-        stockTotal: stockTotal,
-        publicado: dataProducto.publicado,
-        precioCompra: dataProducto.precioCompra,
-        precioVenta: dataProducto.precioVenta,
-        portada: portada,
-        galeria: nameGaleria
-    });
-    const saveProduct= product.save();
+    if(req.files.galeria){ // con galeria
+        for(let img of req.files.galeria){
+            const imgGaleria= img.path;
+            const galeria= imgGaleria.split('/')[2];
+            nameGaleria.push(galeria);
+        }
+
+            // creo el prducto
+            const product= new Product({
+                nombre: dataProducto.nombre,
+                marca: dataProducto.marca,
+                tallas: tallas,
+                sku: dataProducto.sku,
+                stockTotal: stockTotal,
+                publicado: dataProducto.publicado,
+                precioCompra: dataProducto.precioCompra,
+                precioVenta: dataProducto.precioVenta,
+                portada: portada,
+                galeria: nameGaleria
+            });
+            const saveProduct= product.save();
+    }else{ // solo con portada
+        // creo el prducto
+        const product= new Product({
+            nombre: dataProducto.nombre,
+            marca: dataProducto.marca,
+            tallas: tallas,
+            sku: dataProducto.sku,
+            stockTotal: stockTotal,
+            publicado: dataProducto.publicado,
+            precioCompra: dataProducto.precioCompra,
+            precioVenta: dataProducto.precioVenta,
+            portada: portada,
+        });
+        const saveProduct= product.save();
+    }
+   
+    
+
+  
+    
     res.status(200).json({message: 'Producto creado con exito.'});
 });
 
@@ -67,7 +87,7 @@ const obtener_producto= (async (req, res)=>{
      // obtengo el (id) desde el parametro de la url es decir (/obtenerProducto/638249bf522c9c1b02807a33).
      const idProducto= req.params['id'];
      // recupero el producto de la bdd con el id del parametro de la peticion.
-     const producto= await Product.findById({_id: idProducto}, {nombre: 1, marca: 1, portada: 1, sku: 1, tallas: 1, stock: 1, precioCompra: 1, precioVenta:1, tienda: 1, _id: 0});
+     const producto= await Product.findById({_id: idProducto});
      res.status(200).json(producto); // devuelve el producto encontrado.
    }catch(error){ // lo devuelvo en array para ponerlo en la tabla del fronted.
     res.status(422).json({error: error});
@@ -81,23 +101,30 @@ const obtener_galeria= (async (req, res)=>{
 });
 
 const actualizar_producto= (async (req, res)=>{
-    const { nombre, marca, sku, tallas, stock, precioCompra, precioVenta, tienda } = req.body;
+    const dataProducto = req.body;
     const idProducto= req.params['id']; // obtengo el id desde el parametro de la url.
+    const tallas= JSON.parse(dataProducto.tallaStockArray); 
+    let stockTotal=0;
 
-    if(req.files){ // si img -> la actualizo
+    //calculo el stock total
+    tallas.forEach(element =>{
+        stockTotal= stockTotal + parseInt(element.stock);
+    });
+  
+    if(req.files.portada){ // si img -> la actualizo
         const imgPath= req.files.portada.path; 
         const portada= imgPath.split('/')[2];
 
         const producto= await Product.findByIdAndUpdate({_id: idProducto}, {
-            nombre: nombre,
-            marca: marca,
+            nombre: dataProducto.nombre,
+            marca: dataProducto.marca,
             tallas: tallas,
-            sku: sku,
-            stock: stock,
-            tienda: tienda,
-            precioCompra: precioCompra,
-            precioVenta: precioVenta,
-            portada: portada
+            sku: dataProducto.sku,
+            stockTotal: stockTotal,
+            precioCompra: dataProducto.precioCompra,
+            precioVenta: dataProducto.precioVenta,
+            portada: portada,
+            publicado: dataProducto.publicado,
         });
 
         // como se ha actualizo la portada, elimino la img anterior para no colapsar el servidor.
@@ -111,16 +138,16 @@ const actualizar_producto= (async (req, res)=>{
         res.status(200).json({updateProduct: 'OK'});
 
     }else{ // no img -> dejo la img anterior
-        // actualizo el producto.
+        // actualizo el producto
         const producto= await Product.findByIdAndUpdate({_id: idProducto}, {
-            nombre: nombre,
-            marca: marca,
+            nombre: dataProducto.nombre,
+            marca: dataProducto.marca,
             tallas: tallas,
-            sku: sku,
-            stock: stock,
-            tienda: tienda,
-            precioCompra: precioCompra,
-            precioVenta: precioVenta,
+            sku: dataProducto.sku,
+            stockTotal: stockTotal,
+            precioCompra: dataProducto.precioCompra,
+            precioVenta: dataProducto.precioVenta,
+            publicado: dataProducto.publicado,
         });
         res.status(200).json({updateProduct: 'OK'});
     }
@@ -201,11 +228,20 @@ const obtener_ultimos_productos= (async (req, res)=> {
 });
 
 
-// obtiene los 12 productos con mayopr numero de ventas
+// obtiene los 12 productos con mayor numero de ventas
 const obtener_populares_productos= (async (req, res) => {
     const productos= await Product.find({publicado: true}, {portada: 1, precioVenta: 1, _id: 1, nombre: 1}).sort([['nventas', -1]]).limit(12);
     res.status(200).json(productos);
 });
+
+
+// obtiene los 5 productos con mayor numero de ventas
+const obtener_populares_productos_dash= (async (req, res) => {
+    const productos= await Product.find({publicado: true}, {portada: 1, precioVenta: 1, nombre: 1}).sort([['nventas', -1]]).limit(5);
+    res.status(200).json(productos);
+});
+
+
 
 
 // devuelve la cantidad de producto de una marca
@@ -280,5 +316,6 @@ module.exports = {
     getProductoSearch,
     obtener_ultimos_productos,
     obtener_populares_productos,
-    obtener_cantidad_marca
+    obtener_cantidad_marca,
+    obtener_populares_productos_dash
 };

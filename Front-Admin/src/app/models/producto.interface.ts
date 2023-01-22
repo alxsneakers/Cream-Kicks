@@ -10,6 +10,14 @@ export interface ProductoModel {
 }
 
 
+export interface BestProductoModel {
+    _id: string;
+    nombre: string;
+    portada: string;
+    precioVenta: number;
+}
+
+
 // interfaz para crear un producto
 export interface ProductCreateModel {
     nombre: string;

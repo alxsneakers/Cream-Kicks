@@ -14,7 +14,7 @@
                                     <p class=" font-weight-bold">Ventas totales</p>
                                 </div>
                                 <div>
-                                    <h1>1</h1>
+                                    <h1>{{ventasTotales}}</h1>
                                 </div>
                             </div>
                         </div>
@@ -23,10 +23,10 @@
                         <div class="card tarjetas">
                             <div class="card-body colorBlack tarjeta">
                                 <div class="d-flex justify-content-between">
-                                    <p class=" font-weight-bold">Ventas semanales</p>
+                                    <p class=" font-weight-bold">Ganancia</p>
                                 </div>
                                 <div>
-                                    <h1>1</h1>
+                                    <h1>{{ganancia}}€</h1>
                                 </div>
                             </div>
                         </div>
@@ -38,7 +38,7 @@
                                     <p class=" font-weight-bold">Total productos</p>
                                 </div>
                                 <div>
-                                    <h1>1</h1>
+                                    <h1>{{totalProductos}}</h1>
                                 </div>
                             </div>
                         </div>
@@ -46,11 +46,21 @@
                     <div class="col-xl-3 col-sm-6 mb-4">
                         <div class="card tarjetas">
                             <div class="card-body colorBlack tarjeta">
+                                
+                                
                                 <div class="d-flex justify-content-between">
-                                    <p class=" font-weight-bold">Total usuarios</p>
+                                    <p class=" font-weight-bold">Usuarios Totales</p>
+                                    <h1>{{totalUsuarios}}</h1>
                                 </div>
+                                
+                                
+                                
+            
                                 <div>
-                                    <h1>1</h1>
+
+
+                                    
+                                    <h1></h1>
                                 </div>
                             </div>
                         </div>
@@ -58,10 +68,45 @@
                 </div>
                 <div class="row">
                     <app-grafico-ventas></app-grafico-ventas>
+                    <table mat-table [dataSource]="data" style="width: 500px;">
+
+                        <!-- Img Product -->
+                        <ng-container matColumnDef="bestProductos">
+                            <th class="pb-3" mat-header-cell *matHeaderCellDef style="font-size: 18px; font-weight: bold;">Mejores Productos</th>
+                            <td class="py-3" mat-cell *matCellDef="let element">
+                            <img style="max-width: 59px; max-height: 59px;" mat-card-image [src]="'http://localhost:4201/api/products/obtenerPortada/' + element.portada">
+                            <p>{{element.nombre}}</p>
+                            <p>{{element.marca}}</p>
+                        </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="precios">
+                            <th class="pb-3" mat-header-cell *matHeaderCellDef>Precios</th>
+                            <td class="py-3" mat-cell *matCellDef="let element">{{element.precioVenta}}€</td>
+                        </ng-container>
+
+
+
+                        <tr mat-header-row *matHeaderRowDef="columnsDisplay"></tr>
+                        <tr mat-row *matRowDef="let row; columns: columnsDisplay;"> 
+                    </table>
                 </div>
             </div>
         </div>
     </div>
+
+
+
+
+    
+
+
+
+    
 </section>
+
+
+
+
 
 

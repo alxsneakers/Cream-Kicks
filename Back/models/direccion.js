@@ -14,8 +14,7 @@ const DireccionSchema= Schema({
         required: true
     },
     dni: {
-        type: String,
-        required: true
+        type: String
     },
     codigoPostal: {
         type: String,

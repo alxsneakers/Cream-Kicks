@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { JwtHelperService } from "@auth0/angular-jwt"; // verifica si el token es correcto.
 import { Observable } from 'rxjs';
 import { LoginModel, LoginResponse, UpdateNameAccountModel } from '../models/auth.interface';
+import { UsuarioModel } from '../models/usuario.interface';
 
 
 @Injectable({
@@ -28,8 +29,8 @@ export class LoginService {
   }
 
   // Obtiene informacion del usuario que ha iniciado session.
-  getInfoAdmin(id){
-    return this.http.get('http://localhost:4201/api/obtenerAdmin/'+id);
+  getInfoAdmin(id): Observable<UsuarioModel>{
+    return this.http.get<UsuarioModel>('http://localhost:4201/api/obtenerAdmin/'+id);
   }
 
   getImgPerfilAdmin(idImg){

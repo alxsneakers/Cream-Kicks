@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { log } from 'console';
+import { FormTallaStockService } from 'src/app/services/form-talla-stock.service';
+import { MarcaService } from 'src/app/services/marca.service';
 import { ProductService } from 'src/app/services/product.service';
 
 @Component({
@@ -12,26 +15,34 @@ export class UpdateProductComponent implements OnInit {
 
   // Variables
   formUpdateProduct!: FormGroup;
+  publicado: boolean= false;
   file : File = undefined;
   imgSelect: any | ArrayBuffer=''; // img por defecto  
   public id;
   public product;
+  listaMarcas: Array<any>=[];
+  tallaPorStockZapatilla: Array<{ talla: string; stock: number }> = [];
 
-  constructor(private fb: FormBuilder, private productSvc: ProductService, private router: ActivatedRoute) { }
+
+  constructor(private fb: FormBuilder, private productSvc: ProductService, private routerA: ActivatedRoute, private router: Router, private formTallaService: FormTallaStockService, private marcaSvc: MarcaService) { }
 
 
   // inicia la validacion
   ngOnInit(): void {
+    this.getMarcas();
     this.formUpdateProduct= this.initForm();
     // obtengo el id del parametro url
-    this.router.params.subscribe(params =>{
+    this.routerA.params.subscribe(params =>{
       this.id= params['id'];
     });
-
     // rellena los datos del formulario con el producto.
     this.productSvc.obtenerProducto(this.id).subscribe(producto =>{
       this.product= producto; // guardo el producto
       this.colocarInfo(producto); // pongo la informacion en el formulario.  
+      
+      
+           
+      
     }, error=>{
       console.log(error);
     })
@@ -44,14 +55,25 @@ export class UpdateProductComponent implements OnInit {
       nombre: ['', [Validators.required]],
       marca: ['', [Validators.required]],
       sku: ['', [Validators.required]],
-      talla: ['', [Validators.required]],
-      stock: ['', [Validators.required]],
       precioCompra: ['', [Validators.required]],
       precioVenta: ['', [Validators.required]],
       portada: ['', []],
-      tienda: ['', []]
+      tienda: ['', []],
+      tallaStockArray: new FormArray([])
     });
+
   }
+
+
+  getMarcas(){
+    this.marcaSvc.allMarcas().subscribe(marcas =>{
+      marcas.forEach(marca =>{
+        this.listaMarcas.push(marca.nombre);
+      })
+    })
+  }
+
+  
 
 
   // vuelve a colocar la informacion del producto en el formulario.
@@ -59,21 +81,31 @@ export class UpdateProductComponent implements OnInit {
     this.formUpdateProduct.get('nombre').setValue(data.nombre);
     this.formUpdateProduct.get('marca').setValue(data.marca);
     this.formUpdateProduct.get('sku').setValue(data.sku);
-    this.formUpdateProduct.get('talla').setValue(data.talla);
-    this.formUpdateProduct.get('stock').setValue(data.stock);
     this.formUpdateProduct.get('precioCompra').setValue(data.precioCompra);
     this.formUpdateProduct.get('precioVenta').setValue(data.precioVenta);
-    this.formUpdateProduct.get('tienda').setValue(data.tienda);
-
+    this.publicado= data.publicado;
+    this.product.tallas.forEach(element => this.tallaStockArray.push(this.fb.group({talla: [element.talla, [Validators.required]], stock: [element.stock, [Validators.required]]})));    
     // colaca la img del producto en el formulario.
     this.imgSelect= 'http://localhost:4201/api/products/obtenerPortada/' + data.portada;
   }
 
+  get tallaStockArray() {
+    return <FormArray>this.formUpdateProduct.get('tallaStockArray');
+  }
+
+  addProducto() {
+    this.tallaStockArray.push(this.formTallaService.getTallaStockForm());
+  }
+
+  removeUser(i: number) {
+    this.tallaStockArray.removeAt(i);
+  }
+
   // actualiza el producto
-  updateProduct(){
+  updateProduct(){     
     this.productSvc.actualizarProducto(this.formUpdateProduct.value, this.file,this.id).subscribe({
       next: data =>{
-        console.log(data);
+        this.router.navigate(['/productos']);
       },
       error: error =>{
         console.log(error);

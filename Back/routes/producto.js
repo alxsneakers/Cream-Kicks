@@ -25,6 +25,7 @@ productRouter
     .get('/obtener_producto_publico/:id', productoController.obtener_producto_publico)
     .get('/obtener_ultimos_productos', productoController.obtener_ultimos_productos)
     .get('/obtener_populares_productos', productoController.obtener_populares_productos)
+    .get('/obtener_populares_productos_dash', productoController.obtener_populares_productos_dash)
     .get('/obtener_cantidad_marca/:marca', productoController.obtener_cantidad_marca)
     .get('/listar_productos_recomendados_publico/:marca', productoController.listar_productos_recomendados_publico)
     .get('/get_talla_stock_producto/:id/:talla', productoController.get_talla_stock_producto);

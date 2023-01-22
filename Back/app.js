@@ -2,6 +2,12 @@ const express = require('express');
 const mongoose = require('mongoose');
 const app = express();
 const cors= require('cors');
+const Venta= require('./models/venta');
+const Product= require('./models/products');
+const Cliente= require('./models/cliente');
+
+
+
 // npm
 const { swaggerDocs }= require('./swagger/swagger');
 
@@ -21,6 +27,50 @@ io.on('connection', function(socket){
         io.emit('update-carrito-add', data);
         console.log(data);
     });
+
+
+    // esta accion se ejecuta cada 3s
+    setInterval(async () => {
+        try{
+            let pedidosProcesando= await Venta.find({estado: 'procesando'});
+            let pedidosCompletado= await Venta.find({estado: 'completado'});
+            let pedidosCancelado= await Venta.find({estado: 'cancelado'});
+            io.emit('estadoVentas', {procesando: pedidosProcesando.length, completado: pedidosCompletado.length, cancelado: pedidosCancelado.length});
+        
+            const productos= await Product.find({publicado: true}, {portada: 1, precioVenta: 1, nombre: 1}).sort([['nventas', -1]]).limit(5);
+            io.emit('bestProductos', {productos});
+
+            const ventas= await Venta.find();
+            let ventasTotales= await ventas.length;
+            io.emit('ventasTotales', {ventasTotales});
+
+            let ganancias=0;
+            ventas.forEach(venta => ganancias= ganancias + venta.subtotal);
+            io.emit('ganancias', {ganancias});
+
+
+            const allProductos= await Product.find({publicado: true});
+            let totalProductos= await allProductos.length;
+            io.emit('totalProductos', {totalProductos});
+
+            const allClientes= await Cliente.find();
+            let totalUsuarios= await allClientes.length;
+            io.emit('totalUsuarios', {totalUsuarios});
+
+
+
+
+
+            
+
+
+
+
+        
+        }catch(e){
+            console.error(e);
+        }
+    }, 30000);
 });
 
 require('dotenv').config();

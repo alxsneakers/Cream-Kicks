@@ -1,9 +1,9 @@
 import { createReducer, on } from "@ngrx/store";
 import { ProductoState } from "../../models/producto.state";
-import { loadedProductos, loadProductos, deleteManyProducto, deleteManyProductoSuccess, deleteManyProductoError, deleteProducto, loadedGaleria, loadGaleria } from "../actions/producto.actions";
+import { loadedProductos, loadProductos, deleteManyProducto, deleteManyProductoSuccess, deleteManyProductoError, deleteProducto, loadedGaleria, loadGaleria, loadBestProductos, loadedBestProductos } from "../actions/producto.actions";
 
 // estado inicial
-export const initialState: ProductoState= { loading: false, loadingDelete: false, laodingGaleria: false, productos: [], galeria: [], isError: null};
+export const initialState: ProductoState= { loading: false, loadingDelete: false, laodingGaleria: false, loadingBestProductos: false, bestProductos: [], productos: [], galeria: [], isError: null};
 
 // funciones reducers
 export const productoReducer= createReducer(
@@ -20,6 +20,13 @@ export const productoReducer= createReducer(
     on(loadedGaleria, (state, {galeria}) => { // acciones
         return {...state, laodingGaleria: false, galeria};
     }),
+    on(loadBestProductos, (state) =>{
+        return {...state, loadingBestProductos: true};
+    }),
+    on(loadedBestProductos, (state, {bestProductos}) => { // acciones
+        return {...state, loadingBestProductos: false, bestProductos};
+    }),
+    
     on(deleteProducto, (state, {id}) => {
         return {...state, id: id, loadingDelete: true, isError: null};
     }),

@@ -6,7 +6,6 @@ import { LoginComponent } from './components/login/login.component';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button'; 
-import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatSelectModule } from '@angular/material/select';
 import { MatToolbarModule } from '@angular/material/toolbar'; 
@@ -38,7 +37,6 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
-import { MatInputModule } from '@angular/material/input';
 import { CreateProductComponent } from './components/products/create-product/create-product.component';
 import { IndexProductComponent } from './components/products/index-product/index-product.component';
 import { MatCardModule } from '@angular/material/card';
@@ -81,8 +79,11 @@ import { DetalleCompraComponent } from './components/clientes/detalle-compra/det
 import { GraficoVentasComponent } from './components/dashboard/graficos/grafico-ventas/grafico-ventas.component';
 import { IndexPedidoComponent } from './components/pedidos/index-pedido/index-pedido.component';
 import { CarouselModule } from './components/products/carousel/carousel.module';
-
-
+import { GraficoVentasTotalesComponent } from './components/dashboard/graficos/grafico-ventas-totales/grafico-ventas-totales.component';
+// ------------------------------------------------------------
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { ScrollingModule } from '@angular/cdk/scrolling';
 @NgModule({
   declarations: [
     AppComponent,
@@ -118,23 +119,24 @@ import { CarouselModule } from './components/products/carousel/carousel.module';
     ComprasComponent,
     DetalleCompraComponent,
     GraficoVentasComponent,
-    IndexPedidoComponent
+    IndexPedidoComponent,
+    GraficoVentasTotalesComponent
   ],
   imports: [
+    MatFormFieldModule,
+    MatInputModule,
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
     MatButtonModule,
-    MatFormFieldModule,
     HttpClientModule,
     MatTableModule,
     MatPaginatorModule,
     MatCheckboxModule,
     MatSelectModule,
     MatToolbarModule,
-    MatInputModule,
     MatCardModule,
     MatDialogModule,
     MatTabsModule,
@@ -153,9 +155,11 @@ import { CarouselModule } from './components/products/carousel/carousel.module';
     MatBadgeModule,
     MatExpansionModule,
     NgxChartsModule,
-    CarouselModule
+    CarouselModule,
+    ScrollingModule
   
   ],
+  exports: [ MatInputModule ],
   entryComponents: [ConfirmDialogComponent],
   providers: [CookieService, { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true}],
   bootstrap: [AppComponent]

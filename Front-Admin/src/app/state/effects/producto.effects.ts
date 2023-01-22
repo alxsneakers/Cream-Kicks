@@ -26,7 +26,20 @@ export class ProductoEffects {
             map(galeria => ({type: '[Galeria] Loaded success', galeria})),
             catchError(() => EMPTY)
         ))
-    ))
+    ));
+
+
+    loadBestProductos$= createEffect(() => this.actions$.pipe(
+        ofType('[Producto] Load BestProductos'), // encargado de escuchar la accion
+        mergeMap(() => this._productService.obtener_populares_productos() // retorna la data
+            .pipe(
+                map(bestProductos => ({type: '[Producto] LoadedBestProductos success', bestProductos})),
+                catchError(() => EMPTY)
+            ))    
+        )
+    );
+
+    
 
     deleteProducto$= createEffect(() => this.actions$.pipe(
         ofType(deleteProducto),

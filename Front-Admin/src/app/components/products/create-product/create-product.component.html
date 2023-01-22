@@ -26,9 +26,9 @@
                     .get('nombre')?.touched && form1
                     .get('nombre')?.errors?.['required']">
                 </mat-error>
-              </mat-form-field>
+              </mat-form-field> 
 
-              <!-- Marcas --->
+              <!-- Marcas -->
               <mat-form-field class="w-100" appearance="outline">
                 <mat-label>Marca</mat-label>
                 <mat-select formControlName="marca">
@@ -38,7 +38,7 @@
                 .get('marca')?.touched && form1
                 .get('marca')?.errors?.['required']">
                 </mat-error>
-              </mat-form-field>
+              </mat-form-field> 
 
               <!-- Sku -->
               <mat-form-field class="w-100" appearance="outline">
@@ -53,7 +53,7 @@
               <!-- Precio compra -->
               <mat-form-field class="w-100" appearance="outline" floatLabel="always">
                 <mat-label>Precio Compra</mat-label>
-                <input matInput type="number" step="any" placeholder="0" formControlName="precioCompra" min="1"
+                <input matInput type="number"  placeholder="0" formControlName="precioCompra" min="1"
                   (keypress)="onlyNumbers($event)">
 
                 <mat-error *ngIf="form1
@@ -69,7 +69,7 @@
               <!-- Precio venta -->
               <mat-form-field class="w-100" appearance="outline" floatLabel="always">
                 <mat-label>Precio Venta</mat-label>
-                <input matInput type="number" step="any" placeholder="0" formControlName="precioVenta" min="1"
+                <input matInput type="number" placeholder="0" formControlName="precioVenta" min="1"
                   (keypress)="onlyNumbers($event)">
                 <mat-error *ngIf="form1
                         .get('precioVenta')?.touched && form1
@@ -82,7 +82,7 @@
               </mat-form-field>
 
               <!-- Drop zone -->
-              <mat-card class="card" > 
+              <!--<mat-card class="card" > 
                 <mat-form-field class="w-100" appearance="outline" floatLabel="always">   
                   <mat-card-content class="dropzone" >
                     <div ngx-dropzone (change)="onSelect($event)" [accept]="'image/*'">
@@ -91,49 +91,61 @@
                       </ngx-dropzone-image-preview>
                     </div>
                   </mat-card-content>
-              </mat-form-field>
+                </mat-form-field>
+              </mat-card> -->
+
+              <mat-card class="card">    
+                <mat-card-content class="dropzone">
+                    <ngx-dropzone (change)="onSelect($event)" [accept]="'image/*'">
+                        <ngx-dropzone-label>Arrastre y suelte su imagen</ngx-dropzone-label>
+                        <ngx-dropzone-image-preview *ngFor="let i of images" [file]="i" [removable]="true" (removed)="onRemove(i)">
+                        </ngx-dropzone-image-preview>
+                        </ngx-dropzone>
+                </mat-card-content>
+            </mat-card>
 
 
        
-              </mat-card>
+         
 
 
-              <!-- Publicar en tienda -->
-              <mat-checkbox class="text-uppercase " formControlName="publicado">Publicar en Tienda</mat-checkbox>
+                <!-- Publicar en tienda -->
+                <mat-checkbox class="text-uppercase " formControlName="publicado">Publicar en Tienda</mat-checkbox>
 
-              <div class="mt-2">
-                <button mat-button matStepperNext>Siguiente</button>
-              </div>
-            </form>
-          </mat-step>
-
-
-          <!-- 2 -->
-          <mat-step [stepControl]="form1" [editable]="false">
-            <div class="container">
-              <form [formGroup]="form1" (ngSubmit)="onSubmit()">
-                <ng-template matStepLabel>Stock por tallas</ng-template>
-
-
-                <button class="btnAdd mb-4" type="button" mat-raised-button (click)="addProducto()">Agregar tallas y
-                  stock</button>
-
-                <div *ngFor="let u of tallaStockArray.controls; index as i">
-
-                  <span class="mr-4">Talla {{ i + 1 }}</span>
-                  <app-product-form class="mr-4" [inputFormGroup]="$any(u)"></app-product-form>
-                  <button class="btnDelete mr-4" mat-raised-button (click)="removeUser(i)">borrar</button>
-
+                <div class="mt-2">
+                  <button mat-button matStepperNext>Siguiente</button>
                 </div>
-
-
-                <div>
-                  <button mat-button matStepperPrevious>Volver</button>
-                  <button mat-button matStepperNext [disabled]="form1.invalid">Siguiente</button>
-                </div>
+                
               </form>
-            </div>
           </mat-step>
+
+
+            <!-- 2 -->
+            <mat-step [stepControl]="form1" [editable]="false">
+              <div class="container">
+                <form [formGroup]="form1" (ngSubmit)="onSubmit()">
+                  <ng-template matStepLabel>Stock por tallas</ng-template>
+
+
+                  <button class="btnAdd mb-4" type="button" mat-raised-button (click)="addProducto()">Agregar tallas y
+                    stock</button>
+
+                  <div *ngFor="let u of tallaStockArray.controls; index as i">
+
+                    <span class="mr-4">Talla {{ i + 1 }}</span>
+                    <app-product-form class="mr-4" [inputFormGroup]="$any(u)"></app-product-form>
+                    <button class="btnDelete mr-4" mat-raised-button (click)="removeUser(i)">borrar</button>
+
+                  </div>
+
+
+                  <div>
+                    <button mat-button matStepperPrevious>Volver</button>
+                    <button mat-button matStepperNext [disabled]="form1.invalid">Siguiente</button>
+                  </div>
+                </form>
+              </div>
+            </mat-step> 
 
             <!-- 3 -->
             <mat-step>
@@ -158,16 +170,16 @@
                 
 
 
-              </div>
+                </div>
               
               <div>
                 <button mat-button (click)="createProduct()">Crear</button>
               </div>
-            </mat-step>
+            </mat-step> 
           </mat-stepper>
 
 
-        <!-- ------------------------ -->
+       
 
 
 

@@ -113,7 +113,7 @@ const enviar_correo_compra= (async (req, res)=>{
     
         var mailOptions = {
             from: process.env.GMAIL_ACC,
-            to: 'hectormartindama@gmail.com', //venta.cliente.email
+            to: venta.cliente.email, //venta.cliente.email
             subject: 'Gracias por tu compra, Mi Tienda',
             html: htmlToSend
         };
