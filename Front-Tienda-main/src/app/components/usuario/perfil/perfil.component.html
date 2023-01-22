@@ -2,16 +2,15 @@
 
 
 <main class="cs-page-wrapper">
-    <!-- Breadcrumb -->
-    <nav class="bg-secondary mb-3" aria-label="breadcrumb">
+    <!-- Rutas -->
+    <nav class="text-danger mt-3" aria-label="breadcrumb">
         <div class="container">
-            <ol class="breadcrumb breadcrumb-alt mb-0">
-                <li class="breadcrumb-item">
-                    <a [routerLink]="['/']"><i class="cxi-home"></i></a>
-                </li>
-
-                <li class="breadcrumb-item active" aria-current="page">Mi perfil</li>
-            </ol>
+          <ol class="breadcrumb breadcrumb-alt mb-0">
+            <li class="breadcrumb-item">
+              <a [routerLink]="['/']" >Home</a>
+            </li>
+            <li class="breadcrumb-item active" aria-current="page">Mi perfil</li>
+          </ol>
         </div>
     </nav>
 
@@ -90,7 +89,7 @@
                         </div>
 
                     </div>
-                    <button type="submit" class="btn btn-primary btn-lg">&nbsp;Actualizar Perfil&nbsp;</button>
+                    <button type="submit" class="btn btn-color btn-lg">Actualizar Perfil</button>
                 </form>
             </div>
         </div>

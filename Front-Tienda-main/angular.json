@@ -5,7 +5,10 @@
   "projects": {
     "tienda": {
       "projectType": "application",
-      "schematics": {},
+      "schematics":{
+        "@schematics/angular:component": {
+           "style": "scss" }
+     },
       "root": "",
       "sourceRoot": "src",
       "prefix": "app",
@@ -25,9 +28,10 @@
             "styles": [
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "./node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css",
+              "./node_modules/nouislider/dist/nouislider.min.css",
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": ["./node_modules/nouislider/dist/nouislider.min.js"]
           },
           "configurations": {
             "production": {

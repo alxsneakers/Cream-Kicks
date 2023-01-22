@@ -2,17 +2,18 @@
 
 
 <main class="cs-page-wrapper">
-    <!-- Breadcrumb -->
-    <nav class="bg-secondary mb-3" aria-label="breadcrumb">
+    <!-- Rutas -->
+    <nav class="text-danger mt-3" aria-label="breadcrumb">
         <div class="container">
-            <ol class="breadcrumb breadcrumb-alt mb-0">
-                <li class="breadcrumb-item">
-                    <a [routerLink]="['/']"><i class="cxi-home"></i></a>
-                </li>
-                <li class="breadcrumb-item active" aria-current="page">Mis direcciones</li>
-            </ol>
+          <ol class="breadcrumb breadcrumb-alt mb-0">
+            <li class="breadcrumb-item">
+              <a [routerLink]="['/']" >Home</a>
+            </li>
+            <li class="breadcrumb-item active" aria-current="page">Mis direcciones</li>
+          </ol>
         </div>
     </nav>
+
 
     <!-- Page container -->
     <section class="container pt-3 pt-lg-4 pb-5 pb-lg-6">
@@ -80,7 +81,7 @@
                             </div>
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-primary btn-lg" [disabled]="registroForm.invalid">&nbsp;Crear Dirección&nbsp;</button>
+                    <button type="submit" class="btn btn-color btn-lg" [disabled]="registroForm.invalid">&nbsp;Crear Dirección&nbsp;</button>
                 </form>
 
                 

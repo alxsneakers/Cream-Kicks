@@ -29,6 +29,7 @@
     "jquery": "^3.6.2",
     "ng-starrating": "^1.0.20",
     "ngx-bar-rating": "^4.0.1",
+    "nouislider": "^15.6.1",
     "rxjs": "~7.5.0",
     "socket.io-client": "^4.5.4",
     "star-rating.js": "^4.3.0",

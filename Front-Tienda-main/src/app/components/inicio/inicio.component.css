@@ -12,6 +12,10 @@
     background-image: url(../../../assets/img/banners/banner3.gif);
 }
 
+.banner4{
+    background-image: url(../../../assets/img/banners/banner4.gif);
+}
+
 
 
 
@@ -30,6 +34,12 @@
 
     .banner3{
         background-image: url(../../../assets/img/banners/banner3mobile.gif);
+        width: 390px;
+        height: 224px;
+    }
+
+    .banner4{
+        background-image: url(../../../assets/img/banners/banner4mobile.gif);
         width: 390px;
         height: 224px;
     }

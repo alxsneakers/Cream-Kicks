@@ -1,22 +1,21 @@
 
 <app-nav></app-nav>
 <main  class="cs-page-wrapper">
-  <nav class="bg-secondary mb-3" aria-label="breadcrumb">
+  <nav class="text-danger mt-3" aria-label="breadcrumb">
     <div class="container">
       <ol class="breadcrumb breadcrumb-alt mb-0">
         <li class="breadcrumb-item">
-          <a href="index.html"><i class="cxi-home"></i></a>
+          <a [routerLink]="['/']" >Home</a>
         </li>
-        <li class="breadcrumb-item active" aria-current="page">Checkout</li>
+        <li class="breadcrumb-item active" aria-current="page">Login</li>
       </ol>
     </div>
-  </nav>
-
+</nav>
   <section class="container pt-3 pt-md-4 pb-3 pb-sm-4 pb-lg-5 mb-4">
     <div class="row">
         <div class="col-lg-6">
             <div class="px-md-5">
-                <h3 class="modal-title mt-4 mb-0 text-center">Iniciar Sesión</h3>
+                <h3 class="modal-title mt-4 mb-4 text-center">Iniciar Sesión</h3>
                 <p class="font-size-sm text-muted text-center">Acceda a su cuenta con la dirección de correo electrónico y la contraseña proporcionadas durante el registro.</p>
                 
                 <!-- Error login -->
@@ -33,20 +32,20 @@
                       <input type="password" class="form-control appended-form-control" id="signin-password" placeholder="contraseña" required="" name="password" [(ngModel)]="user.password" >
                     </div>
                   </div>
-                  <div class="d-flex justify-content-between align-items-center form-group">
+                  <!-- <div class="d-flex justify-content-between align-items-center form-group">
                     <a href="#" class="font-size-sm text-decoration-none">Olvido su contraseña?</a>
-                  </div>
-                  <button type="submit" class="btn btn-primary btn-block">Iniciar sesión</button>
-                  <p class="font-size-sm pt-4 mb-0">
+                  </div> -->
+                  <button type="submit" class="mt-5 btn btn-color btn-block">Iniciar sesión</button>
+                  <!-- <p class="font-size-sm pt-4 mb-0">
                     No tienes una cuenta?
                     <a href="#" class="font-weight-bold text-decoration-none">Registrate</a>
-                  </p>
+                  </p> -->
                 </form>
               </div>
         </div>
         <div class="col-lg-6">
             <div class="px-md-5">
-                <h3 class="modal-title mt-4 mb-0 text-center">Registro rápido</h3>
+                <h3 class="modal-title mt-4 mb-4 text-center">Registro rápido</h3>
                 
                 <!-- Error create account -->
                 <app-direccion-error *ngIf="errorAccount" [error]="errorAccount"></app-direccion-error>
@@ -81,11 +80,11 @@
                         </div>
                         <a href="#" class="font-size-sm text-decoration-none">¿Ha olvidado su contraseña?</a>
                     </div>-->
-                    <button type="submit" class="btn btn-primary btn-block" [disabled]="accountForm.invalid">Crear cuenta</button>
-                    <p class="font-size-sm pt-4 mb-0">
+                    <button type="submit" class="btn btn-color btn-block" [disabled]="accountForm.invalid">Crear cuenta</button>
+                    <!-- <p class="font-size-sm pt-4 mb-0">
                         Ya tienes una cuenta?
                         <a href="#" class="font-weight-bold text-decoration-none">Inicia sesión</a>
-                    </p>
+                    </p> -->
                 </form>
               </div>
         </div>
