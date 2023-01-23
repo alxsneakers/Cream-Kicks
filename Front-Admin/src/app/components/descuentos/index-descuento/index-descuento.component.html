@@ -1,10 +1,9 @@
 <!-- MENU NAV -->
 <app-nav></app-nav>
 
-<!-- Tabla de productos -->
-
+<!-- Tabla de descuentos -->
 <section>
-    <div class="container-fluid pt-4 px-4">
+    <div class="container-fluid pt-5 px-4">
         <div class="row my-5 ">
             <div class=" col-xl-10 col-lg-9 col-md-8 ml-auto ">
                 <div class="card">
@@ -17,109 +16,129 @@
                     <!-- Botones -->
                     <div class="col-md-12 pt-4">
                         <div class="text-right justify-content-between">
-                            <button type="button" class="btn" [routerLink]="['/descuentos/registro']">
+                            <!-- boton elimnar masivamente -->
+                            <button class="btn btn-eliminar mr-2"
+                                *ngIf="this.selection.selected.length > 1 && this.descuentos$ != null"
+                                (click)="openDialogMany()">
+                                <i class="bi bi-trash3"></i>
+                                Eliminar
+                            </button>
+
+                            <!-- agregar nuevo cupon -->
+                            <button type="button mr-2" class="btn" [routerLink]="['/descuentos/registro']">
                                 <i class="bi bi-plus-circle"></i>
+                                Agregar descuento
                             </button>
                         </div>
                     </div>
 
                     <!-- Buscador -->
-                    <div class="barraSuperior">
-                        <ion-icon name="search-outline" class="iconSearch"></ion-icon>
-                        <input class="input" matInput (keyup)="applyFilter($event)" placeholder="Filtrar Descuentos"
-                            #input>
-                        <!-- boton elimnar masivamente -->
-                        <button class="btn-eliminar"
-                            *ngIf="this.selection.selected.length > 1 && this.descuentos$ != null"
-                            (click)="openDialogMany()">
-                            <ion-icon name="trash-outline"></ion-icon>
-                            Seleccionados
-                        </button>
+                    <div class="col-md-12 pt-4">
+                        <div class="input-group">
+                            <mat-form-field appearance="outline">
+                                <mat-label> <i class="bi bi-search"></i> Filtrar códigos descuento</mat-label>
+                                <input matInput formControlName="nombre" (keyup)="applyFilter($event)" #input>
+                            </mat-form-field>
+                        </div>
                     </div>
 
 
                     <!-- Tabla -->
-                    <table mat-table [dataSource]="data">
+                    <div class="col-md-12 ">
+
+                        <table class="table " mat-table [dataSource]="data">
 
 
-                        <!-- Checkbox Column -->
-                        <ng-container matColumnDef="select">
-                            <th mat-header-cell *matHeaderCellDef>
-                                <mat-checkbox (change)="$event ? toggleAllRows() : null"
-                                    [checked]="selection.hasValue() && isAllSelected()"
-                                    [indeterminate]="selection.hasValue() && !isAllSelected()"
-                                    [aria-label]="checkboxLabel()">
-                                </mat-checkbox>
-                            </th>
-                            <td mat-cell *matCellDef="let row">
-                                <mat-checkbox (click)="$event.stopPropagation()"
-                                    (change)="$event ? selection.toggle(row) : null"
-                                    [checked]="selection.isSelected(row)" [aria-label]="checkboxLabel(row)">
-                                </mat-checkbox>
-                            </td>
-                        </ng-container>
+                            <!-- Checkbox Column -->
+                            <ng-container matColumnDef="select">
+                                <th class="pb-3" mat-header-cell *matHeaderCellDef>
+                                    <mat-checkbox class="pt-4" (change)="$event ? toggleAllRows() : null"
+                                        [checked]="selection.hasValue() && isAllSelected()"
+                                        [indeterminate]="selection.hasValue() && !isAllSelected()"
+                                        [aria-label]="checkboxLabel()">
+                                    </mat-checkbox>
+                                </th>
+                                <td class="py-3" mat-cell *matCellDef="let row">
+                                    <mat-checkbox class="pt-4" (click)="$event.stopPropagation()"
+                                        (change)="$event ? selection.toggle(row) : null"
+                                        [checked]="selection.isSelected(row)" [aria-label]="checkboxLabel(row)">
+                                    </mat-checkbox>
+                                </td>
+                            </ng-container>
 
-                        <!-- Img Descuento -->
-                        <ng-container matColumnDef="banner">
-                            <th mat-header-cell *matHeaderCellDef>Banner</th>
-                            <td mat-cell *matCellDef="let element">
-                                <img style="max-width: 59px; max-height: 59px;" [src]="url + element.banner">
-                            </td>
-                        </ng-container>
+                            <!-- Img Descuento -->
+                            <ng-container matColumnDef="banner">
+                                <th class="pb-3" mat-header-cell *matHeaderCellDef>Banner</th>
+                                <td class="py-3" mat-cell *matCellDef="let element">
+                                    <img class="imgTabla" [src]="url + element.banner">
+                                </td>
+                            </ng-container>
 
-                        <!-- Titulo Column -->
-                        <ng-container matColumnDef="titulo">
-                            <th mat-header-cell *matHeaderCellDef>Titulo</th>
-                            <td mat-cell *matCellDef="let element">
-                                {{element.titulo}}<br><strong>{{element.sku}}</strong></td>
-                        </ng-container>
+                            <!-- Titulo Column -->
+                            <ng-container matColumnDef="titulo">
+                                <th class="pb-3" mat-header-cell *matHeaderCellDef>Titulo</th>
+                                <td class="py-3" mat-cell *matCellDef="let element">
+                                    {{element.titulo}}<br><strong>{{element.sku}}</strong></td>
+                            </ng-container>
 
-                        <!-- Descuento Column -->
-                        <ng-container matColumnDef="descuento">
-                            <th mat-header-cell *matHeaderCellDef>Descuento</th>
-                            <td mat-cell *matCellDef="let element">{{element.descuento}}%</td>
-                        </ng-container>
+                            <!-- Descuento Column -->
+                            <ng-container matColumnDef="descuento">
+                                <th class="pb-3" mat-header-cell *matHeaderCellDef>Descuento</th>
+                                <td class="py-3" mat-cell *matCellDef="let element">{{element.descuento}}%</td>
+                            </ng-container>
 
-                        <!-- Estado Column -->
-                        <ng-container matColumnDef="estado">
-                            <th mat-header-cell *matHeaderCellDef>Estado</th>
-                            <td mat-cell *matCellDef="let element of estados; let i = index;">{{estados[i + 1]}}</td>
-                        </ng-container>
+                            <!-- Estado Column -->
+                            <ng-container matColumnDef="estado">
+                                <th class="pb-3" mat-header-cell *matHeaderCellDef>Estado</th>
+                                <td class="py-3" mat-cell *matCellDef="let element of estados; let i = index;">
+                                    {{estados[i + 1]}}
+                                </td>
+                            </ng-container>
 
-                        <!-- Duracion Column -->
-                        <ng-container matColumnDef="duracion">
-                            <th mat-header-cell *matHeaderCellDef>Duracion</th>
-                            <td mat-cell *matCellDef="let element">{{element.fecha_inicio + ' - ' + element.fecha_fin}}
-                            </td>
-                        </ng-container>
+                            <!-- Duracion Column -->
+                            <ng-container matColumnDef="duracion">
+                                <th class="pb-3" mat-header-cell *matHeaderCellDef>Duracion</th>
+                                <td class="py-3" mat-cell *matCellDef="let element">{{element.fecha_inicio + ' - ' +
+                                    element.fecha_fin}}
+                                </td>
+                            </ng-container>
 
-                        <!-- Function Column -->
-                        <ng-container matColumnDef="funciones" class="funciones">
-                            <th mat-header-cell *matHeaderCellDef>Funciones</th>
-                            <td mat-cell *matCellDef="let element">
-                                <ion-icon name="create-outline" [routerLink]="['/descuentos', element._id]"
-                                    routerLinkActive="router-link-active"></ion-icon>
-                                <ion-icon name="trash-outline"
-                                    (click)="openDialog(element.titulo, element._id)"></ion-icon>
-                            </td>
-                        </ng-container>
+                            <!-- Function Column -->
+                            <ng-container matColumnDef="funciones" class="funciones">
+                                <th class="pb-3" mat-header-cell *matHeaderCellDef>Funciones</th>
+                                <td class="py-3" mat-cell *matCellDef="let element">
+                                    <ion-icon name="create-outline" [routerLink]="['/descuentos', element._id]"
+                                        routerLinkActive="router-link-active"></ion-icon>
+                                    <ion-icon name="trash-outline"
+                                        (click)="openDialog(element.titulo, element._id)"></ion-icon>
+                                </td>
+                            </ng-container>
 
-                        <tr mat-header-row *matHeaderRowDef="columnsDisplay"></tr>
-                        <tr mat-row *matRowDef="let row; columns: columnsDisplay;">
-
-
-                            <!-- Cuando no hay ningun resultado, agrega una fifla con ese mensaje -->
-                        <tr *matNoDataRow>
-                            <td class="mat-cell" colspan="4">No se ha encontrado ningún descuento "{{input.value}}"</td>
-                        </tr>
-
-                    </table>
+                            <tr mat-header-row *matHeaderRowDef="columnsDisplay"></tr>
+                            <tr mat-row *matRowDef="let row; columns: columnsDisplay;">
 
 
-                    <!-- Paginator -->
-                    <mat-paginator [pageSize]="9" aria-label="Select page of user" class="paginator"></mat-paginator>
+                                <!-- Cuando no hay ningun resultado, agrega una fifla con ese mensaje -->
+                            <tr *matNoDataRow>
+                                <td class="py-3" class="mat-cell" colspan="4">No se ha encontrado ningún descuento
+                                    "{{input.value}}"
+                                </td>
+                            </tr>
+
+                        </table>
+
+
+                        <!-- Paginator -->
+                        <div class="col-md-12 pt-4 d-flex justify-content-center">
+
+                            <mat-paginator [pageSize]="10" aria-label="Select page of user"
+                                class="paginator">
+                            </mat-paginator>
+                        </div>
+
+                    </div>
+
                 </div>
-
             </div>
         </div>
     </div>

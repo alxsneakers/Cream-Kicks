@@ -1,8 +1,10 @@
 .card{
-    border-radius: 10px;
-  }
+  border-radius: 10px;
+  color: white;
+  background-color: var(--tercerColor);
+}
   
-  .tarjetas:hover{
-    box-shadow: 1px 5px 10px rgb(34, 33, 33);
-    transform: translateY(4px);
-  }
+.tarjetas:hover{
+  box-shadow: 1px 5px 10px rgb(34, 33, 33);
+  transform: translateY(4px);
+}

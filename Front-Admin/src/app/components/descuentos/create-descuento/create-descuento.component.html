@@ -3,13 +3,17 @@
 
 
 <section>
-    <div class="container-fluid pt-4 px-4">
+    <div class="container-fluid pt-5 px-4">
         <div class="row my-5 ">
             <div class=" col-xl-10 col-lg-9 col-md-8 ml-auto ">
                 <div class="card">
                     <!-- Si hay producto lo enseño -->
                     <div class="col-md-12 pt-4">
+                        <div class="pb-2">
 
+                            <h3>Agregar descuentos</h3>
+                            <p>Rellena los siguientes datos.</p>
+                        </div>
                         <!-- ------------------------ -->
 
                         <form (ngSubmit)="registro_descuento()" [formGroup]="formCreateDescuento">
@@ -80,8 +84,11 @@
 
 
                             <!-- Boton que hace la petición -->
-                            <button mat-button type="submit" [disabled]="formCreateDescuento
-            .invalid">Crear descuento</button>
+                            <div class="my-3">
+                                <button class="btn mb-2" mat-button type="submit" [disabled]="formCreateDescuento
+                                .invalid">Crear descuento</button>
+                            </div>
+
                         </form>
                     </div>
                 </div>

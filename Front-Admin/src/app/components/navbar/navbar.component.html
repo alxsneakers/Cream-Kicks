@@ -1,49 +1,51 @@
-<nav class="navbar">
-    <div class="container-fluid">
-      <!-- bugfix Cambiar para que sea automatico -->
-      <ion-icon class="pt-2" name="menu"></ion-icon>
-      <h1>{{rutaActiva}}</h1>
+<div class="col-xl-10 col-lg-9 col-md-8 fixed-top top-bar ml-auto ">
 
-      <form class="d-flex">
-        <ul class="navbar-nav">
-
-           
-           
-
-
-            <div class="d-flex">
-                <!-- si el usuario no tiene img de perfil -->
-                <button class="" mat-button [matMenuTriggerFor]="menu"
-                    *ngIf="userInfo.imgPerfil == null">{{userInfo.nombre}}</button>
-                <!-- si tiene img -->
-                
-                <button class="" mat-button [matMenuTriggerFor]="menu" *ngIf="userInfo.imgPerfil">
-                    <img class="imagenPerfil" [src]="'http://localhost:4201/api/obtenerImgPerfil/' + userInfo.imgPerfil">
-                </button>
+    <nav class="navbar justify-content-between ">
+        <div class="navbar-brand align-items-center">
+            <div class="ruta d-inline-block">
+                <ion-icon name="menu"></ion-icon><span class="h2 ml-2">{{rutaActiva}}</span>
             </div>
+        </div>
 
-            <li class="nav-item ">
-                <p class="mt-3 mr-2 text-uppercase">
-                    {{userInfo.nombre}}
-                </p>
-            </li>
 
-            <!-- Desplegable -->
-            <mat-menu class="pt-3" #menu="matMenu">
-                <p>Has iniciado sesion como<br> <strong>{{userInfo.nombre}}</strong></p>
-                <!-- configuracion -->
-                <button mat-menu-item [routerLink]="['/cuenta']">
-                    <ion-icon name="settings-outline"></ion-icon>
-                    Configuración
-                </button>
+        <form class="d-flex">
+            <ul class="navbar-nav">
 
-                <!-- Cerrar sesion -->
-                <button mat-menu-item (click)="logout()">
-                    <ion-icon name="log-out-outline"></ion-icon>
-                    Cerrar sesión
-                </button>
-            </mat-menu>
-        </ul>
-      </form>
-    </div>
-  </nav>
+                <div class="d-flex">
+                    <!-- si el usuario no tiene img de perfil -->
+                    <button class="" mat-button [matMenuTriggerFor]="menu"
+                        *ngIf="userInfo.imgPerfil == null">{{userInfo.nombre}}</button>
+                    <!-- si tiene img -->
+
+                    <button  mat-button [matMenuTriggerFor]="menu" *ngIf="userInfo.imgPerfil">
+                        <img class="containerImgProfile"
+                            [src]="'http://localhost:4201/api/obtenerImgPerfil/' + userInfo.imgPerfil">
+                    </button>
+                </div>
+
+                <li class="nav-item ">
+                    <p class="mt-3 mr-2 text-uppercase">
+                        {{userInfo.nombre}}
+                    </p>
+                </li>
+
+                <!-- Desplegable -->
+                <mat-menu class="p-2" #menu="matMenu">
+                    <p>Has iniciado sesion como<br> <strong>{{userInfo.nombre}}</strong></p>
+                    <!-- configuracion -->
+                    <button mat-menu-item [routerLink]="['/cuenta']">
+                        <ion-icon name="settings-outline"></ion-icon>
+                        Configuración
+                    </button>
+
+                    <!-- Cerrar sesion -->
+                    <button mat-menu-item (click)="logout()">
+                        <ion-icon name="log-out-outline"></ion-icon>
+                        Cerrar sesión
+                    </button>
+                </mat-menu>
+            </ul>
+        </form>
+    </nav>
+
+</div>

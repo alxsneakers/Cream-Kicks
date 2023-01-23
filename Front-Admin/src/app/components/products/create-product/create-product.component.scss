@@ -4,48 +4,19 @@
     border-radius: 10px;
 }
 
-// .form-container{
-//     height: calc(100vh - 75px);
-//     display: flex;
-//     flex-direction: column;
-//     align-items: center;
-//     justify-content: center;
-// }
-
-
-// button{
-//     color: black;
-//     background: white;
-//     border: 1px solid black;
-// }
-
-// .firstGroup{
-//     display: flex;
-//     flex-direction: row;
-// }
-
-// .secondGroup{
-//     display: flex;
-//     flex-direction: row;
-// }
-
-// tamaño de la imagen.
-
-
-// .prueba{
-//     text-align: right;
-// }
-
-// // espacio entre inputs
-// mat-form-field{
-//     margin-right: 12px;
-//     margin-bottom: 12px;
-//     text-decoration: none;
-// }
+// botones
+.btn{
+    background-color:var(--segundoColor) ;
+    color: var(--white);
+}
 
 // botones
 .btnAdd{
     background-color:var(--segundoColor) ;
+    color: var(--white);
+}
+.btnAtras{
+    background-color:var(--sextoColor) ;
     color: var(--white);
 }
 .btnDelete{
@@ -80,4 +51,8 @@
 }
 ::ng-deep .mat-checkbox-indeterminate.mat-accent .mat-checkbox-background {
     background-color:var(--primerColor) !important;
+}
+::ng-deep .matStepLabel{
+    background-color:var(--sextoColor) !important;
+
 }

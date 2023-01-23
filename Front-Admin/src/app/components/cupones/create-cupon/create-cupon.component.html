@@ -9,7 +9,7 @@
                 <div class="form-items">
                     <h3>Crear nuevo código descuento
                     </h3>
-                    <p>Rellena los datos siguientes.</p>
+                    <p>Rellena los siguientes datos.</p>
                     <form [formGroup]="formCreateCupon">
 
                         <div class="col-md-12 mt-3">
@@ -103,7 +103,7 @@
                             <button 
                                 mat-button 
                                 type="submit" 
-                                class="btn"
+                                class="btn btn-color ml-2"
                                 [disabled]="formCreateCupon
                                 .invalid"
                                  (click)="doAction()">Confirmar</button>

@@ -25,9 +25,13 @@ ion-icon{
     margin-right: 10px;
 }
 
+// botones
 .btn{
     background-color:var(--segundoColor) ;
     color: var(--white);
+}
+.btn-eliminar{
+    background-color: var(--red);
 }
 
 

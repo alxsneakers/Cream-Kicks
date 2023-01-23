@@ -4,7 +4,7 @@
 <!-- Tabla de productos -->
 
 <section>
-  <div class="container-fluid pt-4 px-4">
+  <div class="container-fluid pt-5 px-4">
     <div class="row my-5 ">
       <div class=" col-xl-10 col-lg-9 col-md-8 ml-auto ">
 
@@ -12,7 +12,6 @@
         <!-- ------------------------ -->
         <mat-stepper class="card" linear #stepper>
           <!-- 1 -->
-
           <mat-step [stepControl]="form1" [editable]="true">
 
             <form [formGroup]="form1">
@@ -26,7 +25,7 @@
                     .get('nombre')?.touched && form1
                     .get('nombre')?.errors?.['required']">
                 </mat-error>
-              </mat-form-field> 
+              </mat-form-field>
 
               <!-- Marcas -->
               <mat-form-field class="w-100" appearance="outline">
@@ -38,7 +37,7 @@
                 .get('marca')?.touched && form1
                 .get('marca')?.errors?.['required']">
                 </mat-error>
-              </mat-form-field> 
+              </mat-form-field>
 
               <!-- Sku -->
               <mat-form-field class="w-100" appearance="outline">
@@ -53,7 +52,7 @@
               <!-- Precio compra -->
               <mat-form-field class="w-100" appearance="outline" floatLabel="always">
                 <mat-label>Precio Compra</mat-label>
-                <input matInput type="number"  placeholder="0" formControlName="precioCompra" min="1"
+                <input matInput type="number" placeholder="0" formControlName="precioCompra" min="1"
                   (keypress)="onlyNumbers($event)">
 
                 <mat-error *ngIf="form1
@@ -78,108 +77,106 @@
                 <mat-error *ngIf="form1
                         .get('precioVenta')?.touched && form1
                         .get('precioVenta')?.errors?.['min']">
-                  </mat-error>
+                </mat-error>
               </mat-form-field>
 
-              <!-- Drop zone -->
-              <!--<mat-card class="card" > 
-                <mat-form-field class="w-100" appearance="outline" floatLabel="always">   
-                  <mat-card-content class="dropzone" >
-                    <div ngx-dropzone (change)="onSelect($event)" [accept]="'image/*'">
-                      <ngx-dropzone-label>Arrastre y suelte su imagen</ngx-dropzone-label>
-                      <ngx-dropzone-image-preview ngProjectAs="ngx-dropzone-preview" *ngFor="let i of images" [file]="i" [removable]="true" (removed)="onRemove(i)">
-                      </ngx-dropzone-image-preview>
-                    </div>
-                  </mat-card-content>
-                </mat-form-field>
-              </mat-card> -->
-
-              <mat-card class="card">    
+              <mat-card class="card ">
                 <mat-card-content class="dropzone">
-                    <ngx-dropzone (change)="onSelect($event)" [accept]="'image/*'">
-                        <ngx-dropzone-label>Arrastre y suelte su imagen</ngx-dropzone-label>
-                        <ngx-dropzone-image-preview *ngFor="let i of images" [file]="i" [removable]="true" (removed)="onRemove(i)">
-                        </ngx-dropzone-image-preview>
-                        </ngx-dropzone>
+                  <ngx-dropzone (change)="onSelect($event)" [accept]="'image/*'">
+                    <ngx-dropzone-label>Arrastre y suelte su imagen</ngx-dropzone-label>
+                    <ngx-dropzone-image-preview *ngFor="let i of images" [file]="i" [removable]="true"
+                      (removed)="onRemove(i)">
+                    </ngx-dropzone-image-preview>
+                  </ngx-dropzone>
                 </mat-card-content>
-            </mat-card>
+              </mat-card>
 
+              <!-- Publicar en tienda -->
+              <mat-checkbox class="text-uppercase mt-3" formControlName="publicado">Publicar en Tienda</mat-checkbox>
 
-       
-         
+              <div class="mt-2">
+                <button class="btn" mat-button matStepperNext>Siguiente</button>
+              </div>
 
-
-                <!-- Publicar en tienda -->
-                <mat-checkbox class="text-uppercase " formControlName="publicado">Publicar en Tienda</mat-checkbox>
-
-                <div class="mt-2">
-                  <button mat-button matStepperNext>Siguiente</button>
-                </div>
-                
-              </form>
+            </form>
           </mat-step>
 
+          <!-- 2 -->
+          <mat-step [stepControl]="form1" [editable]="true">
+            <div class="container">
+              <form [formGroup]="form1" (ngSubmit)="onSubmit()">
+                <ng-template matStepLabel>Stock por tallas</ng-template>
 
-            <!-- 2 -->
-            <mat-step [stepControl]="form1" [editable]="false">
-              <div class="container">
-                <form [formGroup]="form1" (ngSubmit)="onSubmit()">
-                  <ng-template matStepLabel>Stock por tallas</ng-template>
 
 
-                  <button class="btnAdd mb-4" type="button" mat-raised-button (click)="addProducto()">Agregar tallas y
-                    stock</button>
 
-                  <div *ngFor="let u of tallaStockArray.controls; index as i">
+                <button class="btnAdd mb-1" type="button" mat-raised-button (click)="addProducto()">Agregar tallas y
+                  stock</button>
 
-                    <span class="mr-4">Talla {{ i + 1 }}</span>
-                    <app-product-form class="mr-4" [inputFormGroup]="$any(u)"></app-product-form>
-                    <button class="btnDelete mr-4" mat-raised-button (click)="removeUser(i)">borrar</button>
+                <div *ngFor="let u of tallaStockArray.controls; index as i">
+                  <div class="row">
+                    <span class="mt-4">Talla {{ i + 1 }}</span>
 
+
+                    <div class="col-xl-5 col-lg-9 col-md-6 col-sm-9 ">
+                      <app-product-form class="mr-4" [inputFormGroup]="$any(u)"></app-product-form>
+
+                    </div>
+                    <div class="col-xl-5 col-lg-2 col-md-6 col-sm-1 mr-auto mb-2"> <button class="btnDelete mr-4"
+                        mat-raised-button (click)="removeUser(i)">borrar</button>
+                    </div>
                   </div>
-
-
-                  <div>
-                    <button mat-button matStepperPrevious>Volver</button>
-                    <button mat-button matStepperNext [disabled]="form1.invalid">Siguiente</button>
-                  </div>
-                </form>
-              </div>
-            </mat-step> 
-
-            <!-- 3 -->
-            <mat-step>
-              <ng-template matStepLabel>Finalizar</ng-template>
-              <div>
-                <h3>Caracteristicas</h3>
-                <p>Nombre: {{form1.value.nombre}}</p>
-                <p>Marca: {{form1.value.marca}}</p>
-                <p>SKU: {{form1.value.sku}}</p>
-                <p>precioCompra: {{form1.value.precioCompra}}</p>
-                <p>precioVenta: {{form1.value.precioVenta}}</p>
-                <p>Pulbicado en tienda: {{form1.value.publicado}}</p>
-                <hr>
-                <h3>Tallas</h3>
-                <p *ngFor="let talla of form1.value.tallaStockArray">
-                  {{'Talla: ' + talla.talla + ' | Stock: ' + talla.stock}}
-                </p>
-                
-
-                
-                
-                
-
-
                 </div>
-              
-              <div>
-                <button mat-button (click)="createProduct()">Crear</button>
+
+
+                <div>
+                  <button class="btnAtras mr-2" mat-button matStepperPrevious>Volver</button>
+                  <button class="btn" mat-button matStepperNext [disabled]="form1.invalid">Siguiente</button>
+                </div>
+              </form>
+            </div>
+          </mat-step>
+
+          <!-- 3 -->
+          <mat-step [stepControl]="form1" [editable]="true">
+            <ng-template matStepLabel>Finalizar</ng-template>
+
+            <div class="ml-3 mb-3">
+              <div class="row">
+
+                <div class="col-xl-5 col-lg-5 col-md-8">
+                  <h3>Caracteristicas</h3>
+                  <p class="ml-3">Nombre: <b>{{form1.value.nombre}} </b></p>
+                  <p class="ml-3">Marca: <b>{{form1.value.marca}} </b></p>
+                  <p class="ml-3">SKU: <b>{{form1.value.sku}} </b></p>
+                  <p class="ml-3">Retail: <b>{{form1.value.precioCompra}} </b></p>
+                  <p class="ml-3">Resell: <b>{{form1.value.precioVenta}} </b></p>
+                  <p class="ml-3">Pulbicado en tienda: <b>{{form1.value.publicado}} </b></p>
+                </div>
+                <div class="col-xl-5 col-lg-5 col-md-8">
+                  <h3>Tallas</h3>
+
+                  <div class="row ml-3" *ngFor="let talla of form1.value.tallaStockArray">
+                    <div class="col">Talla: <b>{{talla.talla}}</b> </div>
+                    <div class="col">Stock: <b>{{talla.stock}}</b></div>
+                  </div>
+                </div>
+
               </div>
-            </mat-step> 
-          </mat-stepper>
+
+            </div>
 
 
-       
+            <div>
+              <button class="btnAtras mr-2" mat-button matStepperPrevious>Volver</button>
+
+              <button class="btn" mat-button (click)="createProduct()">Crear</button>
+            </div>
+          </mat-step>
+        </mat-stepper>
+
+
+
 
 
 

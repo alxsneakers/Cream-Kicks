@@ -114,7 +114,7 @@ const enviar_correo_compra= (async (req, res)=>{
         var mailOptions = {
             from: process.env.GMAIL_ACC,
             to: venta.cliente.email, //venta.cliente.email
-            subject: 'Gracias por tu compra, Mi Tienda',
+            subject: 'Confirmacion del pedido '+venta._id+' venta._id, Cream Kicks',
             html: htmlToSend
         };
         res.status(200).send({data:true});

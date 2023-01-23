@@ -1,6 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
@@ -28,7 +27,6 @@ export class GaleriaProductComponent implements OnInit {
   galeria$: Observable<any>;
   columnsDisplay: string[]= ['imagen', 'eliminar']; // nombre de las columnas
   data: Array<any>= [];
-  @ViewChild(MatPaginator) paginator: MatPaginator;
   images: File[]=[];
   url: any;
   item: any;

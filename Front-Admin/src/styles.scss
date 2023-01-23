@@ -22,8 +22,20 @@ body{
 .colorGrey{
     color: var(--grey);
 }
-.colorPrimerColor{
+.primerColor{
     color: var(--primerColor);
+}
+.segundoColor{
+    color: var(--segundoColor);
+}
+.tercerColor{
+    color: var(--tercerColor);
+}
+.cuartoColor{
+    color: var(--cuartoColor);
+}
+.quintoColor{
+    color: var(--quintoColor);
 }
 
 :root {
@@ -36,9 +48,22 @@ body{
     --tercerColor: #889FA5;
     --cuartoColor: #B1BDC5;
     --quintoColor: #DADDE2;
+    --sextoColor: #4B6076;
 
     background-color:rgb(224, 219, 219); //#E0DBDB
 }
 
 
 
+.contenedor{
+    overflow: auto;
+    height: 100%;
+   
+
+}
+
+
+// Botones
+.btn-eliminar{
+    background-color: var(--red);
+}
