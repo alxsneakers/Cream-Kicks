@@ -144,14 +144,20 @@ export class IndexProductoComponent implements OnInit {
  
 
   // obtiene los precios del slider
-  buscar_precios(){ 
-    const min= parseInt($('.cs-range-slider-value-min').val());
-    const max= parseInt($('.cs-range-slider-value-max').val());
+  buscar_precios(){
 
-    this.productos= this.productos.filter((item)=>{
-      return item.precioVenta >= min && item.precioVenta <= max
-    });
-    console.log('Despues del filtro del precio: ' + this.productos)
+    this._clientService.listar_productos_publico(this.filter_producto).subscribe(
+      reponse =>{
+        console.log(reponse);
+        this.productos= reponse;
+        const min= parseInt($('.cs-range-slider-value-min').val());
+        const max= parseInt($('.cs-range-slider-value-max').val());
+
+        this.productos= this.productos.filter((item)=>{
+          return item.precioVenta >= min && item.precioVenta <= max
+        });
+      }
+    ); 
   }
 
   // busca la marca a partir de los checkboxs

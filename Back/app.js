@@ -87,6 +87,7 @@ const ventaRouter= require('./routes/venta');
 const descuentoRouter= require('./routes/descuento');
 // descifra los errores
 const handleErrors = require('./middleware/handleErrors');
+const tallaRouter = require('./routes/talla');
 
 // Constantes.
 const PORT= process.env.PORT || 3000;   
@@ -127,6 +128,7 @@ app.use('/api/direcciones', direccionRouter);
 app.use('/api/envios', envioRouter);
 app.use('/api/ventas', ventaRouter);
 app.use('/api/descuentos', descuentoRouter);
+app.use('/api/tallas', tallaRouter);
 
 
 module.exports = app;

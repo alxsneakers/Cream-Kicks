@@ -1,5 +1,5 @@
 import { createAction, props } from "@ngrx/store";
-import { LoginModel, UpdateNameAccountModel, UserModel } from "src/app/models/auth.interface";
+import { CreateAdminModel, LoginModel, UpdateNameAccountModel, UserModel } from "src/app/models/auth.interface";
 
 
 /* Resumen de las acciones 
@@ -19,6 +19,20 @@ export const loginSuccessAction= createAction('[Auth] LoginSuccessAction')
 export const loginErrorAction= createAction(
     '[Auth] LoginErrorAction',
     props<{ message: string}>()
+)
+
+// --------------------------------------
+
+export const createAdminAction= createAction(
+    '[Auth] CreateAdminAction',
+    props<{data: CreateAdminModel}>()
+)
+
+export const createAdminSuccessAction= createAction('[Auth] CreateAdminSuccessAction')
+
+export const createAdminErrorAction= createAction(
+    '[Auth] CreateAdminErrorAction',
+    props<{message: string}>()
 )
 
 // --------------------------------------

@@ -21,10 +21,6 @@ const AdminSchema= Schema({
         type: String,
         required: true
     },
-    telefono: {
-        type: String,
-        required: true
-    },
     imgPerfil: {
         type: Object
     }

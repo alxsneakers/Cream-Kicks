@@ -57,6 +57,7 @@ export class CarritoComponent implements OnInit {
    }
 
 
+
    onChange(event){
     if(event.target.value == 'on'){
       this.pago_tarjeta= false;
@@ -90,7 +91,7 @@ export class CarritoComponent implements OnInit {
         }else{
           this.subtotal=  this.subtotal + parseInt(element.producto.precioVenta);
         }
-        this.calcular_total('');
+        this.calcular_total('63c537372fc6d7712ea592d1');
       });
     }
   }
@@ -129,7 +130,7 @@ export class CarritoComponent implements OnInit {
 
       
         this.total_carrito();
-        this.calcular_total('');
+        this.calcular_total('63c537372fc6d7712ea592d1');
       }
     );
   }

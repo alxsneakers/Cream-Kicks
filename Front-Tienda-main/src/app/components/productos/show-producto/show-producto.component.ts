@@ -6,6 +6,8 @@ import { GuestService } from "src/app/services/guest.service";
 import { NotificationService } from "src/app/services/notification.service";
 declare const tns; //  time-slider
 declare const lightGallery;
+declare var iziToast:any;
+
 import { io } from "socket.io-client";
 
 @Component({
@@ -160,19 +162,34 @@ export class ShowProductoComponent implements OnInit {
         (response) => {
           this.loader_carrito = false; // acaba la peticion
           this.socket.emit("add-carrito", { data: true }); // receptor
-          this._notificationService.openSnackBar(response.message, "cerrar");
+          iziToast.success({
+            title:'OK',
+            position: 'topRight',
+            message: response.message
+          })
         },
         (error) => {
           // producto duplicado en el carrito
           this.loader_carrito = false; // acaba la peticion por un error.
-          this._notificationService.openSnackBar(error.error.message, "cerrar");
+          iziToast.show({
+            title:'ERROR',
+            titleColor: '#FF0000',
+            color: '#FFF',
+            class: 'text-danger',
+            position: 'topRight',
+            message: 'Producto duplicado en el carrito.'
+          })
         }
       );
     } else {
-      this._notificationService.openSnackBar(
-        "Debes de seleccionar una talla.",
-        "cerrar"
-      );
+      iziToast.show({
+        title:'ERROR',
+        titleColor: '#FF0000',
+        color: '#FFF',
+        class: 'text-danger',
+        position: 'topRight',
+        message: 'Debes seleccionar la talla.'
+      })
     }
   }
 

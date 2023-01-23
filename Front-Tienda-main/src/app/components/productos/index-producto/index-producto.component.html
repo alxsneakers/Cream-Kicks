@@ -144,7 +144,8 @@
                           </div>
                         </li>
                         <li class="cs-filter-item" *ngFor="let item of marcas;let indice = index">
-                          <div class="custom-control custom-checkbox">
+  
+                          <div class="custom-control custom-checkbox" *ngIf="item.cantidad > 0">
                             <input type="radio" name="group1" (change)="buscar_por_marca()" class="custom-control-input" id="blazers-{{indice}}" value="{{item.nombre}}" [(ngModel)]="filter_cat_productos">
                             <label for="blazers-{{indice}}" class="custom-control-label">
                               <span class="cs-filter-item-text">{{item.nombre}}</span>
@@ -249,7 +250,7 @@
                       </h3>
 
                       <!-- Cuando hay una oferta activa-->
-                      <div class="d-flex align-items-center" *ngIf="!(item.nombre.toLowerCase().includes(descuento_activo.palabraClave)) ">
+                      <div class="d-flex align-items-center" *ngIf="descuento_activo != null && !(item.nombre.toLowerCase().includes(descuento_activo.palabraClave)) ">
                         <span class="h5 d-inline-block mb-0">{{item.precioVenta}}€</span>
                       </div>
 

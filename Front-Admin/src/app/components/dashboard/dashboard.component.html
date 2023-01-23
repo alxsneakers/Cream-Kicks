@@ -65,6 +65,43 @@
                             </div>
                         </div>
                     </div>
+                    <!-- acciones reapidas -->
+                    <div class="col-xl-3 col-sm-6 mb-4">
+                        <div class="card tarjetas">
+                            <div class="card-body colorBlack tarjeta">
+                                <div class="d-flex justify-content-between">
+                                    <p class=" font-weight-bold">Panel Administrador</p>
+                                </div>
+                                <div style="display: flex; flex-direction: column;">
+                                    <button class="btn mr-2" (click)="DialogAgregarCupon()">Añadir Marca</button>
+                                    <button class="btn mr-2" (click)="DialogCreateAdmin()">Añadir Admin</button>
+                                    <button class="btn mr-2" (click)="DialogCreateTalla()">Añadir Talla</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--errores de los modales-->
+                    <div class="col-xl-3 col-sm-6 mb-4">
+                        <div class="card tarjetas">
+                            <div class="card-body colorBlack tarjeta">
+                                
+                                <div class="d-flex justify-content-between">
+                                    <p class=" font-weight-bold">Errores</p>
+                                    <app-login-error *ngIf="errorMarca$ | async" [error]="errorMarca$ | async"></app-login-error>
+                                    <app-login-error *ngIf="errorCreateAdmin$ | async" [error]="errorCreateAdmin$ | async"></app-login-error>
+                                    <app-login-error *ngIf="errorTalla$ | async" [error]="errorTalla$ | async"></app-login-error>
+
+                                    
+                                </div>
+                                
+                                
+                                
+            
+                               
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="row">
                     <app-grafico-ventas></app-grafico-ventas>
@@ -91,6 +128,9 @@
                         <tr mat-row *matRowDef="let row; columns: columnsDisplay;"> 
                     </table>
                 </div>
+
+
+                
             </div>
         </div>
     </div>

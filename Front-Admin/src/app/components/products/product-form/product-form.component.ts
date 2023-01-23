@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
+import { TallaService } from 'src/app/services/talla.service';
 
 @Component({
   selector: 'app-product-form',
@@ -9,8 +10,12 @@ import { FormBuilder } from '@angular/forms';
 export class ProductFormComponent {
 
   @Input() inputFormGroup= this._formBuilder.group({});
+  listaTallas: Array<any> = [];
 
-  constructor(private _formBuilder: FormBuilder) { }
+
+  constructor(private _formBuilder: FormBuilder, private _tallaService: TallaService) {
+    this.getTallas();
+   }
 
 
 
@@ -20,6 +25,14 @@ export class ProductFormComponent {
       return false;
     }
     return true;
+  }
+
+  getTallas() {
+    this._tallaService.allTallas().subscribe((tallas) => {
+      tallas.forEach((talla) => {
+        this.listaTallas.push(talla.talla);
+      });
+    });
   }
 
 }

@@ -7,10 +7,10 @@
         <div class="form-holder">
             <div class="form-content">
                 <div class="form-items">
-                    <h3>Crear nueva marca
+                    <h3>Crear nueva talla
                     </h3>
                     <p>Rellena los datos siguientes.</p>
-                    <form [formGroup]="formCreateMarca">
+                    <form [formGroup]="formCreateTalla">
 
 
 
@@ -18,12 +18,12 @@
                         <div class="col-md-12">
                             <!-- Limite -->
                             <mat-form-field appearance="outline">
-                                <mat-label>Nombre</mat-label>
-                                <input matInput formControlName="nombre" type="text">
-                                <mat-error *ngIf="formCreateMarca
-                                    .get('nombre')?.touched && formCreateMarca
-                                    .get('nombre')?.errors?.['required']">
-                                    <p>El nombre es requirido</p>
+                                <mat-label>Talla</mat-label>
+                                <input matInput formControlName="talla" type="text">
+                                <mat-error *ngIf="formCreateTalla
+                                    .get('talla')?.touched && formCreateTalla
+                                    .get('talla')?.errors?.['required']">
+                                    <p>La talla es requirida</p>
                                 </mat-error>
                             </mat-form-field>
                         </div>
@@ -35,7 +35,7 @@
                         <div class="form-button mt-3">
                             <button mat-button (click)="onClickCancelar()">Cancelar</button>                      
                             <!-- Boton confirmar -->
-                            <button mat-button type="submit" (click)="doAction()" [disabled]="formCreateMarca.invalid">Crear marca</button>
+                            <button mat-button type="submit" (click)="doAction()" [disabled]="formCreateTalla.invalid">Crear talla</button>
                         </div>
                     </form>
                 </div>

@@ -84,6 +84,9 @@ import { GraficoVentasTotalesComponent } from './components/dashboard/graficos/g
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { ScrollingModule } from '@angular/cdk/scrolling';
+import { CreateAdminComponent } from './components/dashboard/create-admin/create-admin.component';
+import { CreateTallaComponent } from './components/añadir/create-talla/create-talla.component';
+import { TallaEffects } from './state/effects/talla.effects';
 @NgModule({
   declarations: [
     AppComponent,
@@ -120,7 +123,9 @@ import { ScrollingModule } from '@angular/cdk/scrolling';
     DetalleCompraComponent,
     GraficoVentasComponent,
     IndexPedidoComponent,
-    GraficoVentasTotalesComponent
+    GraficoVentasTotalesComponent,
+    CreateAdminComponent,
+    CreateTallaComponent
   ],
   imports: [
     MatFormFieldModule,
@@ -148,7 +153,7 @@ import { ScrollingModule } from '@angular/cdk/scrolling';
     IonicModule.forRoot(),
     StoreModule.forRoot(ROOT_REDUCERS),
     StoreDevtoolsModule.instrument({ name: 'test'}),
-    EffectsModule.forRoot([CuponEffects, DescuentoEffects, ContactoEffects, ProductoEffects, AuthEffects, MarcaEffects, ClienteEffects]),
+    EffectsModule.forRoot([CuponEffects, DescuentoEffects, ContactoEffects, ProductoEffects, AuthEffects, MarcaEffects, ClienteEffects, TallaEffects]),
     MatStepperModule,
     MatDatepickerModule,
     MatNativeDateModule,

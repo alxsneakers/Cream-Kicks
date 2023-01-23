@@ -1,0 +1,23 @@
+// estilos para el input
+mat-form-field {
+    width: 100%;
+  }
+  
+  //mat-input focused color
+  ::ng-deep .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick {
+    color: var(--primerColor)!important;
+  }
+  
+  // mat-input carent color
+  ::ng-deep .mat-input-element {
+    caret-color: var(--primerColor) !important;
+  }
+  
+  // mat-label focused style
+  ::ng-deep .mat-form-field.mat-focused .mat-form-field-label {
+    color: var(--black)!important;
+  }
+  
+  
+  
+  
