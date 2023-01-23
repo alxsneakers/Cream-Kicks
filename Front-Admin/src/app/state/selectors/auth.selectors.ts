@@ -18,6 +18,18 @@ export const selectIsErrorLogin= createSelector(
 );
 
 
+export const selectIsLoadingCreateAdmin= createSelector(
+    selectAuthFeature,
+    (state: AuthState) => state.isLoadingCreateAdmin
+);
+
+
+export const selectIsErrorCreateAdmin= createSelector(
+    selectAuthFeature,
+    (state: AuthState) => state.isErrorCreateAdmin
+);
+
+
 
 export const selectIsLoadingUpdateNombre= createSelector(
     selectAuthFeature,
@@ -31,15 +43,6 @@ export const selectIsErrorUpdateNombre= createSelector(
 );
 
 
-export const selectListUserInfo= createSelector(
-    selectAuthFeature,
-    (state: AuthState) => state.userInfo //hijo
-);
-
-export const selectLoadingUserInfo= createSelector(
-    selectAuthFeature,
-    (state: AuthState) => state.loadingUserInfo // hijo
-)
 
 
 

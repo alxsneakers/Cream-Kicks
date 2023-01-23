@@ -31,20 +31,6 @@ export class CreateProductComponent implements OnInit {
   tallasSelect: string[] = [];
   stockSelect: number[] = [];
   tallaPorStockZapatilla: Array<{ talla: string; stock: number }> = [];
-  listaTallas: string[] = [
-    '36',
-    '37',
-    '37.5',
-    '38',
-    '38.5',
-    '39',
-    '39.5',
-    '40',
-    '40.5',
-    '41',
-    '41.5',
-    '42',
-  ];
   formCreateProduct!: FormGroup;
   images: File[]=[];
 
@@ -159,6 +145,10 @@ export class CreateProductComponent implements OnInit {
   onRemove(event) {
     this.images.splice(this.images.indexOf(event), 1);
   }
+
+
+  
+
 
   
   

@@ -1,0 +1,47 @@
+// estilos para el input
+mat-form-field {
+    width: 100%;
+  }
+  
+  //mat-input focused color
+  ::ng-deep .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick {
+    color: var(--primerColor)!important;
+  }
+  
+  // mat-input carent color
+  ::ng-deep .mat-input-element {
+    caret-color: var(--primerColor) !important;
+  }
+  
+  // mat-label focused style
+  ::ng-deep .mat-form-field.mat-focused .mat-form-field-label {
+    color: var(--black)!important;
+  }
+  
+
+  // spinner peticion del login
+    @keyframes spinner {
+        to {
+        transform: rotate(360deg);
+        }
+    }
+  
+  .spinner:before {
+    content: "";
+    box-sizing: border-box;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 20px;
+    height: 20px;
+    margin-top: -10px;
+    margin-left: -10px;
+    border-radius: 50%;
+    border: 2px solid #ffffff;
+    border-top-color: #000000;
+    animation: spinner 0.8s linear infinite;
+  }
+  
+  
+  
+  

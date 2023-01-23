@@ -1,10 +1,29 @@
 <mat-form-field class="pr-4" appearance="outline">
     <mat-label>Talla</mat-label>
-    <input type="number" matInput [formControl]="$any(inputFormGroup.controls['talla'])" (keypress)="onlyNumbers($event)">
-</mat-form-field>
+    <mat-select [formControl]="$any(inputFormGroup.controls['talla'])">
+      <mat-option *ngFor="let talla of listaTallas" [value]="talla">{{talla}}</mat-option>
+    </mat-select>
+    <mat-error *ngIf="inputFormGroup
+    .get('talla')?.touched && inputFormGroup
+    .get('talla')?.errors?.['required']">
+    Talla obligatario
+    </mat-error>
+  </mat-form-field> 
 
 
-<mat-form-field class="pr-4" appearance="outline">
+<mat-form-field  appearance="outline">
     <mat-label>Stock</mat-label>
-    <input type="number" matInput [formControl]="$any(inputFormGroup.controls['stock'])" min="1" max="100" (keypress)="onlyNumbers($event)">
+    <input type="number" matInput [formControl]="$any(inputFormGroup.controls['stock'])" min="1" (keypress)="onlyNumbers($event)">
+    <mat-error *ngIf="inputFormGroup
+    .get('talla')?.touched && inputFormGroup
+    .get('talla')?.errors?.['required']">
+    Stock obligatario
+    </mat-error>
+    <mat-error *ngIf="inputFormGroup
+    .get('talla')?.touched && inputFormGroup
+    .get('talla')?.errors?.['min']">
+    No puedes tener un stock por debajado de 1
+    </mat-error>
 </mat-form-field>
+
+

@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { JwtHelperService } from "@auth0/angular-jwt"; // verifica si el token es correcto.
 import { Observable } from 'rxjs';
-import { LoginModel, LoginResponse, UpdateNameAccountModel } from '../models/auth.interface';
+import { CreateAdminModel, LoginModel, LoginResponse, UpdateNameAccountModel } from '../models/auth.interface';
 import { UsuarioModel } from '../models/usuario.interface';
 
 
@@ -27,6 +27,10 @@ export class LoginService {
   login_admin(data: LoginModel): Observable<LoginResponse>{
     return this.http.post<LoginResponse>('http://localhost:4201/api/login_admin', data);
   }
+
+   createAdmin(data: CreateAdminModel): Observable<any>{
+    return this.http.post('http://localhost:4201/api/registro_admin', data);
+   }
 
   // Obtiene informacion del usuario que ha iniciado session.
   getInfoAdmin(id): Observable<UsuarioModel>{

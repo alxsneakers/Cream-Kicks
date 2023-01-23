@@ -8,12 +8,14 @@ import { UserModel } from "../../models/auth.interface";
 
 export const initialState: AuthState = {
     loginData: null,
+    createAdmin: null,
     updateNameAccount: null,
     isLoading: false,
     isLoadingCambiarNombre: false,
+    isLoadingCreateAdmin: false,
     isError: null,
     isErrorUpdateName: null,
-    userInfo: {},
+    isErrorCreateAdmin: null,
     loadingUserInfo: false
 }
 
@@ -29,6 +31,15 @@ export const authReducer= createReducer(
     on(authActions.loginErrorAction, (state, {message}) => {
         return {...state, isLoading: false, isError: message};
     }),
+    on(authActions.createAdminAction, (state, {data}) =>{
+        return {...state, createAdmin: data, isLoadingCreateAdmin: true, isErrorCreateAdmin: null};
+    }),
+    on(authActions.createAdminSuccessAction, (state) => {
+        return {...state, isLoadingCreateAdmin: false};
+    }),
+    on(authActions.createAdminErrorAction, (state, {message}) => {
+        return {...state, isLoadingCreateAdmin: false, isErrorCreateAdmin: message};
+    }),
     on(authActions.deleteAccount, (state, {id}) =>{
         return {...state, id: id, isLoading: true, isError: null};
     }),
@@ -43,11 +54,5 @@ export const authReducer= createReducer(
     }),
     on(authActions.cambiarNombreAccountError, (state, {message}) => {
         return {...state, isLoadingCambiarNombre: false, isErrorUpdateName: message};
-    }),
-    on(authActions.loadUserInfo, (state) =>{
-        return {...state, loadingUserInfo: true};
-    }),
-    on(authActions.loadedUserInfo, (state, {userInfo}) => { // acciones
-        return {...state, loadingUserInfo: false, userInfo};
     })
 )

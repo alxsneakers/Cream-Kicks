@@ -4,6 +4,14 @@ export interface LoginModel{
 }
 
 
+export interface CreateAdminModel {
+    nombre: string;
+    apellidos: string;
+    email: string;
+    password: string;
+}
+
+
 // lo que devuelve el backend
 export interface LoginResponse{
     token: string,

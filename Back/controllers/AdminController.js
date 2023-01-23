@@ -12,7 +12,7 @@ const { log } = require('console');
 
 // crea un admin
 const registro_admin = (async (req, res) =>{
-    const { nombre, apellidos, email, password, rol, telefono } = req.body;
+    const { nombre, apellidos, email, password } = req.body;
     // encrypt password
     const saltRounds = 10;
     const passwordHash= await bcrypt.hash(password, saltRounds);
@@ -23,8 +23,6 @@ const registro_admin = (async (req, res) =>{
         apellidos: apellidos,
         email: email,
         password: passwordHash,
-        rol: rol,
-        telefono: telefono
     });
     const savedAdmin = admin.save(); // lo guarda en la bdd.
     res.status(200).json({message: 'Usuario Admin creado con exito'});

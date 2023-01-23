@@ -41,27 +41,11 @@ export class LoginComponent {
     this._store.dispatch(authActions.loginErrorAction({message}));
   }
 
-  
-  /*ogin(){
-    this.loginSvc.login_admin(this.formValidator.value).subscribe({
-      next: data =>{
-        localStorage.setItem('session', data.token) // guardo el token.
-        localStorage.setItem('idSession', data._id) // guardo el id de la session
-        this.router.navigate(['/dashboard']);
-      },
-      error: error =>{
-        this.error= error.error.error;
-      }
-    })
-  }*/
+
 
   
 
  
 
-  // cierra session
-  /*logOut(){
-   this.loginSvc.logOut()
-  }*/
 
 }

@@ -17,6 +17,8 @@ import { ClienteState } from "../models/cliente.state";
 import { clienteReducer } from "./reducers/cliente.reducers";
 import { UsuarioState } from "../models/usuario.state";
 import { usuarioReducer } from "./reducers/usuario.reducers";
+import { TallaState } from "../models/talla.state";
+import { tallaReducer } from "./reducers/talla.reducers";
 
 export interface AppState{
     coupons: CouponState,
@@ -26,7 +28,8 @@ export interface AppState{
     auths: AuthState,
     marcas: MarcaState,
     clientes: ClienteState,
-    usuarios: UsuarioState
+    usuarios: UsuarioState,
+    tallas: TallaState
 }
 
 export const ROOT_REDUCERS: ActionReducerMap<AppState> ={
@@ -37,5 +40,6 @@ export const ROOT_REDUCERS: ActionReducerMap<AppState> ={
     auths: authReducer,
     marcas: marcaReducer,
     clientes: clienteReducer,
-    usuarios: usuarioReducer
+    usuarios: usuarioReducer,
+    tallas: tallaReducer
 };

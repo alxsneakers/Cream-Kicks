@@ -14,7 +14,7 @@ const adminRouter = require('express').Router();
 
 // metodos del router (api).
 adminRouter
-    .post('/registro_admin', validateCreateAdmin, adminController.registro_admin)
+    .post('/registro_admin', validateCreateAdmin, userExtractor, adminController.registro_admin)
     .post('/login_admin', validateLoginAdmin, adminController.login_admin)
     .get('/allClient_admin', userExtractor , adminController.allClients_admin)
     .get('/obtenerAdmin/:id', userExtractor, adminController.obtener_admin)

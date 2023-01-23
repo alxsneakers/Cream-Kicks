@@ -74,7 +74,7 @@ const all_producto= (async (req, res)=>{
 
 const getProductoSearch= (async (req, res) => {
     let payload= req.body.payload;
-    let search= await Product.find({nombre:  {$regex: new RegExp(''+payload+'.*', 
+    let search= await Product.find({publicado: true, nombre:  {$regex: new RegExp(''+payload+'.*', 
     'i')}}).exec();
     res.send({payload: search});
 });
@@ -215,9 +215,15 @@ const listar_productos_publico= (async (req, res)=>{
 
 
 const obtener_producto_publico= (async (req, res)=>{
-    const id= req.params['id'];
-    const producto= await Product.findOne({_id: id, publicado: true}, { __v: 0, precioCompra: 0});
-    res.status(200).json(producto);
+    try{
+        const id= req.params['id'];
+        const producto= await Product.findOne({_id: id, publicado: true}, { __v: 0, precioCompra: 0});
+        res.status(200).json(producto);
+    }catch(error){
+        console.log(error);
+
+    }
+    
 });
 
 
@@ -247,7 +253,7 @@ const obtener_populares_productos_dash= (async (req, res) => {
 // devuelve la cantidad de producto de una marca
 const obtener_cantidad_marca= (async (req, res) => {
     const nombre= req.params['marca'];
-    const productos= await Product.find({marca: nombre.toLowerCase()});
+    const productos= await Product.find({marca: nombre.toLowerCase(), publicado: true});
     res.status(200).json(productos.length);
 });
 

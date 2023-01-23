@@ -1,0 +1,99 @@
+<!-- Agregar nuevos de cuponess -->
+<section>
+</section>
+
+<div class="form-body">
+    <div class="row">
+        <div class="form-holder">
+            <div class="form-content">
+                <div class="form-items">
+                    <h3>Crear un nuevo admin
+                    </h3>
+                    <p>Rellena los datos siguientes.</p>
+                    <form [formGroup]="formCreateAdmin">
+
+
+
+            
+                        <div class="col-md-12">
+                            <!-- Limite -->
+                            <mat-form-field appearance="outline">
+                                <mat-label>Nombre</mat-label>
+                                <input matInput formControlName="nombre" type="text" (keypress)="onlyText($event)">
+                                <mat-error *ngIf="formCreateAdmin
+                                    .get('nombre')?.touched && formCreateAdmin
+                                    .get('nombre')?.errors?.['required']">
+                                    <p>El nombre es requerido</p>
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+
+                        <div class="col-md-12">
+                            <!-- Limite -->
+                            <mat-form-field appearance="outline">
+                                <mat-label>Apellidos</mat-label>
+                                <input matInput formControlName="apellidos" type="text" (keypress)="onlyText($event)">
+                                <mat-error *ngIf="formCreateAdmin
+                                    .get('apellidos')?.touched && formCreateAdmin
+                                    .get('apellidos')?.errors?.['required']">
+                                    <p>Los apellidos son requeridos</p>
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+
+                        <div class="col-md-12">
+                            <!-- Limite -->
+                            <mat-form-field appearance="outline">
+                                <mat-label>Email</mat-label>
+                                <input matInput formControlName="email" type="text">
+                                <mat-error *ngIf="formCreateAdmin
+                                    .get('email')?.touched && formCreateAdmin
+                                    .get('email')?.errors?.['required']">
+                                    El email es requerido
+                                </mat-error>
+                                <mat-error *ngIf="formCreateAdmin
+                                    .get('email')?.touched && formCreateAdmin
+                                    .get('email')?.errors?.['email']">
+                                    Introduzca un email valido
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+
+
+                        <div class="col-md-12">
+                            <!-- Limite -->
+                            <mat-form-field appearance="outline">
+                                <mat-label>Contraseña</mat-label>
+                                <input matInput formControlName="password" type="text">
+                                <mat-error *ngIf="formCreateAdmin
+                                    .get('password')?.touched && formCreateAdmin
+                                    .get('password')?.errors?.['required']">
+                                    La contraseña es requerida
+                                </mat-error>
+                                <mat-error *ngIf="formCreateAdmin
+                                    .get('password')?.touched && formCreateAdmin
+                                    .get('password')?.errors?.['minlength']">
+                                    La contraseña debe de tener ente 6 y 20 caracteres
+                                </mat-error>
+                                <mat-error *ngIf="formCreateAdmin
+                                    .get('password')?.touched && formCreateAdmin
+                                    .get('password')?.errors?.['maxlength']">
+                                    La contraseña debe de tener ente 6 y 20 caracteres
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+
+                        <mat-checkbox [ngModel]="true">Rol Administrador</mat-checkbox>
+
+
+                        <div class="form-button mt-3">
+                            <button mat-button (click)="onClickCancelar()">Cancelar</button>                      
+                            <!-- Boton confirmar -->
+                            <button mat-button type="submit" (click)="doAction()" [disabled]="formCreateAdmin.invalid">Crear admin</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

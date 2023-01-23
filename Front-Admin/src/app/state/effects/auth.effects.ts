@@ -30,6 +30,19 @@ export class AuthEffects {
         )
     ));
 
+    createAdmin$= createEffect(() => this.actions$.pipe(
+        ofType(authActions.createAdminAction),
+        exhaustMap((action) => 
+            this._loginService.createAdmin(action.data).pipe(
+                map(() => {
+                    this._ntfService.openSnackBar('Admin creado con exito.', 'x')
+                    return authActions.createAdminSuccessAction();
+                }),
+                catchError((error) => 
+                    of(authActions.createAdminErrorAction({message: error.error.error})))
+            ))
+    ))
+
     loadUserInfo$= createEffect(() => this.actions$.pipe(
         ofType(authActions.loadUserInfo),
         mergeMap((action) => this._loginService.getInfoAdmin(action.id).pipe(
