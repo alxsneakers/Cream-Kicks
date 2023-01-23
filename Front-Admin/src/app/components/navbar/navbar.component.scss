@@ -1,9 +1,11 @@
-*{
-    font-size: 14px;
+.top-bar{
+  background-color: var(--white);
+
 }
 
 
-h4{
+
+.ruta{
     color: var(--black);
     font-size: x-large;
     font-weight: 500;
@@ -14,21 +16,21 @@ h4{
 
 }
 
+.containerImgProfile {
+  height: 40px;
+  width: 40px;
+  border-radius: 50% 50%; 
+  cursor: pointer;
+  box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.2) ;
+
+}
+
+
+
 ion-icon{
   font-size: 25px;
 }
 
 .sing-out-btn:hover, .search-btn:hover {
   color: var(--grey);
-}
-
-.imagenPerfil{
-  width: 35px;
-}
-
-
-// botones
-.btn{
-  background-color:var(--segundoColor) ;
-  color: var(--white);
 }

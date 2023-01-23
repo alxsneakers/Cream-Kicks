@@ -17,3 +17,8 @@ mat-form-field {
 ::ng-deep .mat-form-field.mat-focused .mat-form-field-label {
     color: var(--black)!important;
 }
+
+.btn-color{
+    background-color:var(--segundoColor) ;
+    color: var(--white);
+}

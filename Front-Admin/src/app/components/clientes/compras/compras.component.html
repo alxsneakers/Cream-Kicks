@@ -4,7 +4,7 @@
 <!-- Tabla de productos -->
 
 <section>
-    <div class="container-fluid pt-4 px-4">
+    <div class="container-fluid pt-5 px-4">
         <div class="row my-5 ">
             <div class=" col-xl-10 col-lg-9 col-md-8 ml-auto ">
                 <div class="card">
@@ -24,7 +24,7 @@
                     </ng-container>
 
 
-                    
+
                     <!-- Input Buscador -->
                     <div class="col-md-12 pt-4">
                         <div class="input-group">
@@ -34,63 +34,70 @@
                             </mat-form-field>
                         </div>
                     </div>
-                    
-                    <div class="table-container" tabindex="0" *ngIf="!(isLoading$ | async)">
 
-                        <!-- Tabla -->
-                        <table class="table"  mat-table [dataSource]="data">
+                    <div class="col-md-12 pt-4">
+                        <div tabindex="0" *ngIf="!(isLoading$ | async)">
 
-
-                            <!-- id Column -->
-                            <ng-container matColumnDef="id">
-                                <th class="pb-3" mat-header-cell *matHeaderCellDef>Identificador venta</th>
-                                <td class="pt-3"mat-cell *matCellDef="let element">{{element._id.toUpperCase()}}</td>
-                            </ng-container>
-
-                            <!-- creado Column -->
-                            <ng-container matColumnDef="creado">
-                                <th class="pb-3" mat-header-cell *matHeaderCellDef>Comprado</th>
-                                <td class="pt-3"mat-cell *matCellDef="let element">{{element.creado | date }}</td>
-                            </ng-container>
-
-                            <!-- estado Column -->
-                            <ng-container matColumnDef="estado">
-                                <th class="pb-3" mat-header-cell *matHeaderCellDef>Estado</th>
-                                <td class="pt-3"mat-cell *matCellDef="let element">{{element.estado}}</td>
-                            </ng-container>
-
-                            <!-- subtotal Column -->
-                            <ng-container matColumnDef="subtotal">
-                                <th class="pb-3" mat-header-cell *matHeaderCellDef>Subtotal</th>
-                                <td class="pt-3"mat-cell *matCellDef="let element">{{element.subtotal}}€</td>
-                            </ng-container>
+                            <!-- Tabla -->
+                            <table class="table" mat-table [dataSource]="data">
 
 
-                            <!-- Function Column -->
-                            <ng-container matColumnDef="funciones" class="funciones">
-                                <th class="pb-3" mat-header-cell *matHeaderCellDef>Funciones</th>
-                                <td mat-cclass="pt-3"ell *matCellDef="let element">
-                                    <ion-icon name="eye-outline"
-                                        [routerLink]="['/clientes/detalleCompra/', element._id]"></ion-icon>
-                                </td>
-                            </ng-container>
+                                <!-- id Column -->
+                                <ng-container matColumnDef="id">
+                                    <th class="pb-3" mat-header-cell *matHeaderCellDef>Identificador venta</th>
+                                    <td class="pt-3" mat-cell *matCellDef="let element">{{element._id.toUpperCase()}}
+                                    </td>
+                                </ng-container>
+
+                                <!-- creado Column -->
+                                <ng-container matColumnDef="creado">
+                                    <th class="pb-3" mat-header-cell *matHeaderCellDef>Comprado</th>
+                                    <td class="pt-3" mat-cell *matCellDef="let element">{{element.creado | date }}</td>
+                                </ng-container>
+
+                                <!-- estado Column -->
+                                <ng-container matColumnDef="estado">
+                                    <th class="pb-3" mat-header-cell *matHeaderCellDef>Estado</th>
+                                    <td class="pt-3" mat-cell *matCellDef="let element">{{element.estado}}</td>
+                                </ng-container>
+
+                                <!-- subtotal Column -->
+                                <ng-container matColumnDef="subtotal">
+                                    <th class="pb-3" mat-header-cell *matHeaderCellDef>Subtotal</th>
+                                    <td class="pt-3" mat-cell *matCellDef="let element">{{element.subtotal}}€</td>
+                                </ng-container>
 
 
-                            <tr mat-header-row *matHeaderRowDef="columnsDisplay"></tr>
-                            <tr mat-row *matRowDef="let row; columns: columnsDisplay;">
+                                <!-- Function Column -->
+                                <ng-container matColumnDef="funciones" class="funciones">
+                                    <th class="pb-3" mat-header-cell *matHeaderCellDef>Funciones</th>
+                                    <td mat-cclass="pt-3" ell *matCellDef="let element">
+                                        <ion-icon name="eye-outline"
+                                            [routerLink]="['/clientes/detalleCompra/', element._id]">
+                                        </ion-icon>
+                                    </td>
+                                </ng-container>
 
 
-                                <!-- Cuando no hay ningun resultado, agrega una fifla con ese mensaje --->
-                            <tr *matNoDataRow>
-                                <td class="mat-cell" colspan="4">No se ha encontrado ninguna compra "{{input.value}}"
-                                </td>
-                            </tr>
+                                <tr mat-header-row *matHeaderRowDef="columnsDisplay"></tr>
+                                <tr mat-row *matRowDef="let row; columns: columnsDisplay;">
 
-                        </table>
+
+                                    <!-- Cuando no hay ningun resultado, agrega una fifla con ese mensaje --->
+                                <tr *matNoDataRow>
+                                    <td class="mat-cell" colspan="4">No se ha encontrado ninguna compra
+                                        "{{input.value}}"
+                                    </td>
+                                </tr>
+
+                            </table>
+                        </div>
 
                         <!-- Paginator -->
-                        <mat-paginator [pageSize]="10" aria-label="Select page of user"
-                            class="paginator"></mat-paginator>
+                        <div class="col-md-12 pt-4 d-flex justify-content-center">
+                            <mat-paginator [pageSize]="10" aria-label="Select page of user"
+                                class="paginator"></mat-paginator>
+                        </div>
                     </div>
                     <!-- ------------------------ -->
 

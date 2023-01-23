@@ -1,71 +1,92 @@
-
-<!-- Barra superior -->
-<app-navbar></app-navbar>
-<!-- Barra navegacion lateral -->
-<app-sidenav></app-sidenav>
+<!-- MENU NAV -->
+<app-nav></app-nav>
 
 
-<h1 style="font-size: 32px; text-align: center; font-weight: 500;">Historial Compras</h1>
+<section>
+    <div class="container-fluid pt-5 px-4">
+        <div class="row my-5 ">
+            <div class=" col-xl-10 col-lg-9 col-md-8 ml-auto ">
+                <div class="card">
 
-<!-- spinner -->
-<div class="container-loader" *ngIf="isLoading$ | async">
-    <span class="loader"></span>
-</div>
+                    <!-- spinner -->
+                    <div class="container-loader" *ngIf="isLoading$ | async">
+                        <span class="loader"></span>
+                    </div>
+
+                    <!-- Tabla de productos -->
+                    <h1 style="font-size: 32px; text-align: center; font-weight: 500;">Todos los pedidos</h1>
+
+                    <div class="col-md-12 pt-4">
+                        <div class="input-group">
+                            <mat-form-field appearance="outline">
+                                <mat-label> <i class="bi bi-search"></i> Filtrar pedidos</mat-label>
+                                <input matInput formControlName="nombre" (keyup)="applyFilter($event)" #input>
+                            </mat-form-field>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12 pt-4">
+
+                        <div tabindex="0" *ngIf="!(isLoading$ | async)">
+
+                            <!-- Tabla -->
+                            <table class="table" mat-table [dataSource]="data">
+
+                                <!-- email cliente -->
+                                <ng-container matColumnDef="clienteCorreo">
+                                    <th class="pb-3" mat-header-cell *matHeaderCellDef>Cliente Email</th>
+                                    <td class="pt-3" mat-cell *matCellDef="let element">{{element.cliente.email}}</td>
+                                </ng-container>
+
+                                <!-- id Column -->
+                                <ng-container matColumnDef="id">
+                                    <th class="pb-3" mat-header-cell *matHeaderCellDef>Identificador venta</th>
+                                    <td class="pt-3" mat-cell *matCellDef="let element">{{element._id.toUpperCase()}}</td>
+                                </ng-container>
+
+                                <!-- creado Column -->
+                                <ng-container matColumnDef="creado">
+                                    <th class="pb-3" mat-header-cell *matHeaderCellDef>Comprado</th>
+                                    <td class="pt-3" mat-cell *matCellDef="let element">{{element.creado | date }}</td>
+                                </ng-container>
+
+                                <!-- estado Column -->
+                                <ng-container matColumnDef="estado">
+                                    <th class="pb-3" mat-header-cell *matHeaderCellDef>Estado</th>
+                                    <td class="pt-3" mat-cell *matCellDef="let element">{{element.estado}}</td>
+                                </ng-container>
+
+                                <!-- subtotal Column -->
+                                <ng-container matColumnDef="subtotal">
+                                    <th class="pb-3" mat-header-cell *matHeaderCellDef>Subtotal</th>
+                                    <td class="pt-3" mat-cell *matCellDef="let element">{{element.subtotal}}€</td>
+                                </ng-container>
 
 
-<div class="table-container" tabindex="0" *ngIf="!(isLoading$ | async)">
+                                <tr mat-header-row *matHeaderRowDef="columnsDisplay"></tr>
+                                <tr mat-row *matRowDef="let row; columns: columnsDisplay;">
 
-    <!-- Buscador -->
-    <div class="barraSuperior">
-        <ion-icon name="search-outline" class="iconSearch"></ion-icon>
-        <input class="input" matInput (keyup)="applyFilter($event)" placeholder="Filtrar Pedidos" #input>
+
+                                    <!-- Cuando no hay ningun resultado, agrega una fifla con ese mensaje --->
+                                <tr *matNoDataRow>
+                                    <td class="pt-3" class="mat-cell" colspan="4">No se ha encontrado ningun pedido "{{input.value}}"
+                                    </td>
+                                </tr>
+
+                            </table>
+                        </div>
+
+                        <!-- Paginator -->
+                        <div class="col-md-12 pt-4 d-flex justify-content-center">
+                            <mat-paginator [pageSize]="10" aria-label="Select page of user"
+                                class="paginator"></mat-paginator>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
     </div>
 
-    <!-- Tabla -->
-    <table mat-table [dataSource]="data">
-
-         <!-- email cliente -->
-         <ng-container matColumnDef="clienteCorreo">
-            <th mat-header-cell *matHeaderCellDef>Cliente Email</th>
-            <td mat-cell *matCellDef="let element">{{element.cliente.email}}</td>
-        </ng-container>
-       
-        <!-- id Column -->
-        <ng-container matColumnDef="id">
-            <th mat-header-cell *matHeaderCellDef>Identificador venta</th>
-            <td mat-cell *matCellDef="let element">{{element._id.toUpperCase()}}</td>
-        </ng-container>
-
-        <!-- creado Column -->
-        <ng-container matColumnDef="creado">
-            <th mat-header-cell *matHeaderCellDef>Comprado</th> 
-            <td mat-cell *matCellDef="let element">{{element.creado | date }}</td>
-        </ng-container>
-
-        <!-- estado Column -->
-        <ng-container matColumnDef="estado">
-            <th mat-header-cell *matHeaderCellDef>Estado</th>
-            <td mat-cell *matCellDef="let element">{{element.estado}}</td>
-        </ng-container>
-
-        <!-- subtotal Column -->
-        <ng-container matColumnDef="subtotal">
-            <th mat-header-cell *matHeaderCellDef>Subtotal</th>
-            <td mat-cell *matCellDef="let element">{{element.subtotal}}€</td>
-        </ng-container>
-
-        
-        <tr mat-header-row *matHeaderRowDef="columnsDisplay"></tr>
-        <tr mat-row *matRowDef="let row; columns: columnsDisplay;">
-    
-        
-        <!-- Cuando no hay ningun resultado, agrega una fifla con ese mensaje --->
-        <tr *matNoDataRow>
-            <td class="mat-cell" colspan="4">No se ha encontrado ningun pedido "{{input.value}}"</td>
-        </tr>
-        
-    </table>
-
-    <!-- Paginator -->
-    <mat-paginator [pageSize]="10" aria-label="Select page of user" class="paginator"></mat-paginator>  
-</div>
+</section>

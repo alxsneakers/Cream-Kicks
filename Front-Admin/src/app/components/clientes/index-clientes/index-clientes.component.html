@@ -4,12 +4,10 @@
 <!-- Tabla de productos -->
 
 <section>
-    <div class="container-fluid pt-4 px-4">
+    <div class="container-fluid pt-5 px-4">
         <div class="row my-5 ">
             <div class=" col-xl-10 col-lg-9 col-md-8 ml-auto ">
                 <div class="card">
-
-                    <!-- ------------------------ -->
 
                     <!-- Input Buscador -->
                     <div class="col-md-12 pt-4">
@@ -23,43 +21,43 @@
 
 
                     <!-- Tabla -->
-                    <div class="col-md-12 " tabindex="0" *ngIf="!(isLoading$ | async)">
-                        <table class="table" mat-table [dataSource]="data">
+                    <div class="col-md-12 pt-4">
+                        <div tabindex="0" *ngIf="!(isLoading$ | async)">
+                            <table class="table" mat-table [dataSource]="data">
+                                <!-- Nombre Column -->
+                                <ng-container matColumnDef="nombre completo">
+                                    <th class="pb-3" mat-header-cell *matHeaderCellDef>Nombre completo</th>
+                                    <td class="pt-3" mat-cell *matCellDef="let element">{{element.nombre + ' ' + element.apellidos}}</td>
+                                </ng-container>
 
+                                <!-- email Column -->
+                                <ng-container matColumnDef="email">
+                                    <th class="pb-3" mat-header-cell *matHeaderCellDef>Email</th>
+                                    <td class="pt-3" mat-cell *matCellDef="let element">{{element.email}}</td>
+                                </ng-container>
 
-                            <!-- Nombre Column -->
-                            <ng-container matColumnDef="nombre completo">
-                                <th class="pb-3" mat-header-cell *matHeaderCellDef>Nombre completo</th>
-                                <td class="pt-3" mat-cell *matCellDef="let element">{{element.nombre + ' ' + element.apellidos}}</td>
-                            </ng-container>
+                                <!-- Function Column -->
+                                <ng-container matColumnDef="funciones" class="funciones">
+                                    <th class="pb-3" mat-header-cell *matHeaderCellDef>Funciones</th>
+                                    <td class="pt-3" mat-cell *matCellDef="let element">
+                                        <ion-icon name="trash-outline"
+                                            (click)="openDialog(element.nombre, element._id)"></ion-icon>
+                                        <ion-icon name="albums-outline" [routerLink]="['compras/', element._id]"></ion-icon>
+                                    </td>
+                                </ng-container>
 
-                            <ng-container matColumnDef="email">
-                                <th class="pb-3" mat-header-cell *matHeaderCellDef>Email</th>
-                                <td class="pt-3" mat-cell *matCellDef="let element">{{element.email}}</td>
-                            </ng-container>
-
-                            <!-- Function Column -->
-                            <ng-container matColumnDef="funciones" class="funciones">
-                                <th class="pb-3" mat-header-cell *matHeaderCellDef>Funciones</th>
-                                <td class="pt-3" mat-cell *matCellDef="let element">
-                                    <ion-icon name="trash-outline"
-                                        (click)="openDialog(element.nombre, element._id)"></ion-icon>
-                                    <ion-icon name="albums-outline" [routerLink]="['compras/', element._id]"></ion-icon>
-                                </td>
-                            </ng-container>
-
-
-                            <tr mat-header-row *matHeaderRowDef="columnsDisplay"></tr>
-                            <tr mat-row *matRowDef="let row; columns: columnsDisplay;">
-
+                                <tr mat-header-row *matHeaderRowDef="columnsDisplay"></tr>
+                                <tr mat-row *matRowDef="let row; columns: columnsDisplay;">
 
                                 <!-- Cuando no hay ningun resultado, agrega una fifla con ese mensaje --->
-                            <tr *matNoDataRow>
-                                <td class="mat-cell" colspan="4">No se ha encontrado ningun cliente "{{input.value}}"
-                                </td>
-                            </tr>
+                                <tr *matNoDataRow>
+                                    <td class="mat-cell" colspan="4">No se ha encontrado ningun cliente "{{input.value}}"
+                                    </td>
+                                </tr>
 
-                        </table>
+                            </table>
+                        </div>
+
 
                         <!-- Paginator -->
                         <div class="col-md-12 pt-4 d-flex justify-content-center">                           
