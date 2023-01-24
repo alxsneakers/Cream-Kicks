@@ -1,0 +1,12 @@
+::ng-deep .item-value {
+  font-size: 16px !important;
+  margin-top: 0 !important; 
+}
+
+
+
+@media (max-width: 1100px) {
+    ::ng-deep .advanced-pie-legend .legend-items-container .legend-items .legend-item {
+        display: inherit !important;
+      }
+}

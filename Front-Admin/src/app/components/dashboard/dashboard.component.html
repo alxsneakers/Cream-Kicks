@@ -3,7 +3,7 @@
 
 <!--tarjetas-->
 <section>
-    <div class="container-fluid pt-5 px-4">
+    <div class="container-fluid pt-5 px-5">
         <div class="row my-5">
             <div class="col-xl-10 col-lg-9 col-md-8 ml-auto  ">
                 <div class="row">
@@ -13,8 +13,14 @@
                                 <div class="d-flex justify-content-between">
                                     <p class=" font-weight-bold">Ventas totales</p>
                                 </div>
-                                <div>
-                                    <h1>{{ventasTotales}}</h1>
+                                <div class="row">
+
+                                    <div class="col">
+                                        <h1>{{ventasTotales}}</h1>
+                                    </div>
+                                    <div class="col-md-auto">
+                                        <i class="bi bi-cart iconoTarjeta"></i>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -25,8 +31,15 @@
                                 <div class="d-flex justify-content-between">
                                     <p class=" font-weight-bold">Ganancia</p>
                                 </div>
-                                <div>
-                                    <h1>{{ganancia}}€</h1>
+
+                                <div class="row">
+
+                                    <div class="col">
+                                        <h1>{{ganancia}}€</h1>
+                                    </div>
+                                    <div class="col-md-auto">
+                                        <i class="bi bi-bank iconoTarjeta"></i>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -37,8 +50,15 @@
                                 <div class="d-flex justify-content-between">
                                     <p class=" font-weight-bold">Total productos</p>
                                 </div>
-                                <div>
-                                    <h1>{{totalProductos}}</h1>
+
+                                <div class="row">
+
+                                    <div class="col">
+                                        <h1>{{totalProductos}}</h1>
+                                    </div>
+                                    <div class="col-md-auto">
+                                        <i class="bi bi-boxes iconoTarjeta"></i>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -49,97 +69,114 @@
 
                                 <div class="d-flex justify-content-between">
                                     <p class=" font-weight-bold">Usuarios Totales</p>
-                                    
-                                </div>
-                                
-                                <div>                                    
-                                    <h1>{{totalUsuarios}}</h1>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- acciones reapidas -->
-                    <div class="col-xl-3 col-sm-6 mb-4">
-                        <div class="card tarjetas">
-                            <div class="card-body colorBlack tarjeta">
-                                <div class="d-flex justify-content-between">
-                                    <p class=" font-weight-bold">Panel Administrador</p>
-                                </div>
-                                <div style="display: flex; flex-direction: column;">
-                                    <button class="btn mr-2" (click)="DialogAgregarCupon()">Añadir Marca</button>
-                                    <button class="btn mr-2" (click)="DialogCreateAdmin()">Añadir Admin</button>
-                                    <button class="btn mr-2" (click)="DialogCreateTalla()">Añadir Talla</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
 
-                    <!--errores de los modales-->
-                    <div class="col-xl-3 col-sm-6 mb-4">
-                        <div class="card tarjetas">
-                            <div class="card-body colorBlack tarjeta">
-                                
-                                <div class="d-flex justify-content-between">
-                                    <p class=" font-weight-bold">Errores</p>
-                                    <app-login-error *ngIf="errorMarca$ | async" [error]="errorMarca$ | async"></app-login-error>
-                                    <app-login-error *ngIf="errorCreateAdmin$ | async" [error]="errorCreateAdmin$ | async"></app-login-error>
-                                    <app-login-error *ngIf="errorTalla$ | async" [error]="errorTalla$ | async"></app-login-error>
-
-                                    
                                 </div>
-                                
-                                
-                                
-            
-                               
+
+                                <div class="row">
+
+                                    <div class="col">
+                                        <h1>{{ganancia}}€</h1>
+                                    </div>
+                                    <div class="col-md-auto">
+                                        <i class="bi bi-person-lines-fill iconoTarjeta"></i>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="row">
-                    <app-grafico-ventas></app-grafico-ventas>
-                    <table mat-table [dataSource]="data" style="width: 500px;">
+            </div>
+        </div>
+    </div>
+</section>
 
+
+<section>
+    <div class="container-fluid px-5">
+        <div class="row my-5">
+            <div class="col-xl-10 col-lg-9 col-md-8 ml-auto">
+                <div class="row">
+                    <div class="col-sm-4 mb-3 ">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <div>
+                                    <h5>Herramientas administrador</h5>
+                                </div>
+                                <hr>
+                                <div class="row justify-content-center w-100 pl-3 pb-4">
+                                    <div class="row  justify-content-center">
+                                        <button class="button btnFuncion" (click)="DialogAgregarCupon()">
+                                            Añadir Marca
+                                        </button>
+                                    </div>
+                                    <div class="row  justify-content-center">
+                                        <button class="button btnFuncion" (click)="DialogCreateAdmin()">
+                                            Añadir Admin
+                                        </button>
+                                    </div>
+                                    <div class="row  justify-content-center">
+                                        <button class="button btnFuncion" (click)="DialogCreateTalla()">
+                                            Añadir Talla
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-8 mb-3 ">
+                        <div class="card h-100 bg-dark text-white">
+                            <div class="card-body">
+                                <h5 class="">Estado de pedidos</h5>
+                                <div class="pb-3">
+                                    <app-grafico-ventas></app-grafico-ventas>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section>
+    <div class="container-fluid px-5">
+        <div class="row my-5">
+            <div class="col-xl-10 col-lg-9 col-md-8 ml-auto ">
+                <h4>Productos más vendidos</h4>
+
+                <div class="card py-2">
+
+                    <table class="table mt-2 bg-white" mat-table [dataSource]="data">
                         <!-- Img Product -->
                         <ng-container matColumnDef="bestProductos">
-                            <th class="pb-3" mat-header-cell *matHeaderCellDef style="font-size: 18px; font-weight: bold;">Mejores Productos</th>
+                            <th class="pb-3" mat-header-cell *matHeaderCellDef>
+
+                                Productos</th>
                             <td class="py-3" mat-cell *matCellDef="let element">
-                            <img style="max-width: 59px; max-height: 59px;" mat-card-image [src]="'http://localhost:4201/api/products/obtenerPortada/' + element.portada">
-                            <p>{{element.nombre}}</p>
-                            <p>{{element.marca}}</p>
-                        </td>
+                                <img style="max-width: 59px; max-height: 59px;" mat-card-image
+                                    [src]="'http://localhost:4201/api/products/obtenerPortada/' + element.portada">
+                                <p>{{element.nombre}}</p>
+                                <p>{{element.marca}}</p>
+                            </td>
                         </ng-container>
+
 
                         <ng-container matColumnDef="precios">
                             <th class="pb-3" mat-header-cell *matHeaderCellDef>Precios</th>
                             <td class="py-3" mat-cell *matCellDef="let element">{{element.precioVenta}}€</td>
                         </ng-container>
 
-
-
                         <tr mat-header-row *matHeaderRowDef="columnsDisplay"></tr>
-                        <tr mat-row *matRowDef="let row; columns: columnsDisplay;"> 
+                        <tr mat-row *matRowDef="let row; columns: columnsDisplay;">
                     </table>
+
                 </div>
-
-
-                
             </div>
         </div>
     </div>
 
-
-
-
-    
-
-
-
-    
 </section>
-
-
-
-
-
 
