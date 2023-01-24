@@ -39,22 +39,23 @@ export class CarritoComponent implements OnInit {
   public dventa : Array<any> = [];
 
 
-  constructor(private _clienteService: ClienteService, private _router: Router, private _guestService: GuestService) {
-
+  constructor(private _clienteService: ClienteService,private _router: Router, private _guestService: GuestService) {
     // obtengo el id y el token del usuario guardado en el localStorage
     this.token = localStorage.getItem('token');
     this.id = localStorage.getItem('_id');
     this.url= GLOBAL.url;
 
-   
-    
-    
     
     // actualiza el carrito cada vez que hace una peticion al backend para eliminar un producto.
     this.socket.on('update-carrito-delete', function(this: CarritoComponent){
       this.obtener_carrito_cliente();
     }.bind(this));
    }
+
+   
+
+
+
 
 
 
@@ -208,7 +209,7 @@ export class CarritoComponent implements OnInit {
     )
   }
 
-  prueba(){
+  compraConTarjeta(){
     this.venta.detalles= this.dventa;
     this.venta.cliente= this.id;
     this.venta.transaccion='tarjetaCredito';

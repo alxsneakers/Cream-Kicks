@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ClienteService } from 'src/app/services/cliente.service';
 import { GuestService } from 'src/app/services/guest.service';
 import { NotificationService } from 'src/app/services/notification.service';
+declare var iziToast:any;
 
 @Component({
   selector: 'app-direcciones',
@@ -67,8 +68,12 @@ export class DireccionesComponent implements OnInit {
         response =>{
           console.log(data)
           this.direccion= '';  // limpio el formulario
-          this._notificationService.openSnackBar(response.message, 'cerrar');
           this.obtener_direcciones(); // obtengo los datos actualizados.
+          iziToast.success({
+            title:'OK',
+            position: 'topRight',
+            message: response.message
+          })
         },
         error =>{
           this.error= error.error.error;
