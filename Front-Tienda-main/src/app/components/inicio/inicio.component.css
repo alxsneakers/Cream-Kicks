@@ -1,47 +1,53 @@
 
 .banner1{
-    background-image: url(../../../assets/img/banners/banner1.webp);
+    background-image: url(../../../assets/img/banners/banner1.gif);
+
 }
 
 .banner2{
     background-image: url(../../../assets/img/banners/banner2.webp);
+
 }
 
 
 .banner3{
     background-image: url(../../../assets/img/banners/banner3.gif);
-}
 
-.banner4{
-    background-image: url(../../../assets/img/banners/banner4.gif);
 }
 
 
+@media only screen and (max-width: 1280px){
+    .banner1, .banner2, .banner3{
+        height: 350px;
+
+    }
+}
 
 
 @media only screen and (max-width: 768px){
     .banner1{
-        background-image: url(../../../assets/img/banners/banner1mobile.webp);
-        width: 390px;
-        height: 224px;
+        background-image: url(../../../assets/img/banners/banner1mobile.gif);
+        width: 100%;
+        height: 350px;
+        /* height: 224px; */
     }
 
     .banner2{
         background-image: url(../../../assets/img/banners/banner2mobile.webp);
-        width: 390px;
-        height: 224px;
+        width: 100%;
+        height: 350px;
+
+        /* height: 224px; */
     }
 
     .banner3{
         background-image: url(../../../assets/img/banners/banner3mobile.gif);
-        width: 390px;
-        height: 224px;
+        width: 100%;
+        height: 350px;
+
+        /* height: 224px; */
     }
 
-    .banner4{
-        background-image: url(../../../assets/img/banners/banner4mobile.gif);
-        width: 390px;
-        height: 224px;
-    }
+
 
 }
