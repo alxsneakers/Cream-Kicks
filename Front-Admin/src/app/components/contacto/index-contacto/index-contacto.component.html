@@ -21,57 +21,46 @@
 
           </div>
 
-     
-          <!-- .................................. -->
+          <!-- mensaje card -->
           <div class="col-md-12 pb-4">
-            <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-              <div class="panel panel-default">
-                <div class="panel-heading" role="tab" id="headingThree">
-                  <h4 class="panel-title">
+            <div class="panel-default "
+              *ngFor="let item of (contactos$ | async) | filterMensajes: mensajesFiltrados; index as i;">
+              <div class="panel-heading">
 
-                    <!-- card -->
-                    <div class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" *ngFor="let item of (contactos$ | async) | filterMensajes: mensajesFiltrados; index as i;">
-                     
-                      <a href="mailto:{{item.email}}">{{item.email}}</a>
+                <button class="btn w-100 mb-2 text-left mensaje" data-toggle="collapse"
+                  [attr.data-target]="'#test' + i">
 
-                      <i *ngIf="item.estado == 'Abierto'" class="bi bi-envelope-fill fa-lg mr-3 mensajeActivo"></i>
+                  <button class="btn btn-primary-outline" (click)="this.cerrarMensaje(item._id)">
+                    <i *ngIf="item.estado == 'Abierto'" class="bi bi-envelope-fill fa-lg mr-3 mensajeActivo"></i>
+                    <i *ngIf="item.estado == 'Cerrado'" class="bi bi-envelope fa-lg mr-3 mensajeActivo"></i>
+                  </button>
 
-                      <i *ngIf="item.estado == 'Cerrado'" class="bi bi-envelope fa-lg mr-3 mensajeActivo"></i>
-                      <p>Asunto: {{item.asunto}}</p>
-                      <p>Fecha: {{item.creado | date }}</p>
-                    
-                      <button class="btn w-100 mb-2 text-left mensaje" (click)="this.cerrarMensaje(item._id)"></button>
-                        
-
-                    </div>
-                  </h4>
-                </div>
-                <div id="collapse1" class="panel-collapse collapse" role="tabpanel">
-                  <div class="panel-body">
-                    <p>mensaje: <br></p>
-                    hola         
-                  </div>
-                </div>
+                  <a href="mailto:{{item.email}}">{{item.email}}</a>
+                  <p>Asunto: {{item.asunto}}</p>
+                  <!-- <p>{{item.estado}}</p> -->
 
 
+                  <!-- <p>Nombre: {{item.nombre}}</p> -->
+                  <p>Fecha: {{item.creado | date }}</p>
+                  <!-- <mat-card-subtitle>{{item.estado}}</mat-card-subtitle> -->
 
+                </button>
               </div>
-             
 
+              <div class="panel-collapse collapse" id="test{{i}}">
 
+                <div class="card-body">
+                  <p>mensaje: <br></p>
+                  {{item.mensaje}}
+
+                </div>
+              </div>
             </div>
-
-            
-
           </div>
-
-          <!-- .................................. -->
-
-
-
         </div>
+
       </div>
+
     </div>
   </div>
-
 </section>

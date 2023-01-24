@@ -47,7 +47,7 @@
                     <!-- Tabla -->
 
                     <div class="col-md-12">
-                        <div tabindex="0" *ngIf="!(loading$ | async)">
+                        <div class="table-responsive" tabindex="0" *ngIf="!(loading$ | async)">
                             <table class="table" mat-table [dataSource]="data">
                                 <!-- Checkbox Column -->
                                 <ng-container matColumnDef="select">
