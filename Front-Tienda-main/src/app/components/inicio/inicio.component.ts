@@ -32,8 +32,7 @@ export class InicioComponent implements OnInit {
         mode: 'gallery',
         // navContainer: '#pager',
         responsive: {
-          0: { controls: false },
-          991: { controls: true }
+
         }
       });
 
