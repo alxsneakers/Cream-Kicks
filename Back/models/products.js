@@ -47,11 +47,6 @@ const ProductSchema= Schema({
         type: Number,
         default: 0
     },
-    nestrellas: { // Estrellas de producto.
-        type: Number,
-        default: 0,
-        required: true
-    },
     publicado: {
         type: Boolean, // Es decir no esta en tienda. | Valores (true y false)
         default: false,

@@ -110,9 +110,6 @@ const enviar_mensaje_contacto= (async (req, res)=>{
 });
 
 
-const obtener_mensajes_abiertos= (async (req, res)=>{
-
-});
 
 const obtener_pedidos_cliente= (async (req, res)=>{
     const id= req.params['id'];
@@ -125,6 +122,7 @@ const obtener_todos_pedidos= (async (req, res) => {
     const ventas= await Venta.find(null, {nventa: 1, subtotal: 1, estado: 1, creado: 1}).populate('cliente');
     res.status(200).json(ventas);
 });
+
 
 const obtener_detalle_pedido_cliente= (async (req, res)=>{
     const id= req.params['id'];
