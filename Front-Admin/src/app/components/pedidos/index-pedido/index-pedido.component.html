@@ -35,7 +35,10 @@
                                 <!-- email cliente -->
                                 <ng-container matColumnDef="clienteCorreo">
                                     <th class="pb-3" mat-header-cell *matHeaderCellDef>Cliente Email</th>
-                                    <td class="pt-3" mat-cell *matCellDef="let element">{{element.cliente.email}}</td>
+                                    <td class="pt-3" mat-cell *matCellDef="let element" >
+                                        <p *ngIf="element.cliente == null">Cliente no encontrado</p>
+                                        <p *ngIf="element.cliente != null">{{element.cliente.email}}</p>
+                                    </td>
                                 </ng-container>
 
                                 <!-- id Column -->

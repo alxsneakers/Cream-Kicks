@@ -3,7 +3,10 @@
 const clienteController = require('../controllers/ClienteController');
 const validateLoginClient = require('../middleware/validateLoginClient');
 const validateCreateClient= require('../validators/createClient');
-const userExtractor = require('../middleware/userExtractor');
+
+
+const userExtractor = require("../middleware/userExtractor")
+
 
 // Creo el router
 const clienteRouter = require('express').Router();
