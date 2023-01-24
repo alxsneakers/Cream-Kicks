@@ -21,6 +21,7 @@ export class IndexPedidoComponent implements OnInit {
   pedidos$: Observable<PedidoModel[]>;
   columnsDisplay: string[]= ['clienteCorreo', 'id', 'creado', 'estado', 'subtotal']; // nombre de las columnas
   data: any;
+  data2: any;
   searchValue: string; // guarda el valor del input.
   @ViewChild(MatPaginator) paginator: MatPaginator;
 

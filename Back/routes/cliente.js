@@ -39,13 +39,12 @@ clienteRouter.post('/registro_cliente', validateCreateClient, clienteController.
  *      responses: 
  *          200: 
  *              description: Devuelve el id y token del cliente.
- *          401: 
+ *          402: 
  *              description: Email o Contraseña incorrecta.
  *          500:
  *              description: Token no valido o expirado
  *      security:
  *          - bearerAuth: []
- * 
  * 
  */
 clienteRouter.post('/login_cliente', validateLoginClient, clienteController.login_cliente);

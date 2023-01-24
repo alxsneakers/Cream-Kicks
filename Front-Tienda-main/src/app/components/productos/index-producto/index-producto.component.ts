@@ -145,7 +145,6 @@ export class IndexProductoComponent implements OnInit {
 
   // obtiene los precios del slider
   buscar_precios(){
-
     this._clientService.listar_productos_publico(this.filter_producto).subscribe(
       reponse =>{
         console.log(reponse);

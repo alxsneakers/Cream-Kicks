@@ -148,24 +148,24 @@
                         </label>
                       </div>
                     </div>
-                    <div class="collapse show" id="cc-card" data-parent="#payment-methods">
-                      <div class="card-body pt-3 pb-0">
-                        <div class="form-group mb-3">
-                          <label for="cc-number">Numero tarjeta</label>
-                          <input type="text" id="cc-number" class="form-control form-control-lg" data-format="card" placeholder="0000 0000 0000 0000">
-                        </div>
-                        <div class="d-flex">
-                          <div class="form-group mb-3 mr-3">
-                            <label for="cc-exp-date">Fecha final</label>
-                            <input type="text" id="cc-exp-date" class="form-control form-control-lg" data-format="date" placeholder="mm/yy">
-                          </div>
+                      <div class="collapse show" id="cc-card" data-parent="#payment-methods">
+                        <div class="card-body pt-3 pb-0">
                           <div class="form-group mb-3">
-                            <label for="cc-cvc">CVC</label>
-                            <input type="text" id="cc-cvc" class="form-control form-control-lg" data-format="cvc" placeholder="000" minlength="3" maxlength="3" (keypress)="onlyNumbers($event)">
+                            <label for="cc-number">Numero tarjeta</label>
+                            <input class="form-control" type="text" id="cc-number" name="numTarjeta" minlength="16" maxlength="16" class="form-control form-control-lg" data-format="card" placeholder="0000 0000 0000 0000">
+                          </div>
+                          <div class="d-flex">
+                            <div class="form-group mb-3 mr-3">
+                              <label for="cc-exp-date">Fecha caducidad</label>
+                              <input type="text" id="cc-exp-date" class="form-control form-control-lg" data-format="date" placeholder="mm/yy">
+                            </div>
+                            <div class="form-group mb-3">
+                              <label for="cc-cvc">CVV</label>
+                              <input type="text" id="cc-cvc" class="form-control form-control-lg" data-format="cvc" placeholder="000" minlength="3" maxlength="3" (keypress)="onlyNumbers($event)">
+                            </div>
                           </div>
                         </div>
                       </div>
-                    </div>
                   </div>
 
                   <!-- Card: PayPal -->
@@ -243,7 +243,7 @@
                   </div>
                 </div>
                 
-                <button *ngIf="pago_tarjeta == true" type="button" class="btn btn-color btn-lg btn-block" (click)="prueba()">Pagar con tarjeta</button>
+                <button *ngIf="pago_tarjeta == true" type="button" class="btn btn-color btn-lg btn-block" (click)="compraConTarjeta()">Pagar con tarjeta</button>
               </div>
             </div>
           </aside>
